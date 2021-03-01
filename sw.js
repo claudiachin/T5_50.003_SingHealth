@@ -7,6 +7,7 @@ self.addEventListener('install', function(event) {
           './index.html',
           './src/css/style.css',
           './src/js/app.js',
+          '/src/resources/SingHealth_Logo.png',
         ])
       })
   );

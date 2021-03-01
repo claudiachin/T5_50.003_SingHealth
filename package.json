@@ -1,0 +1,22 @@
+{
+  "name": "singhealth-web-app",
+  "version": "1.0.0",
+  "description": "SingHealth Web Application for SUTD ISTD 50.003",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/claudiachin/T5_50.003_SingHealth.git"
+  },
+  "keywords": [
+    "pwa"
+  ],
+  "author": "Claudia Chin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/claudiachin/T5_50.003_SingHealth/issues"
+  },
+  "homepage": "https://github.com/claudiachin/T5_50.003_SingHealth#readme"
+}

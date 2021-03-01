@@ -1,8 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="/src/css/index.css">
   </head>
   <body>
-    <div>Hello, world!</div>
+    <div id="loginBG">
+        <img id="logo" src="https://upload.wikimedia.org/wikipedia/en/7/78/SingHealth_Logo.png">
+        <h1>Login</h1>
+        <div class="box-shadow">
+            <div class="tab-bar">
+                <button class="tab tab-active">Auditor</button>
+                <button class="tab">Tenant</button>
+            </div>
+            <form>
+                <input type="email" id="email" name="email" placeholder="Email"><br>
+                <input type="password" id="pword" name="pword"  placeholder="Password">
+            </form>
+        </div> 
+        <button class="primary-button">Login ></button>   
+    </div>
   </body>
 </html>

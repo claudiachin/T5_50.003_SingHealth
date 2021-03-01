@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/claudiachin/T5_50.003_SingHealth/issues"
   },
-  "homepage": "https://github.com/claudiachin/T5_50.003_SingHealth#readme"
+  "homepage": "https://claudiachin.github.io/T5_50.003_SingHealth/",
+  "devDependencies": {
+    "http-server": "^0.9.0"
+  }
 }

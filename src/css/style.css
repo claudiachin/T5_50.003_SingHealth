@@ -1,16 +1,11 @@
-h1 { font-size: 32px; font-family: Poppins; font-weight: bold; }
-h2 { font-size: 24px; font-family: Poppins; font-weight: 275; }
-h3 { font-size: 20px; font-family: Poppins; font-weight: 275; }
-p { font-size: 16px; font-family: Poppins; font-weight: 275; }
-h6 { font-size: 12px; font-family: Poppins; font-weight: 200; }
+h1 { font-size: 32px; font-family: Poppins; font-weight: bold; margin: 0; }
+h2 { font-size: 24px; font-family: Poppins; font-weight: 275; margin: 0; }
+h3 { font-size: 20px; font-family: Poppins; font-weight: 275; margin: 0; }
+p { font-size: 16px; font-family: Poppins; font-weight: 275; margin: 0; }
+h6 { font-size: 12px; font-family: Poppins; font-weight: 200; margin: 0; }
 
-#loginBG {
-    background: linear-gradient(to bottom, #fff 0%,#fff 60%,#F15A22 60%,#F15A22 100%); 
-    height: 100vh; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    flex-direction: column;
+body {
+    margin: 0;
 }
 
 .box-shadow {
@@ -20,10 +15,6 @@ h6 { font-size: 12px; font-family: Poppins; font-weight: 200; }
     width:fit-content;
     padding: 32px;
     margin-bottom: 32px;
-}
-
-#logo {
-    width: 250px;
 }
 
 .primary-button {
@@ -63,4 +54,58 @@ input {
     padding: 8px 16px;
     border-radius: 8px;
     border: 1px solid #e5e5e5;
+}
+
+.top-flap {
+    border-radius: 0 0 16px 16px;
+    background-color: #112444;
+    color: #fff;
+    padding: 44px 32px 16px 32px;
+    box-shadow: 0px 0px 16px 4px #ccc; 
+}
+
+.main-content {
+    padding: 32px;
+    background-color: #fff;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    bottom: 0;
+    background-color: #fff;
+    box-shadow: 0px 0px 16px 4px #ccc; 
+}
+
+.navbar > div {
+    padding: 16px;
+    margin: 0;
+}
+
+.navbar > div > i {
+    font-size: 20px;
+    color: #92A8C0;
+}
+
+#new-report > i {
+    font-size: 48px;
+}
+
+.nav-active > i {
+    color: #112444 !important;
+}
+
+.navbar-tenant > div {
+    padding: 30px !important;
+}
+
+@media only screen and (min-width: 768px) { /*tablet breakpoint*/
+    
+}
+
+@media only screen and (min-width: 1024px) { /*laptop breakpoint*/
+    
 }

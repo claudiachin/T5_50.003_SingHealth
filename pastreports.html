@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- do not remove anything in head, can add stuff if needed though -->
+    <link rel="stylesheet" type="text/css" href="src/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://kit.fontawesome.com/215800797e.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="top-flap">
+        <h1>Reports</h1>
+        <!-- <h2>Name</h2> -->
+    </div>
+    <div class="main-content">
+            <div>
+                <h1 id="ocoffeeclub">O' Coffee Club</h1>
+                <p>[SingHealth Instiution] [F&B Store]<br></p> 
+                <p>Latest report made on 28/2/2020<br></p> 
+              </div>
+    </div>
+
+    <form action="/action_page.php" method="get">
+        <label for="tenant">Search for Tenant:</label>
+        <input list="tenants" name="tenant" id="tenant">
+        <datalist id="tenants">
+          <option value="O' Coffee Club">
+          <option value="O Chang Kee">
+          <option value="Heavenly Wang - Wang Cafe">
+          <option value="Noel Gifts International">
+          <option value="K-Cuts">
+          <option value="Mr Bean">
+        </datalist>
+        <input type="submit"value="Dummy Redirection"/>
+        <!-- The submission of query to further get the link to the selected tenant's information page-->
+      </form>
+
+    <div class="navbar">
+        <div id="home" class="nav-active"><i class="fas fa-home"></i></div>
+        <div id="annoucements"><i class="fas fa-bullhorn"></i></div>
+        <div id="new-report"><i class="fas fa-plus-circle"></i></div>
+        <div id="trends"><i class="fas fa-chart-line"></i></div>
+        <div id="directory"><i class="fas fa-th-list"></i></div>
+    </div>
+    <!-- tenant navbar 
+    <div class="navbar navbar-tenant">
+        <div id="home" class="nav-active"><i class="fas fa-home"></i></div>
+        <div id="annoucements"><i class="fas fa-bullhorn"></i></div>
+        <div id="directory"><i class="fas fa-th-list"></i></div>
+        <div id="past-report"><i class="fas fa-file-alt"></i></div>
+    </div>
+    -->
+
+    <!--- do not remove this script line, it allows the service worker to function -->
+    <script src="src/js/app.js"></script> 
+  </body>
+</html>

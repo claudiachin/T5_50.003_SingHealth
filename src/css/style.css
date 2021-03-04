@@ -68,6 +68,7 @@ input {
     padding: 32px;
     background-color: #fff;
     margin-bottom: 80px;
+    font-family: Poppins;
 }
 
 .navbar {
@@ -139,6 +140,27 @@ p.title {
 .form{
     position:relative;
     left: 8%;
+
+}
+
+.noti{
+    color: #203E70;
+    font-size: 32px;
+
+}
+
+.notification{
+    border: 40px;
+    margin: 10px;
+    padding: 5px;
+    font-size: 22px;
+    box-shadow: 0px 0px 16px 4px #ccc;
+    border-radius: 8px;
+
+}
+.notification > i{
+    margin-right: 8px;
+    margin-left: 5px;
 
 }
 

@@ -1,8 +1,15 @@
+<!-- html dummy link redirection for directory through GO TO button. Ultimately to implement it as a pictoral element to redirect or some positional click
+Same with the search button, input-type to find a way to retrieve the relevant link to open the choice. -->
+
+
 <!DOCTYPE html>
 <html>
   <head>
     <!-- do not remove anything in head, can add stuff if needed though -->
     <link rel="stylesheet" type="text/css" href="src/css/style.css">
+    <link rel="stylesheet" href="src/css/bell.css">
+    <link rel="stylesheet" href="src/css/file-document.css">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -10,16 +17,33 @@
   </head>
   <body>
     <div class="top-flap">
-        <h1>Trends</h1>
-        <!-- <h2>Name</h2> -->
+        <h1>Welcome, Claudia Chin</h1>
     </div>
     <div class="main-content">
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi eum, velit labore nihil nam fugiat, accusamus atque harum, possimus natus eius ex! Dolor pariatur nesciunt recusandae provident ut animi sed!</p>
-    </div>
+        <div>
+            <h2><b>Hospital</b><br></h3> 
+            <p>Singapore General hospital<br></p>
+            <br>
 
+            <h2><b>Email</b><br></h3> 
+            <p>abcde@singhealth.sg<br></p>
+            <br>
+            
+            <div> 
+                <p class="noti">Notifications<br></p>
+
+                <p class="notification"><i class="fa gg-bell"></i> 1 New announcement<br></p>
+
+                <p class="notification"><i class="fa gg-file-document"></i> 2 replies from mrbean<br></p>
+
+            </div>
+            
+            
+          </div>
+    </div>
     <div class="navbar">
         <div id="home" class="nav-active">
-            <button class="button" onclick="window.location.href='home.html';"><i class="fas fa-home"></i></button>
+            <i class="fas fa-home"></i>
         </div>
         <div id="annoucements">
             <button class="button" onclick="window.location.href='announcements.html';"><i class="fas fa-bullhorn"></i></button>

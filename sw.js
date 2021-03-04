@@ -6,6 +6,7 @@ self.addEventListener('install', function(event) {
           './',
           './index.html',
           './info.html',
+          './home.html',
           './directory.html',
           './announcements.html',
           './trends.html',

@@ -86,9 +86,12 @@ input {
     margin: 0;
 }
 
-.navbar > div > i {
+.navbar > div > button {
     font-size: 20px;
     color: #92A8C0;
+    border: none;
+    outline: none;
+    background-color: white;
 }
 
 #new-report > i {
@@ -111,6 +114,32 @@ input {
     transform: rotate(45deg);
     margin: 5px;
     border-radius: 15%;
+}
+
+.button:hover{
+    color: #112444;
+}
+
+#new-report > i:hover {
+    color: #92A8C0;
+}
+
+.button:active{
+    color: #112444;
+}
+
+#new-report > i:active {
+    color: #92A8C0;
+}
+
+p.title {
+    font-weight: bold;
+}
+
+.form{
+    position:relative;
+    left: 8%;
+
 }
 
 @media only screen and (min-width: 768px) { /*tablet breakpoint*/

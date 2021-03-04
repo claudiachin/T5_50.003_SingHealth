@@ -5,6 +5,10 @@ self.addEventListener('install', function(event) {
         cache.addAll([
           './',
           './index.html',
+          './info.html',
+          './directory.html',
+          './announcements.html',
+          './trends.html',
           './src/css/style.css',
           './src/css/index.css',
           './src/js/app.js',

@@ -10,11 +10,9 @@
   </head>
   <body>
     <div class="top-flap">
-        <h1>DIRECTORY</h1>
+        <h1>Directory</h1>
         <!-- <h2>Name</h2> -->
     </div>
-    
-
         <!--<div class="dropdown">
             <button onclick="myFunction()" class="dropbtn">Dropdown</button>
             <div id="myDropdown" class="dropdown-content">
@@ -23,77 +21,66 @@
               <a href="#F&B">F&B</a>
             </div>
           </div> -->
+    <div class="form">
+      <form action="/action_page.php" method="get">
+        <label for="tenant">Search for Tenant:</label>
+        <input list="tenants" name="tenant" id="tenant">
+        <datalist id="tenants">
+          <option value="O' Coffee Club">
+          <option value="O Chang Kee">
+          <option value="Heavenly Wang - Wang Cafe">
+          <option value="Noel Gifts International">
+          <option value="K-Cuts">
+          <option value="Mr Bean">
+        </datalist>
+      <!--input type="submit"value="Dummy Redirection"/--> 
+      <!--<div id="button"><a href="index.html">Log In</a></div> testing the redirection of links-->
+      <!-- The submission of query to further get the link to the selected tenant's information page-->
+    </form>
+    </div>
 
-<form action="/action_page.php" method="get">
-  <label for="tenant">Search for Tenant:</label>
-  <input list="tenants" name="tenant" id="tenant">
-  <datalist id="tenants">
-    <option value="O' Coffee Club">
-    <option value="O Chang Kee">
-    <option value="Heavenly Wang - Wang Cafe">
-    <option value="Noel Gifts International">
-    <option value="K-Cuts">
-    <option value="Mr Bean">
-  </datalist>
-  <input type="submit"value="Dummy Redirection"/> 
-  <!--<div id="button"><a href="index.html">Log In</a></div> testing the redirection of links-->
-  <!-- The submission of query to further get the link to the selected tenant's information page-->
-</form>
+    <!--a href="#kcuts">Go to End of Page</a-->
 
-<a href="#kcuts">Go to End of Page</a>
-
-<div class="main-content"></div>
-<div>
-  <h1 id="heavenlywangcafe">Heavenly Wang- Wang Cafe </h1>
-  <p>[SingHealth Instiution] [F&B Store]<br></p> 
-  <p>Latest report made on 14/2/2020<br></p> <div id="button"><a href="info.html">GO TO</a></div>
-</div>
-<hr>
-</div>
-
-<div>
-  <h1 id="ocoffeeclub">O' Coffee Club</h1>
-  <p>[SingHealth Instiution] [F&B Store]<br></p> 
-  <p>Latest report made on 28/2/2020<br></p> 
-</div>
-<hr>
-</div>
-
-<div>
-  <h1 id="ochangkee">O Chang Kee</h1>
-  <p>[SingHealth Instiution] [F&B Store]<br></p> 
-  <p>Latest report made on 2/2/2020<br></p> 
-</div>
-<hr>
-</div>
-
-<div>
-  <h1 id="noelgiftsinternational">Noel Gifts International</h1>
-  <p>[SingHealth Instiution] [F&B Store]<br></p> 
-  <p>Latest report made on 2/2/2020<br></p> 
-</div>
-<hr>
-</div>
-
-<div>
-  <h1 id="mrbean">Mr Bean</h1>
-  <p>[SingHealth Instiution] [F&B Store]<br></p> 
-  <p>Latest report made on 2/2/2020<br></p> 
-</div>
-<hr>
-</div>
+    <div class="main-content">
+        <div>
+            <p id="heavenlywangcafe" class = "title">Heavenly Wang- Wang Cafe </p>
+            <p>[SingHealth Instiution] [F&B Store]<br></p> 
+            <h6>Latest report made on 14/2/2020<br></p>
+        </div>
+        <hr>
+        <div>
+            <p id="ocoffeeclub" class = "title">O' Coffee Club</p>
+            <p>[SingHealth Instiution] [F&B Store]<br></p> 
+            <p>Latest report made on 28/2/2020<br></p> 
+        </div>
+        <hr>
+        <div>
+            <p id="ochangkee" class = "title">O Chang Kee</p>
+            <p>[SingHealth Instiution] [F&B Store]<br></p> 
+            <p>Latest report made on 2/2/2020<br></p> 
+        </div>
+        <hr>
+        <div>
+            <p id="noelgiftsinternational" class = "title">Noel Gifts International</p>
+            <p>[SingHealth Instiution] [F&B Store]<br></p> 
+            <p>Latest report made on 2/2/2020<br></p> 
+        </div>
+        <hr>
+        <div>
+            <p id="mrbean" class = "title">Mr Bean</p>
+            <p>[SingHealth Instiution] [F&B Store]<br></p> 
+            <p>Latest report made on 2/2/2020<br></p> 
+        </div>
+        <hr>
+        <div>
+            <p id="kcuts" class = "title">K-Cuts</p>
+            <p>[SingHealth Instiution] [non-F&B Store]<br></p> 
+            <p>Latest report made on 2/2/2020<br></p> 
+        </div>
 
 
-<div>
-  <h1 id="kcuts">K-Cuts</h1>
-  <p>[SingHealth Instiution] [non-F&B Store]<br></p> 
-  <p>Latest report made on 2/2/2020<br></p> 
-</div>
+    </div>
 
-
-      
-          
-          
           
 <!-- autocomplete          
           <div>
@@ -104,17 +91,22 @@
     <input  autoComplete="on" list="suggestions"/> 
 </div>-->
 
-
-
-
     </div>
     <div class="navbar">
-        <div id="home" class="nav-active"><i class="fas fa-home"></i></div>
-        <div id="annoucements"><i class="fas fa-bullhorn"></i></div>
-        <div id="new-report"><i class="fas fa-plus-circle"></i></div>
-        <div id="trends"><i class="fas fa-chart-line"></i></div>
-        <div id="directory"><i class="fas fa-th-list"></i></div>
-    </div>
+      <div id="home" class="nav-active">
+          <button class="button" onclick="window.location.href='info.html';"><i class="fas fa-home"></i></button>
+      </div>
+      <div id="annoucements">
+          <button class="button" onclick="window.location.href='announcements.html';"><i class="fas fa-bullhorn"></i></button>
+      </div>
+      <div id="new-report">
+          <i class="fas fa-plus-circle"></i></div>
+      <div id="trends">
+          <button class="button" onclick="window.location.href='trends.html';"><i class="fas fa-chart-line"></i></button></div>
+      <div id="directory">
+          <i class="fas fa-th-list"></i>
+      </div>
+  </div>
     <!-- tenant navbar 
     <div class="navbar navbar-tenant">
         <div id="home" class="nav-active"><i class="fas fa-home"></i></div>

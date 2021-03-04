@@ -67,17 +67,18 @@ input {
 .main-content {
     padding: 32px;
     background-color: #fff;
+    margin-bottom: 80px;
 }
 
 .navbar {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    position: -webkit-sticky; /* Safari */
-    position: sticky;
-    bottom: 0;
     background-color: #fff;
     box-shadow: 0px 0px 16px 4px #ccc; 
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
 .navbar > div {

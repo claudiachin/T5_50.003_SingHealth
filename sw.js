@@ -14,8 +14,6 @@ self.addEventListener('install', function(event) {
           './src/css/index.css',
           './src/js/app.js',
           './src/resources/SingHealth_Logo.png',
-          './pastreports.html',
-          './announcements.html',
           'https://kit.fontawesome.com/215800797e.js',
         ])
       })

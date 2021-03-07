@@ -114,6 +114,11 @@ input {
     background-color: white;
 }
 
+.form input{
+    width: 100%;
+    box-sizing: border-box;
+}
+
 #new-report > i {
     font-size: 48px;
 }
@@ -154,12 +159,6 @@ input {
 
 p.title {
     font-weight: bold;
-}
-
-.form{
-    position:relative;
-    left: 8%;
-
 }
 
 .noti{

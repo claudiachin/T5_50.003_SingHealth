@@ -90,6 +90,10 @@ input {
     font-family: Poppins;
 }
 
+.main-content .home h2{
+    font-size: 18px;
+}
+
 .navbar {
     display: flex;
     justify-content: space-evenly;
@@ -163,23 +167,25 @@ p.title {
 
 .noti{
     color: #203E70;
-    font-size: 32px;
+    font-size: 24px;
+    padding-bottom: 8px;
 
 }
 
-.notification{
+.notification-box{
     border: 40px;
-    margin: 10px;
-    padding: 5px;
-    font-size: 22px;
+    margin: 12px 0px;
+    padding: 8px;
+    padding-bottom: 12px;
+    font-size: 18px;
     box-shadow: 0px 0px 16px 4px #ccc;
     border-radius: 8px;
-
 }
-.notification > i{
-    margin-right: 8px;
-    margin-left: 5px;
 
+.notification-box > i{
+    margin-right: 16px;
+    margin-left: 5px;
+    display: inline-block;
 }
 
 @media only screen and (min-width: 768px) { /*tablet breakpoint*/

@@ -1,8 +1,8 @@
-h1 { font-size: 32px; font-family: Poppins; font-weight: bold; margin: 0; }
-h2 { font-size: 24px; font-family: Poppins; font-weight: 275; margin: 0; }
-h3 { font-size: 20px; font-family: Poppins; font-weight: 275; margin: 0; }
-p { font-size: 16px; font-family: Poppins; font-weight: 275; margin: 0; }
-h6 { font-size: 12px; font-family: Poppins; font-weight: 200; margin: 0; }
+h1 { font-size: 32px; font-family: Tahoma; font-weight: bold; margin: 0; }
+h2 { font-size: 24px; font-family: Tahoma; font-weight: 275; margin: 0; }
+h3 { font-size: 20px; font-family: Tahoma; font-weight: 275; margin: 0; }
+p { font-size: 16px; font-family: Tahoma; font-weight: 275; margin: 0; }
+h6 { font-size: 12px; font-family: Tahoma; font-weight: 200; margin: 0; }
 
 body {
     margin: 0;
@@ -20,7 +20,7 @@ body {
 .primary-button {
     border-radius: 50px;
     font-size: 16px;
-    font-family: Poppins;
+    font-family: Tahoma;
     font-weight: 275;
     color: #fff;
     background-color: #203E70;
@@ -48,7 +48,7 @@ body {
 
 input {
     font-size: 16px;
-    font-family: Poppins;
+    font-family: Tahoma;
     font-weight: 275;
     margin-bottom: 8px;
     padding: 8px 16px;
@@ -87,7 +87,7 @@ input {
     padding: 134px 32px 32px 32px;
     background-color: #fff;
     margin-bottom: 80px;
-    font-family: Poppins;
+    font-family: Tahoma;
 }
 
 .main-content .home h2{

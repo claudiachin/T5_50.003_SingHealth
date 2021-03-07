@@ -4,6 +4,10 @@ h3 { font-size: 20px; font-family: Tahoma; font-weight: 275; margin: 0; }
 p { font-size: 16px; font-family: Tahoma; font-weight: 275; margin: 0; }
 h6 { font-size: 12px; font-family: Tahoma; font-weight: 200; margin: 0; }
 
+h1, h2, h3, p, h6 {
+    color: #444444;
+}
+
 body {
     margin: 0;
 }
@@ -46,14 +50,20 @@ body {
     justify-content: center;
 }
 
-input {
+.form input {
+    position: fixed;
     font-size: 16px;
-    font-family: Tahoma;
     font-weight: 275;
-    margin-bottom: 8px;
+    margin-top: 125px;
+    margin-bottom: 12px;
+    margin-left: 30px;
+    margin-right: 30px;
     padding: 8px 16px;
     border-radius: 8px;
     border: 1px solid #e5e5e5;
+    width: 85%;
+    box-sizing: border-box;
+    background-color: white;
 }
 
 .top-flap {
@@ -61,13 +71,13 @@ input {
     width: 100%;
     border-radius: 0 0 24px 24px;
     background-color: #112444;
-    color: #fff;
     box-shadow: 0px 0px 16px 4px #ccc;
     z-index: 2;
     height: 110px;
 }
 
 .top-flap p{
+    color: #ffffff;
     position: absolute;
     left: 32px;
     top:  55%;
@@ -94,6 +104,10 @@ input {
     font-size: 18px;
 }
 
+.directory{
+    padding-top: 180px;
+}
+
 .navbar {
     display: flex;
     justify-content: space-evenly;
@@ -118,17 +132,13 @@ input {
     background-color: white;
 }
 
-.form input{
-    width: 100%;
-    box-sizing: border-box;
+.navbar > div > i {
+    color: #112444 !important;
+    font-size: 20px;
 }
 
 #new-report > i {
-    font-size: 48px;
-}
-
-.nav-active > i {
-    color: #112444 !important;
+    font-size: 36px;
 }
 
 .navbar-tenant > div {
@@ -161,7 +171,7 @@ input {
     color: #92A8C0;
 }
 
-p.title {
+.main-content p.title {
     font-weight: bold;
 }
 

@@ -23,24 +23,25 @@
           </div> -->
 
     <!--a href="#kcuts">Go to End of Page</a-->
+    <div class="form">
+        <form action="/action_page.php" method="get">
+          <input list="tenants" name="tenant" id="tenant" placeholder="Search...">
+          <datalist id="tenants">
+            <option value="O' Coffee Club">
+            <option value="O Chang Kee">
+            <option value="Heavenly Wang - Wang Cafe">
+            <option value="Noel Gifts International">
+            <option value="K-Cuts">
+            <option value="Mr Bean">
+          </datalist>
+        <!--input type="submit"value="Dummy Redirection"/--> 
+        <!--<div id="button"><a href="index.html">Log In</a></div> testing the redirection of links-->
+        <!-- The submission of query to further get the link to the selected tenant's information page-->
+      </form>
+    </div>
 
-    <div class="main-content">
-        <div class="form">
-            <form action="/action_page.php" method="get">
-              <input list="tenants" name="tenant" id="tenant" placeholder="Search...">
-              <datalist id="tenants">
-                <option value="O' Coffee Club">
-                <option value="O Chang Kee">
-                <option value="Heavenly Wang - Wang Cafe">
-                <option value="Noel Gifts International">
-                <option value="K-Cuts">
-                <option value="Mr Bean">
-              </datalist>
-            <!--input type="submit"value="Dummy Redirection"/--> 
-            <!--<div id="button"><a href="index.html">Log In</a></div> testing the redirection of links-->
-            <!-- The submission of query to further get the link to the selected tenant's information page-->
-          </form>
-        </div>
+    <div class="main-content directory">
+
         <div>
             <p id="heavenlywangcafe" class = "title">Heavenly Wang- Wang Cafe </p>
             <p>[SingHealth Instiution] [F&B Store]<br></p> 
@@ -103,9 +104,9 @@
       <div id="trends">
           <button class="button" onclick="window.location.href='trends.html';"><i class="fas fa-chart-line"></i></button></div>
       <div id="directory">
-          <i class="fas fa-th-list"></i>
+          <i class="fas fa-th-list button"></i>
       </div>
-  </div>
+    </div>
     <!-- tenant navbar 
     <div class="navbar navbar-tenant">
         <div id="home" class="nav-active"><i class="fas fa-home"></i></div>

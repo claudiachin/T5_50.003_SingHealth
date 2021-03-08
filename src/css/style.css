@@ -1,8 +1,10 @@
-h1 { font-size: 32px; font-family: Tahoma; font-weight: bold; margin: 0; }
-h2 { font-size: 24px; font-family: Tahoma; font-weight: 275; margin: 0; }
-h3 { font-size: 20px; font-family: Tahoma; font-weight: 275; margin: 0; }
-p { font-size: 16px; font-family: Tahoma; font-weight: 275; margin: 0; }
-h6 { font-size: 12px; font-family: Tahoma; font-weight: 200; margin: 0; }
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+h1 { font-size: 32px; font-family: 'Poppins', sans-serif; font-weight: bold; margin: 0; }
+h2 { font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 275; margin: 0; }
+h3 { font-size: 20px; font-family: 'Poppins', sans-serif; font-weight: 275; margin: 0; }
+p { font-size: 16px; font-family: 'Poppins', sans-serif; font-weight: 275; margin: 0; }
+h6 { font-size: 12px; font-family: 'Poppins', sans-serif; font-weight: 200; margin: 0; }
 
 h1, h2, h3, p, h6 {
     color: #444444;
@@ -24,7 +26,7 @@ body {
 .primary-button {
     border-radius: 50px;
     font-size: 16px;
-    font-family: Tahoma;
+    font-family: 'Poppins', sans-serif;
     font-weight: 275;
     color: #fff;
     background-color: #203E70;

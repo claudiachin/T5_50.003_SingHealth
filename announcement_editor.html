@@ -15,10 +15,21 @@
         <br>
         <form>
             <div class="input-field">
-                <input type="text" name="" required="">
+                <input id="count_value_title" type="text" name="" required="">
                 <label>Add title....</label>
-                <span></span>
+                <span id="count_no_title">0</span>
+                <br clear="both">
             </div>
+
+            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+            <script>
+                $(document).ready(function(){
+                $("#count_value_title").on("keyup", function(){
+                    $("#count_no_title").text($("#count_value_title").val().length)
+                    });
+                });
+            </script>
         </form>
         <br>
         <div class="wrapper">

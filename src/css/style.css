@@ -289,3 +289,20 @@ body {
     transition: transform 0.5s ease-in-out;
 
 }
+
+.wrapper textarea{
+    outline: #112444;
+    padding: 5px;
+    width: 400px;
+    height: 200px;
+    resize:vertical;
+}
+
+.wrapper span{
+    color: #112444;
+    float: right;
+}
+
+.container button{
+    font-size: 14px;
+}

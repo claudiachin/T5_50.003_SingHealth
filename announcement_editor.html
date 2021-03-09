@@ -20,6 +20,23 @@
                 <span></span>
             </div>
         </form>
+        <br>
+        <div class="wrapper">
+            <textarea id="count_value" rows = "5" cols="65">Add description...</textarea>
+            <br>
+            <span id="count_no">18</span>
+            <br clear="both">
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+        <script>
+            $(document).ready(function(){
+            $("#count_value").on("keyup", function(){
+                $("#count_no").text($("#count_value").val().length)
+                });
+            });
+        </script>
         <button class="primary-button" onclick="postBtn()">Post</button>
     </div>
 

@@ -11,48 +11,17 @@
   <body>
     <div class="container">
         <p>< Announcements<br></p> 
-        <h1>Create New Announcement</h1>
-        <br>
-        <form>
-            <div class="input-field">
-                <input id="count_value_title" type="text" name="" required="">
-                <label>Add title....</label>
-                <span id="count_no_title">0</span>
-                <br clear="both">
-            </div>
-
-            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
-            <script>
-                $(document).ready(function(){
-                $("#count_value_title").on("keyup", function(){
-                    $("#count_no_title").text($("#count_value_title").val().length)
-                    });
-                });
-            </script>
-        </form>
+        <h1 id="announcement_title">Announcement Title, limit to 8 words or 50 chars</h1>
         <br>
         <div class="wrapper">
             <textarea rows = "5" cols="65">Placeholder image</textarea>
         </div>
-
-        <div class="wrapper">
-            <textarea id="count_value" rows = "5" cols="65">Add description...</textarea>
-            <br>
-            <span id="count_no">18</span>
-            <br clear="both">
-        </div>
-
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
-        <script>
-            $(document).ready(function(){
-            $("#count_value").on("keyup", function(){
-                $("#count_no").text($("#count_value").val().length)
-                });
-            });
-        </script>
-        <button class="primary-button" onclick="postBtn()">Post</button>
+        <h6>Posted on 28/2/2021 at 4.06 am</h6>
+        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore 
+                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
+                aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum 
+                dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
+                officia deserunt mollit anim id est laborum.</div>
     </div>
 
     <div class="navbar">

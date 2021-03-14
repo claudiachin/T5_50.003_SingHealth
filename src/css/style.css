@@ -9,6 +9,7 @@ h6 { font-size: 12px; font-family: 'Poppins', sans-serif; font-weight: 200; marg
 h1, h2, h3, p, h6 {
     color: #444444;
 }
+.floatRight{float:right;margin-right:80px; margin-top:40px}
 
 body {
     margin: 0;

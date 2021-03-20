@@ -1,0 +1,18 @@
+.report-nav {
+    display: flex;
+    justify-content: center;
+    padding: 44px 0 0;
+}
+
+.report-nav > h2 {
+    flex: 1;
+    text-align: center;
+}
+
+.main-content-report {
+    padding: 32px;
+}
+
+.sect {
+    margin-bottom: 8px;
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- do not remove anything in head, can add stuff if needed though -->
+    <link rel="stylesheet" type="text/css" href="../src/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../src/css/create_report.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://kit.fontawesome.com/215800797e.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="report-nav">
+      <button>Back</button>
+      <h2>Start</h2>
+      <button>Next</button>
+    </div>
+
+    <div class="main-content-report">
+      <input type="text" id="search" onkeyup="filter()" placeholder="Search..">
+      <div id="list"></div>
+    </div>
+
+    <script>
+      // to change to reading from firebase
+      var names = ["Heavenly Wang- Wang Cafe", "O' Coffee Club", "O Chang Kee", "Noel Gifts International", "Mr Bean", "K-Cuts"];
+
+      for (i=0; i<names.length; i++) {
+        var tenant = document.createElement("p");
+        var tenantText = document.createTextNode(names[i]);
+        tenant.appendChild(tenantText);
+        tenant.classList.add("tenant-text");
+
+        var inst = document.createElement("p");
+        var instText = document.createTextNode("[SingHealth Instiution] [F&B Store]");
+        inst.appendChild(instText);
+
+        var date = document.createElement("h6");
+        var dateText = document.createTextNode("Latest report made on 14/2/2020");
+        date.appendChild(dateText);
+
+        var sect = document.createElement("div");
+        sect.appendChild(tenant);
+        sect.appendChild(inst);
+        sect.appendChild(date);
+        sect.classList.add("sect");
+
+        var split = document.createElement("hr");
+
+        var list = document.getElementById("list");
+        list.appendChild(sect);
+        list.appendChild(split);
+      }
+    </script>
+
+    <script>
+      function filter() {
+        // Declare variables
+        var filter = document.getElementById('search').value.toUpperCase();
+        var tenantInfo = document.getElementById("list").getElementsByTagName('div');
+      
+        // Loop through all list items, and hide those who don't match the search query
+        for (i = 0; i < tenantInfo.length; i++) {
+          var tenantName = tenantInfo[i].firstChild;
+          var txtValue = tenantName.textContent || tenantName.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tenantInfo[i].style.display = "";
+            tenantInfo[i].nextElementSibling.style.display = "";
+          } else {
+            tenantInfo[i].style.display = "none";
+            tenantInfo[i].nextElementSibling.style.display = "none";
+          }
+        }
+      }
+    </script>
+
+    <!--- do not remove this script line, it allows the service worker to function -->
+    <script src="src/js/app.js"></script> 
+  </body>
+</html>
+
+<!---
+    f&B
+- Professionalism & Staff Hygiene 10 
+- Housekeeping & General Cleanliness 20 
+- Food Hygiene 35 
+- Healthier Choice in line with HPB’s Healthy Eating’s Initiative 15 
+- Workplace Safety & Health 20 
+
+non-f&B
+- Professionalism & Staff Hygiene 20 
+- Housekeeping & General Cleanliness 40 
+- Workplace Safety & Health 40 
+-->

@@ -174,10 +174,6 @@ body {
     color: #92A8C0;
 }
 
-.main-content p.title {
-    font-weight: bold;
-}
-
 .noti{
     color: #203E70;
     font-size: 24px;
@@ -306,4 +302,29 @@ body {
 
 .container button{
     font-size: 14px;
+}
+
+#search {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid #e5e5e5;
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: 275;
+}
+
+.tenant-text {
+    font-weight: bold;
+}
+
+.card {
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#list > hr {
+    margin-bottom: 8px;
 }

@@ -11,85 +11,73 @@
   <body>
     <div class="top-flap">
         <p>Directory</p>
-        <!-- <h2>Name</h2> -->
-    </div>
-        <!--<div class="dropdown">
-            <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-            <div id="myDropdown" class="dropdown-content">
-              <input type="text" placeholder="Search for tenant..." id="myInput" onkeyup="filterFunction()">
-              <a href="non-F&B">non-F&B</a>
-              <a href="#F&B">F&B</a>
-            </div>
-          </div> -->
-
-    <!--a href="#kcuts">Go to End of Page</a-->
-    <div class="form">
-        <form action="/action_page.php" method="get">
-          <input list="tenants" name="tenant" id="tenant" placeholder="Search...">
-          <datalist id="tenants">
-            <option value="O' Coffee Club">
-            <option value="O Chang Kee">
-            <option value="Heavenly Wang - Wang Cafe">
-            <option value="Noel Gifts International">
-            <option value="K-Cuts">
-            <option value="Mr Bean">
-          </datalist>
-        <!--input type="submit"value="Dummy Redirection"/--> 
-        <!--<div id="button"><a href="index.html">Log In</a></div> testing the redirection of links-->
-        <!-- The submission of query to further get the link to the selected tenant's information page-->
-      </form>
     </div>
 
-    <div class="main-content directory">
-
-        <div>
-            <p id="heavenlywangcafe" class = "title">Heavenly Wang- Wang Cafe </p>
-            <p>[SingHealth Instiution] [F&B Store]<br></p> 
-            <h6>Latest report made on 14/2/2020<br></p>
-        </div>
-        <hr>
-        <div>
-            <p id="ocoffeeclub" class = "title">O' Coffee Club</p>
-            <p>[SingHealth Instiution] [F&B Store]<br></p> 
-            <p>Latest report made on 28/2/2020<br></p> 
-        </div>
-        <hr>
-        <div>
-            <p id="ochangkee" class = "title">O Chang Kee</p>
-            <p>[SingHealth Instiution] [F&B Store]<br></p> 
-            <p>Latest report made on 2/2/2020<br></p> 
-        </div>
-        <hr>
-        <div>
-            <p id="noelgiftsinternational" class = "title">Noel Gifts International</p>
-            <p>[SingHealth Instiution] [F&B Store]<br></p> 
-            <p>Latest report made on 2/2/2020<br></p> 
-        </div>
-        <hr>
-        <div>
-            <p id="mrbean" class = "title">Mr Bean</p>
-            <p>[SingHealth Instiution] [F&B Store]<br></p> 
-            <p>Latest report made on 2/2/2020<br></p> 
-        </div>
-        <hr>
-        <div>
-            <p id="kcuts" class = "title">K-Cuts</p>
-            <p>[SingHealth Instiution] [non-F&B Store]<br></p> 
-            <p>Latest report made on 2/2/2020<br></p> 
-        </div>
-
-
+    <div class="main-content">
+        <input type="text" id="search" onkeyup="filter()" placeholder="Search..">
+        <div id="list"></div>
     </div>
 
-          
-<!-- autocomplete          
-          <div>
-    <datalist id="suggestions">
-        <option>First option</option>
-        <option>Second Option</option>
-    </datalist>
-    <input  autoComplete="on" list="suggestions"/> 
-</div>-->
+    <script>
+        // to change to reading from firebase
+        var names = ["Heavenly Wang- Wang Cafe", "O' Coffee Club", "O Chang Kee", "Noel Gifts International", "Mr Bean", "K-Cuts"];
+
+        for (i=0; i<names.length; i++) {
+            var tenant = document.createElement("p");
+            var tenantText = document.createTextNode(names[i]);
+            tenant.appendChild(tenantText);
+            tenant.classList.add("tenant-text");
+
+            var inst = document.createElement("p");
+            var instText = document.createTextNode("[SingHealth Instiution] [F&B Store]");
+            inst.appendChild(instText);
+
+            var date = document.createElement("h6");
+            var dateText = document.createTextNode("Latest report made on 14/2/2020");
+            date.appendChild(dateText);
+
+            var sect = document.createElement("div");
+            sect.appendChild(tenant);
+            sect.appendChild(inst);
+            sect.appendChild(date);
+            sect.classList.add("sect")
+
+            var icon = document.createElement("div");
+            icon.innerHTML = '<i class="fas fa-chevron-right"></i>'
+            
+            var card = document.createElement("div");
+            card.appendChild(sect)
+            card.appendChild(icon);
+            card.classList.add("card");
+
+            var split = document.createElement("hr");
+
+            var list = document.getElementById("list");
+            list.appendChild(card);
+            list.appendChild(split);
+        }
+        </script>
+
+    <script>
+        function filter() {
+            // Declare variables
+            var filter = document.getElementById('search').value.toUpperCase();
+            var cards = document.getElementById("list").getElementsByClassName('card');
+        
+            // Loop through all list items, and hide those who don't match the search query
+            for (i = 0; i < cards.length; i++) {
+                var tenantName = cards[i].firstChild.firstChild;
+                var txtValue = tenantName.textContent || tenantName.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    cards[i].style.display = "";
+                    cards[i].nextElementSibling.style.display = "";
+                } else {
+                    cards[i].style.display = "none";
+                    cards[i].nextElementSibling.style.display = "none";
+                }
+            }
+        }
+    </script>
 
     </div>
     <div class="navbar">

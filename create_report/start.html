@@ -11,9 +11,9 @@
   </head>
   <body>
     <div class="report-nav">
-      <button class="exit-button"><i class="fas fa-times"></i>   Back</button>
+      <button class="back-button" onclick="window.location.href='../home.html';"><i class="fas fa-times"></i>   Back</button>
       <h2>Start</h2>
-      <button class="next-button hide">Next   <i class="fas fa-chevron-right"></i></button>
+      <button class="next-button hide" onclick="window.location.href='end.html';">Next   <i class="fas fa-chevron-right"></i></button>
     </div>
 
     <div class="main-content-report">
@@ -84,9 +84,11 @@
       }
 
       function leave(ele, event) {
-        ele.firstChild.style.color = "#444444";
-        if (!event.relatedTarget.id.includes("sect")) {
-          document.getElementsByClassName("next-button")[0].style.visibility = "hidden";
+        if (!event.relatedTarget.classList.contains("next-button")) {
+          ele.firstChild.style.color = "#444444";
+          if (!event.relatedTarget.id.includes("sect")) {
+            document.getElementsByClassName("next-button")[0].style.visibility = "hidden";
+          }
         }
       }
     </script>

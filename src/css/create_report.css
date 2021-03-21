@@ -2,11 +2,14 @@
     display: flex;
     justify-content: center;
     padding: 44px 0 0;
+    align-items: center;
 }
 
 .report-nav > h2 {
     flex: 1;
     text-align: center;
+    padding: 0 8px;
+    text-transform: uppercase;
 }
 
 .main-content-report {
@@ -15,4 +18,23 @@
 
 .sect {
     margin-bottom: 8px;
+}
+
+.report-nav > button {
+    border: none;
+    padding: 8px 16px;
+    height: fit-content;
+}
+
+.next-button {
+    background-color: #F15A22;
+}
+
+.exit-button {
+    background-color: #112444;
+    color: #fff;
+}
+
+.hide {
+    visibility: hidden;
 }

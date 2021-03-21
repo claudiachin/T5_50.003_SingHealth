@@ -11,9 +11,9 @@
   </head>
   <body>
     <div class="report-nav">
-      <button>Back</button>
+      <button class="exit-button"><i class="fas fa-times"></i>   Back</button>
       <h2>Start</h2>
-      <button>Next</button>
+      <button class="next-button hide">Next   <i class="fas fa-chevron-right"></i></button>
     </div>
 
     <div class="main-content-report">
@@ -44,6 +44,9 @@
         sect.appendChild(inst);
         sect.appendChild(date);
         sect.classList.add("sect");
+        sect.id = "sect-"+i;
+        sect.onmouseenter = function(){ enter(this) };
+        sect.onmouseleave = function(){ leave(this, event) };
 
         var split = document.createElement("hr");
 
@@ -70,6 +73,20 @@
             tenantInfo[i].style.display = "none";
             tenantInfo[i].nextElementSibling.style.display = "none";
           }
+        }
+      }
+    </script>
+
+    <script>
+      function enter(ele) {
+        ele.firstChild.style.color = "#F15A22";
+        document.getElementsByClassName("next-button")[0].style.visibility = "visible";
+      }
+
+      function leave(ele, event) {
+        ele.firstChild.style.color = "#444444";
+        if (!event.relatedTarget.id.includes("sect")) {
+          document.getElementsByClassName("next-button")[0].style.visibility = "hidden";
         }
       }
     </script>

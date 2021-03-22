@@ -10,15 +10,31 @@ var firebaseConfig = {
 
 var firestore=firebase.firestore();
 const docRef=firestore.doc("samples/test");
+
+const inputTextField=document.querySelector("#latest");
 const outputHeader=document.querySelector("#outputheader");
+const saveButton= document.querySelector("#saveButton")
 const loadButton= document.querySelector("#loadButton")
+
+
+saveButton.addEventListener("click", function(){
+    const textToSave=inputTextField.value;
+    console.log("I am going to save"+ textToSave+ "toFirestore");
+    docRef.set({
+        name: textToSave}).then(function(){
+        console.log("Status save!");}).catch(function(error){
+            console.log("Got an error:", error);
+        });});
+
+
+
 
 loadButton.addEventListener("click",function(){
     docRef.get().then(function(doc){
         if(doc && doc.exists){
             const myData=doc.data();
-            outputHeader.innerText="Get Data "+ myData.name;
+            outputheader.innerText="Get Data "+ myData.name;
         }
     }).catch(function(error){
-        console.log("got and error: ", error);
-    });})
+        console.log("got an error: ", error);
+    });});

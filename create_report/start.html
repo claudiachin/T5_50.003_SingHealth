@@ -13,7 +13,7 @@
     <div class="report-nav">
       <button class="back-button" onclick="window.location.href='../home.html';"><i class="fas fa-times"></i>   Back</button>
       <h2>Start</h2>
-      <button class="next-button hide" onclick="window.location.href='end.html';">Next   <i class="fas fa-chevron-right"></i></button>
+      <button class="next-button hide" onclick="goNext()">Next   <i class="fas fa-chevron-right"></i></button>
     </div>
 
     <div class="main-content-report">
@@ -45,8 +45,7 @@
         sect.appendChild(date);
         sect.classList.add("sect");
         sect.id = "sect-"+i;
-        sect.onmouseenter = function(){ enter(this) };
-        sect.onmouseleave = function(){ leave(this, event) };
+        sect.onmousedown = function(){ select(this) };
 
         var split = document.createElement("hr");
 
@@ -78,16 +77,26 @@
     </script>
 
     <script>
-      function enter(ele) {
+      var prev = '';
+      var curr = ''
+
+      function select(ele) {
+        if (prev != '') {
+          prev.firstChild.style.color = "#444444";
+        }
         ele.firstChild.style.color = "#F15A22";
         document.getElementsByClassName("next-button")[0].style.visibility = "visible";
+        prev = ele;
       }
-
-      function leave(ele, event) {
-        if (!event.relatedTarget.classList.contains("next-button")) {
-          ele.firstChild.style.color = "#444444";
-          if (!event.relatedTarget.id.includes("sect")) {
-            document.getElementsByClassName("next-button")[0].style.visibility = "hidden";
+      
+      function goNext() {
+        console.log(prev.id);
+        if (prev != '') {
+          console.log(prev.childNodes[1].innerText);
+          if (prev.childNodes[1].innerText.includes("non-F&B")) {
+            window.location.href='non-fnb/end.html';
+          } else {
+            window.location.href='fnb/end.html';
           }
         }
       }

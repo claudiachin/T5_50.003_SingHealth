@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- do not remove anything in head, can add stuff if needed though -->
+    <link rel="stylesheet" type="text/css" href="../../src/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../src/css/create_report.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://kit.fontawesome.com/215800797e.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="report-nav">
+        <button class="back-button" onclick="window.location.href='housekeeping_general_cleanliness.html';"><i class="fas fa-chevron-left"></i>   Back</button>
+        <h2>Workplace Safety & Health</h2>
+        <button class="next-button hide" onclick="goNext()">Next   <i class="fas fa-chevron-right"></i></button>
+    </div>
+    <div class="main-content-report">
+        <div class="question">
+            <p>MSDS for all industrial chemicals are available and up to date.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Proper chemicals storage.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>All detergent and bottles containing liquids are labelled appropriately.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>All personnel to wear safety shoes and safety attire where necessary.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Knives and sharp objects are kept at a safe place.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Area under the sink should not be cluttered with items other than washing agents.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Delivery personnel do not stack goods above the shoulder level.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Stacking of goods does not exceed 600mm from the ceiling and heavy items at the bottom, light items on top.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Proper signage/ label (fire, hazards, warnings, food stuff) and Exit signs in working order.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Fire extinguishers access is unobstructed; Fire extinguishers are not expired and employees know how to use them.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Escape route and exits are unobstructed.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>First aid box is available and well-equipped.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Electrical sockets are not overloaded – one plug to one socket.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Plugs and cords are intact and free from exposure/ tension with PSB safety mark.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Power points that are in close proximity to flammable and/or water sources are installed with a plastic cover.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Electrical panels / DBs are covered.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+    </div>
+    <div class="score-bar">
+        <h2>SCORE</h2>
+        <h2><span id="score">0</span> / <span id="out-of">16</span></h2>
+    </div>
+
+    <script>
+        function change(qn) {
+            var lastClass = qn.classList[qn.classList.length-1];
+            if (lastClass == "fas") {
+                qn.classList.add("fa-check");
+                scoreAdd();
+            } else if (lastClass == "fa-window-minimize") {
+                qn.classList.remove("fa-window-minimize");
+                qn.classList.add("fa-check");
+                scoreAdd();
+                outOfAdd();
+            } else if (lastClass == "fa-check") {
+                qn.classList.remove("fa-check");
+                qn.classList.add("fa-times");
+                scoreSubtract();
+            } else if (lastClass == "fa-times") {
+                qn.classList.remove("fa-times");
+                qn.classList.add("fa-window-minimize");
+                outOfSubtract();
+            }
+            checkFilled();
+        }
+
+        function checkFilled() {
+            //checks that all the checkboxes so that next button can be shown
+            var checkboxes = document.getElementsByClassName("main-content-report")[0].getElementsByTagName("i");
+
+            var i = 0;
+            var allFilled = true;
+            while (i<checkboxes.length && allFilled) {
+                if (checkboxes[i].classList.length < 3) {
+                    allFilled = false;
+                }
+                i += 1
+            }
+            if (allFilled) {
+                document.getElementsByClassName("next-button")[0].classList.remove("hide");
+            }
+        }
+
+        function scoreAdd() {
+            var currScore = parseInt(document.getElementById("score").innerHTML);
+            document.getElementById("score").innerHTML = currScore+1;
+        }
+
+        function scoreSubtract() {
+            var currScore = parseInt(document.getElementById("score").innerHTML);
+            document.getElementById("score").innerHTML = currScore-1;
+        }
+
+        function outOfAdd() {
+            var currOutOf = parseInt(document.getElementById("out-of").innerHTML);
+            document.getElementById("out-of").innerHTML = currOutOf+1;
+        }
+
+        function outOfSubtract() {
+            var currOutOf = parseInt(document.getElementById("out-of").innerHTML);
+            document.getElementById("out-of").innerHTML = currOutOf-1;
+        }
+    </script>
+
+    <script>
+        function goNext() {
+            //TO DO: upload score and outOf
+            var score = parseInt(document.getElementById("score").innerHTML);
+            var outOf = parseInt(document.getElementById("out-of").innerHTML);
+            window.location.href='end.html';
+        }
+    </script>
+
+    <!--- do not remove this script line, it allows the service worker to function -->
+    <script src="src/js/app.js"></script> 
+  </body>
+</html>

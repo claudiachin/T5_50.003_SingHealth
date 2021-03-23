@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="src/css/style.css">
-    <link rel="stylesheet" type="text/css" href="src/css/index.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -10,9 +10,6 @@
     <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
 
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-analytics.js"></script>
     <script>
       function loginBtn() {
         window.location.href = "home.html";
@@ -20,7 +17,7 @@
     </script>
   </head>
   <body id="loginBG">
-    <img id="logo" src="src/resources/SingHealth_Logo.png"/>
+    <img id="logo" src="../resources/SingHealth_Logo.png"/>
     <br>
     <br>
     <div class="box-shadow">
@@ -28,12 +25,13 @@
             <button class="tab tab-active">Auditor</button>
             <button class="tab">Tenant</button>
         </div>
-
-        <!--SMALL TEST FOR DATABASE-->
-        <h3 id="outputheader">This header is supposed to change after clicking load.</h3>
-        <input type="textfield" id= "latest"/>
-        <button id="saveButton">Save</button>
-        <button id="loadButton">Load</button>
+        <div hidden>
+            <!--SMALL TEST FOR DATABASE-->
+            <h3 id="outputheader">This header is supposed to change after clicking load.</h3>
+            <input type="textfield" id= "latest"/>
+            <button id="saveButton">Save</button>
+            <button id="loadButton">Load</button>
+        </div>
         
         <form id="login">
             <input type="email" id="email" name="email" placeholder="Email"><br>
@@ -65,9 +63,8 @@
       db.settings({timestampsInSnapshots: true});
 
     </script> 
-    <script src="src/js/auth.js"></script>
-    <script src="src/js/app.js"></script>
-
+    <script src="../js/auth.js"></script>
+    <script src="../js/app.js"></script>
 
   </body>
 </html>

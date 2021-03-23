@@ -1,56 +1,35 @@
-<!-- html dummy link redirection for directory through GO TO button. Ultimately to implement it as a pictoral element to redirect or some positional click
-Same with the search button, input-type to find a way to retrieve the relevant link to open the choice. -->
-
-
 <!DOCTYPE html>
 <html>
   <head>
     <!-- do not remove anything in head, can add stuff if needed though -->
-    <link rel="stylesheet" type="text/css" href="src/css/style.css">
-    <link rel="stylesheet" href="src/css/bell.css">
-    <link rel="stylesheet" href="src/css/file-document.css">
-
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://kit.fontawesome.com/215800797e.js" crossorigin="anonymous"></script>
   </head>
   <body>
-    <div class="top-flap">
-        <p>Welcome,<br><span>Claudia Chin</span></p>
-        
-        <img src="src/resources/profile.png" width="125" height="125"class="floatRight" >
-
-    </div>
-    <div class="main-content">
-        <div class = "home">
-            <h2><b>Hospital</b><br></h3> 
-            <p>Singapore General hospital<br></p>
-            <br>
-
-            <h2><b>Email</b><br></h3> 
-            <p>abcde@singhealth.sg<br></p>
-            
-            <br>
-            
-            <div> 
-                <p class="noti">Notifications<br></p>
-
-                <p class="notification-box"><i class="fa gg-bell"></i>1 New announcement<br></p>
-
-                <p class="notification-box"><i class="fa gg-file-document"></i>2 replies from mrbean<br></p>
-
-            </div>
-            
-            
+    <div class="container">
+        <a href="announcements.html"><p>< Announcements<br></p></a> 
+        <h1 id="announcement_title">Announcement Title, limit to 8 words or 50 chars</h1>
+        <br>
+        <div class="wrapper">
+            <textarea rows = "5" cols="65">Placeholder image</textarea>
         </div>
+        <h6>Posted on 28/2/2021 at 4.06 am</h6>
+        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore 
+                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
+                aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum 
+                dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
+                officia deserunt mollit anim id est laborum.</div>
     </div>
+
     <div class="navbar">
         <div id="home" class="nav-active">
-            <i class="fas fa-home button"></i>
+            <button class="button" onclick="window.location.href='home.html';"><i class="fas fa-home"></i></button>
         </div>
         <div id="annoucements">
-            <button class="button" onclick="window.location.href='announcements.html';"><i class="fas fa-bullhorn"></i></button>
+            <i class="fas fa-bullhorn button"></i>
         </div>
         <div id="new-report">
             <i class="fas fa-plus-circle" onclick="window.location.href='create_report/start.html';"></i></div>
@@ -60,6 +39,7 @@ Same with the search button, input-type to find a way to retrieve the relevant l
             <button class="button" onclick="window.location.href='directory.html';"><i class="fas fa-th-list"></i></button>
         </div>
     </div>
+    
     <!-- tenant navbar 
     <div class="navbar navbar-tenant">
         <div id="home" class="nav-active"><i class="fas fa-home"></i></div>
@@ -70,6 +50,6 @@ Same with the search button, input-type to find a way to retrieve the relevant l
     -->
 
     <!--- do not remove this script line, it allows the service worker to function -->
-    <script src="src/js/app.js"></script> 
+    <script src="../js/app.js"></script> 
   </body>
 </html>

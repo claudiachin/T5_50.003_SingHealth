@@ -6,9 +6,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="Database.js"></script>
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
 
 <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
@@ -34,14 +34,38 @@
         <input type="textfield" id= "latest"/>
         <button id="saveButton">Save</button>
         <button id="loadButton">Load</button>
-
-
-        <form>
+        
+        <form id="login">
             <input type="email" id="email" name="email" placeholder="Email"><br>
             <input type="password" id="pword" name="pword"  placeholder="Password">
         </form>
     </div> 
-    <button class="primary-button" onclick="loginBtn()">Login ></button>   
+    <button class="primary-button" onclick="loginBtn()">Bypass</button>
+    <br>
+    <button class="primary-button" form="login" >Login</button>
+    <button class="primary-button" id="logout" hidden>Logout</button>
+    
+
+    <script>
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      var firebaseConfig = {
+        apiKey: "AIzaSyBl1hU_vW6IbzkF0XTqvnBlWyLrTmgybns",
+        authDomain: "singhealth-221e6.firebaseapp.com",
+        projectId: "singhealth-221e6",
+        appId: "1:684333425325:web:59bbff097942477f599c24",
+        measurementId: "G-SYJWNBX65P"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      // Make auth and firestore references
+      const auth = firebase.auth();
+      const db = firebase.firestore();
+      db.settings({timestampsInSnapshots: true});
+
+    </script> 
+    <script src="src/js/auth.js"></script>
     <script src="src/js/app.js"></script>
 
 

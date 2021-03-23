@@ -1,2 +1,2 @@
 // add the serviceWorker
-navigator.serviceWorker.register('sw.js');
+navigator.serviceWorker.register('../../sw.js');

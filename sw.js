@@ -3,16 +3,17 @@ self.addEventListener('install', function(event) {
     caches.open('first-app')
       .then(function(cache) {
         cache.addAll([
-          '../html/index.html',
-          '../html/info.html',
-          '../html/home.html',
-          '../html/directory.html',
-          '../html/announcements.html',
-          '../html/trends.html',
-          '../css/style.css',
-          '../css/index.css',
-          '../js/app.js',
-          '../resources/SingHealth_Logo.png',
+          './',
+          './index.html',
+          './src/html/info.html',
+          './src/html/home.html',
+          './src/html/directory.html',
+          './src/html/announcements.html',
+          './src/html/trends.html',
+          './src/css/style.css',
+          './src/css/index.css',
+          './src/js/app.js',
+          './src/resources/SingHealth_Logo.png',
           'https://kit.fontawesome.com/215800797e.js',
         ])
       })

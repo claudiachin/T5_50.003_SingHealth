@@ -45,8 +45,11 @@ function displayDetails(details){
         <h2><b>Email</b><br></h3> 
         <p>${details.email}<br></p>
     `;
-    auditorName.innerHTML = name;
-    accountDetails.innerHTML = html;
+    if (auditorName && accountDetails){
+        auditorName.innerHTML = name;
+        accountDetails.innerHTML = html;
+    }
+    
 }
 
 // login

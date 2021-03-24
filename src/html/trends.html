@@ -2,52 +2,49 @@
 <html lang="en">
 <head>
 
-
-  <link rel="stylesheet" type="text/css" href="src/css/style.css">
-  <link rel="stylesheet" href="src/css/bell.css">
-  <link rel="stylesheet" href="src/css/file-document.css">
+   <!-- do not remove anything in head, can add stuff if needed though -->
+   <link rel="stylesheet" type="text/css" href="../css/style.css">
+   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  
+   <script src="https://kit.fontawesome.com/215800797e.js" crossorigin="anonymous"></script>
 
   <meta charset="UTF-8">
-
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <title>My Chart.js Chart</title>
+  
 </head>
-
 <body>
-  <div class="top-flap">
-    <p>Trends</p>
-    <!-- <h2>Name</h2> -->
-</div>
 
-<div class="navbar">
-  <div id="home" class="nav-active">
-      <button class="button" onclick="window.location.href='home.html';"><i class="fas fa-home"></i></button>
-  </div>
-  <div id="annoucements">
-      <button class="button" onclick="window.location.href='announcements.html';"><i class="fas fa-bullhorn"></i></button>
-  </div>
-  <div id="new-report">
-      <i class="fas fa-plus-circle button" onclick="window.location.href='create_report/start.html';"></i></div>
-  <div id="trends">
-      <i class="fas fa-chart-line button"></i></div>
-  <div id="directory">
-      <button class="button" onclick="window.location.href='directory.html';"><i class="fas fa-th-list"></i></button>
-  </div>
-</div>
-<!-- tenant navbar 
-<div class="navbar navbar-tenant">
-  <div id="home" class="nav-active"><i class="fas fa-home"></i></div>
-  <div id="annoucements"><i class="fas fa-bullhorn"></i></div>
-  <div id="directory"><i class="fas fa-th-list"></i></div>
-  <div id="past-report"><i class="fas fa-file-alt"></i></div>
-</div>
--->
+    <div class="top-flap">
+        <p>Trends</p>
+        <!-- <h2>Name</h2> -->
+    </div>
 
-<!--- do not remove this script line, it allows the service worker to function -->
-<script src="src/js/app.js"></script> 
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!--Ignore this dummy formatting first
+    TO IMPLEMENT  the drop down and checkbox within the top flap potentially-->
+    
+
+    <div >
+      <table>
+        <tbody>
+          <tr>           
+            <td><input type="radio" name="tenanttype" id="nonFB" value="1"></td>
+            <td>Non F&B</td>
+            <td><input type="radio" name="tenanttype" id="FB" value="1"></td>
+            <td>F&B</td>   
+          </tr>
+        </tbody>
+      </table></div>
 
   <div class="container">
     <canvas id="myChart"></canvas>
@@ -92,5 +89,22 @@
 });
 
 </script>
+
+<div class="navbar">
+    <div id="home" class="nav-active">
+        <button class="button" onclick="window.location.href='home.html';"><i class="fas fa-home"></i></button>
+    </div>
+    <div id="annoucements">
+        <i class="fas fa-bullhorn button"></i>
+    </div>
+    <div id="new-report">
+        <i class="fas fa-plus-circle" onclick="window.location.href='create_report/start.html';"></i></div>
+    <div id="trends">
+        <button class="button" onclick="window.location.href='trends.html';"><i class="fas fa-chart-line"></i></button></div>
+    <div id="directory">
+        <button class="button" onclick="window.location.href='directory.html';"><i class="fas fa-th-list"></i></button>
+    </div>
+</div>
+<script src="../js/app.js"></script> 
 </body>
 </html>

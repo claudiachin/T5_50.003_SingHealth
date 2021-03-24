@@ -9,7 +9,12 @@ h6 { font-size: 12px; font-family: 'Poppins', sans-serif; font-weight: 200; marg
 h1, h2, h3, p, h6 {
     color: #444444;
 }
-.floatRight{float:right;margin-right:80px; margin-top:40px}
+.floatRight{
+    float:right;margin-right:80px; 
+    margin-top:40px;
+    width: 125px;
+    height: 125px
+}
 
 body {
     margin: 0;
@@ -69,15 +74,31 @@ body {
     background-color: white;
 }
 
-#login input{
+.form-input i {
+    position: absolute;
+    color:#203E70;
+    padding-top: 5px;
+    padding-left: 5px;
+    min-width: 40px;
+}
+  
+.form-input input{
     width: 100%;
+    text-align:left;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 25px;
+    margin-bottom: 12px;
+    border: 1px solid #203E70;
+    border-radius: 6px;
+
 }
 
 .top-flap {
     position: fixed;
     width: 100%;
     border-radius: 0 0 24px 24px;
-    background-color: #112444;
+    background-color: #F15A22;
     box-shadow: 0px 0px 16px 4px #ccc;
     z-index: 2;
     height: 110px;
@@ -120,7 +141,7 @@ body {
     justify-content: space-evenly;
     align-items: center;
     background-color: #fff;
-    box-shadow: 0px 0px 16px 4px #ccc; 
+    box-shadow: 0px 0px 5px 1px #F15A22; 
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -140,7 +161,7 @@ body {
 }
 
 .navbar > div > i {
-    color: #112444 !important;
+    color: #F15A22 !important;
     font-size: 20px;
 }
 
@@ -208,6 +229,13 @@ body {
 @media only screen and (min-width: 1024px) { /*laptop breakpoint*/
     
 }
+
+@media only screen and (max-width: 535px) { /*tablet breakpoint*/
+    .top-flap img{
+        display: none;
+    }
+}
+
 
 *{
     margin:0;

@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://kit.fontawesome.com/215800797e.js" crossorigin="anonymous"></script>
 
   </head>
   <body id="loginBG">
@@ -26,8 +27,14 @@
         </div>
         
         <form id="login">
-            <input type="email" id="email" name="email" placeholder="Email"><br>
-            <input type="password" id="pword" name="pword"  placeholder="Password">
+            <div class="form-input">
+              <i class="fa fa-envelope icon"></i>
+              <input type="email" id="email" name="email" placeholder="Email"><br>
+            </div>
+            <div class="form-input">
+              <i class="fa fa-lock icon"></i>
+              <input type="password" id="pword" name="pword"  placeholder="Password">
+            </div>
         </form>
         <p class="error" style="color: crimson;"></p>
     </div> 

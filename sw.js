@@ -14,6 +14,7 @@ self.addEventListener('install', function(event) {
           './src/html/pastreports.html',
           './src/html/trends.html',
           './create_report/start.html',
+          
           './src/css/style.css',
           './src/css/index.css',
           './src/css/bell.css',

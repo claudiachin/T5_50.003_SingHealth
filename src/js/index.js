@@ -1,13 +1,20 @@
 const login = document.querySelector("#login");
-const logout = document.querySelector("#logout");
+// const logout = document.querySelector("#logout");
 // const signupForm = document.querySelector("#login");
 const accountDetails = document.querySelector(".accountDetails");
 const auditorName = document.querySelector(".auditorName");
 const adminForm = document.querySelector(".admin-actions");
+const adminItems = document.querySelectorAll(".admin");
 
 // listen for auth status changes
 auth.onAuthStateChanged(user =>{
     if (user){
+        // Check admin status
+        user.getIdTokenResult().then(idTokenResult =>{
+            console.log(`admin: ${idTokenResult.claims.admin}`);
+            user.admin = idTokenResult.claims.admin;
+            setupUI(user);
+        });
         console.log("User logged in");
         // get data
         db.collection("auditors").onSnapshot(snapshot => {
@@ -20,6 +27,18 @@ auth.onAuthStateChanged(user =>{
         console.log("user is logged out");
     }
 });
+
+// setup UI
+const setupUI = (user) =>{
+    if (user){
+        if (user.admin){
+            adminItems.forEach(item => item.style.display = "block");
+        }
+    }else{
+        adminItems.forEach(item => item.style.display = "none");
+    }
+}
+
 
 // setup guides
 const setupDetails = (data, id) => {
@@ -77,16 +96,19 @@ function bypass(){
         // console.log(cred.user);
         window.location.href = "src/html/home.html";
     });
-}
+};
+// // logout
+// if (logout){
+//     logout.addEventListener('click', (e) =>{
+//         e.preventDefault();
+//         auth.signOut();
+//     });
+// }
 
-// logout
-if (logout){
-    logout.addEventListener('click', (e) =>{
-        e.preventDefault();
-        auth.signOut();
-    });
-}
-
+function logout(){
+    auth.signOut();
+    window.location.href = "../../index.html";
+};
 
 // //signup
 // login.addEventListener("submit", (e) =>{

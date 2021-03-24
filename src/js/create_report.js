@@ -1,21 +1,20 @@
 function change(qn) {
-    var lastClass = qn.classList[qn.classList.length-1];
-    if (lastClass == "fas") {
-        qn.classList.add("fa-check");
-        scoreAdd();
-    } else if (lastClass == "fa-window-minimize") {
+    if (qn.classList.contains("fa-window-minimize")) {
         qn.classList.remove("fa-window-minimize");
         qn.classList.add("fa-check");
         scoreAdd();
         outOfAdd();
-    } else if (lastClass == "fa-check") {
+    } else if (qn.classList.contains("fa-check")) {
         qn.classList.remove("fa-check");
         qn.classList.add("fa-times");
         scoreSubtract();
-    } else if (lastClass == "fa-times") {
+    } else if (qn.classList.contains("fa-times")) {
         qn.classList.remove("fa-times");
         qn.classList.add("fa-window-minimize");
         outOfSubtract();
+    } else {
+        qn.classList.add("fa-check");
+        scoreAdd();
     }
     checkFilled();
 }

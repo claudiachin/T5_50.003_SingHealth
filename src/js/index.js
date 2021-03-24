@@ -1,10 +1,10 @@
 const login = document.querySelector("#login");
-// const logout = document.querySelector("#logout");
-// const signupForm = document.querySelector("#login");
+const signupForm = document.querySelector("#login");
 const accountDetails = document.querySelector(".accountDetails");
 const auditorName = document.querySelector(".auditorName");
 const adminForm = document.querySelector(".admin-actions");
 const adminItems = document.querySelectorAll(".admin");
+const error = document.querySelector(".error");
 
 // listen for auth status changes
 auth.onAuthStateChanged(user =>{
@@ -83,9 +83,15 @@ if (login){
         auth.signInWithEmailAndPassword(email, password).then(cred =>{
             // console.log(cred.user);
             window.location.href = "src/html/home.html";
+            login.reset();
+            error.innerHTML= "";
+        }).catch(err =>{
+            console.log(err);
+            error.innerHTML= err.message;
         });
     });
 }
+
 
 function bypass(){
     // get user info
@@ -110,7 +116,7 @@ function logout(){
     window.location.href = "../../index.html";
 };
 
-// //signup
+//signup
 // login.addEventListener("submit", (e) =>{
 //     e.preventDefault();
 //     console.log("-----");
@@ -131,6 +137,24 @@ function logout(){
 //     });
 
 // });
+
+function signup(){
+    const email = signupForm[`email`].value;
+    const password = signupForm[`pword`].value;
+    auth.createUserWithEmailAndPassword(email,password).then(cred => {
+        return db.collection("auditors").doc(cred.user.uid).set({
+            email: email
+        });
+       
+    }).then(()=>{
+        // window.location.href = "src/html/home.html";
+        signupForm.reset();
+        error.innerHTML="";
+    }).catch(err =>{
+        console.log(err);
+        error.innerHTML= err.message;
+    });
+};
 
 // Add admin cloud function
 if (adminForm){

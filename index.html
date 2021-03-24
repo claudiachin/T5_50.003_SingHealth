@@ -29,10 +29,11 @@
             <input type="email" id="email" name="email" placeholder="Email"><br>
             <input type="password" id="pword" name="pword"  placeholder="Password">
         </form>
+        <p class="error" style="color: crimson;"></p>
     </div> 
     <button class="primary-button" form="login">Login</button>
     <button class="primary-button" id="bypass" onclick=bypass()>Bypass</button>
-    <!-- <button class="primary-button" id="logout">Logout</button> -->
+    <button class="primary-button" form="login" onclick=signup()>Signup</button>
     
     <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>

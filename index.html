@@ -15,8 +15,8 @@
     <br>
     <div class="box-shadow">
         <div class="tab-bar">
-            <button class="tab tab-active">Auditor</button>
-            <button class="tab">Tenant</button>
+            <button class="tab-active" onclick=auditorTab()>Auditor</button>
+            <button class="tab" onclick=tenantTab()>Tenant</button>
         </div>
         <div hidden>
             <!--SMALL TEST FOR DATABASE-->
@@ -35,13 +35,47 @@
               <i class="fa fa-lock icon"></i>
               <input type="password" id="pword" name="pword"  placeholder="Password">
             </div>
+            <button class="primary-button" form="login">Login</button>
         </form>
+        <button class="primary-button" id="bypass" onclick=bypass()>Bypass</button>
         <p class="error" style="color: crimson;"></p>
+        <p class="signup-link"> Don't have an account?
+          <button id="signUp-button" onclick=signUpLink()>Sign Up</button>
+        </p>
+        
     </div> 
-    <button class="primary-button" form="login">Login</button>
-    <button class="primary-button" id="bypass" onclick=bypass()>Bypass</button>
-    <button class="primary-button" form="login" onclick=signup()>Signup</button>
-    
+  
+    <!-- SIGNUP MODAL -->
+    <div class="bg-modal">
+      <div class="modal-content">
+        <div class="close" onclick=closeSignUpForm()>+</div>
+        <h2>Sign Up</h2>
+        <form id="signUpForm">
+            <div class="signUpForm-input">
+              <i class="fa fa-user icon"></i>
+              <input type="text" name="name" placeholder="Name" required>
+            </div>
+            <div class="signUpForm-input">
+              <i class="fa fa-key icon"></i>
+              <input type="password" name="pword" placeholder="Password" required>
+            </div>
+            <div class="signUpForm-input">
+              <i class="fa fa-envelope icon"></i>
+              <input type="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="signUpForm-input">
+              <i class="fa fa-hospital icon"></i>
+              <input type="text" name="hospital" placeholder="Hospital" required>
+            </div>
+            <button type="button" onclick=signup()>Submit</button>
+            <br>
+            <p class="signUpError" style="color: crimson;"></p>
+        </form>
+        
+      </div>
+    </div>
+
+
     <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
@@ -65,7 +99,7 @@
 
       db.settings({timestampsInSnapshots: true});
 
-    </script> 
+    </script>
     <script src="./src/js/index.js"></script>
     <script src="./src/js/app.js"></script>
 

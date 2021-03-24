@@ -31,23 +31,27 @@ body {
 
 .primary-button {
     border-radius: 50px;
-    font-size: 16px;
+    font-size: 12px;
     font-family: 'Poppins', sans-serif;
     font-weight: 275;
     color: #fff;
-    background-color: #203E70;
-    padding: 8px 16px;
-}
-
-.tab-active {
-    border-bottom: 2px solid #F15A22 !important;
-    padding: 8px 16px;
+    width: 174px;
+    background-color: #134074;
+    padding: 2px 16px;
 }
 
 .tab {
     background-color: transparent;
     border: none;
     border-bottom: 2px solid #e5e5e5;
+    padding: 8px 16px;
+    margin: 0px 4px;
+}
+
+.tab-active {
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #F15A22;
     padding: 8px 16px;
     margin: 0px 4px;
 }
@@ -76,7 +80,7 @@ body {
 
 .form-input i {
     position: absolute;
-    color:#203E70;
+    color:#134074;
     padding-top: 5px;
     padding-left: 5px;
     min-width: 40px;
@@ -89,9 +93,100 @@ body {
     padding-bottom: 2px;
     padding-left: 25px;
     margin-bottom: 12px;
-    border: 1px solid #203E70;
+    border: 1px solid #134074;
     border-radius: 6px;
+}
 
+.error{
+    font-size: 12px;
+    max-width: 174px;
+    margin-top: 8px;
+}
+
+.signUpError{
+    font-size: 12px;
+    max-width: 140px;
+    margin-top: 6px;
+    display: inline-block;
+    text-align: left;
+    position: absolute;
+    left: 38px;
+}
+
+.signup-link{
+    font-size: 9px;
+    max-width: 174px;
+    text-align: center;
+}
+
+.signup-link button{
+    font-size: 9px;
+    text-align: center;
+    background-color: white;
+    border: none;
+    border-bottom: 1px solid #134074;
+    color: #134074;
+}
+
+
+.bg-modal{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    position: absolute;
+    top: 0;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.modal-content{
+    width: 280px;
+    height: 300px;
+    background-color: white;
+    border-radius: 12px;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+}
+
+.modal-content button{
+    width: 168px;
+    background-color: #F15A22;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px auto;
+}
+#signUpForm{
+    position: relative;
+}
+
+.signUpForm-input i {
+    position: absolute;
+    color:#999;
+    padding: 1px 4px 4px 4px;
+    left: 35px;
+}
+  
+.signUpForm-input input{
+    width: 70%;
+    display: block;
+    margin: 15px auto;
+    border: none;
+    border-bottom: 2px solid #e5e5e5;
+    text-align:left;
+    padding-left: 28px;
+}
+
+.close{
+    position: absolute;
+    top: 0;
+    right: 14px;
+    font-size: 30px;
+    transform: rotate(45deg);
+    cursor: pointer;
 }
 
 .top-flap {
@@ -99,7 +194,7 @@ body {
     width: 100%;
     border-radius: 0 0 24px 24px;
     background-color: #F15A22;
-    box-shadow: 0px 0px 16px 4px #ccc;
+    box-shadow: 0px 0px 8px 2px #ccc;
     z-index: 2;
     height: 110px;
 }
@@ -200,7 +295,7 @@ body {
 }
 
 .noti{
-    color: #203E70;
+    color: #134074;
     font-size: 24px;
     padding-bottom: 8px;
 
@@ -360,3 +455,4 @@ body {
 #list > hr {
     margin-bottom: 8px;
 }
+

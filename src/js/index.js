@@ -1,10 +1,14 @@
 const login = document.querySelector("#login");
-const signupForm = document.querySelector("#login");
+const signupForm = document.querySelector("#signUpForm");
 const accountDetails = document.querySelector(".accountDetails");
 const auditorName = document.querySelector(".auditorName");
 const adminForm = document.querySelector(".admin-actions");
 const adminItems = document.querySelectorAll(".admin");
 const error = document.querySelector(".error");
+const signUpError = document.querySelector(".signUpError");
+const tenantSelect = document.querySelector(".tab");
+const auditorSelect = document.querySelector(".tab-active");
+const signupF = document.querySelector(".bg-modal");
 
 // listen for auth status changes
 auth.onAuthStateChanged(user =>{
@@ -92,7 +96,7 @@ if (login){
     });
 }
 
-
+// Bypass login user an authenticated account
 function bypass(){
     // get user info
     const email = "test@mymail.sutd.edu.sg";
@@ -103,56 +107,33 @@ function bypass(){
         window.location.href = "src/html/home.html";
     });
 };
-// // logout
-// if (logout){
-//     logout.addEventListener('click', (e) =>{
-//         e.preventDefault();
-//         auth.signOut();
-//     });
-// }
 
+// logout
 function logout(){
     auth.signOut();
     window.location.href = "../../index.html";
 };
 
-//signup
-// login.addEventListener("submit", (e) =>{
-//     e.preventDefault();
-//     console.log("-----");
-//     // get user info
-//     const email = login[`email`].value;
-//     const password = login[`pword`].value;
-
-//     console.log(email, password);
-
-//     // sign up the user
-//     auth.createUserWithEmailAndPassword(email,password).then(cred => {
-//         return db.collection("auditors").doc(cred.user.uid).set({
-//             email: email
-//         });
-       
-//     }).then(()=>{
-//         login.reset();
-//     });
-
-// });
-
+// signup
 function signup(){
     const email = signupForm[`email`].value;
     const password = signupForm[`pword`].value;
+    const name = signUpForm['name'].value;
+    const hospital = signUpForm['hospital'].value;
+    console.log(email, name, hospital);
     auth.createUserWithEmailAndPassword(email,password).then(cred => {
         return db.collection("auditors").doc(cred.user.uid).set({
-            email: email
+            email: email,
+            name: name,
+            hospital: hospital
         });
-       
     }).then(()=>{
-        // window.location.href = "src/html/home.html";
         signupForm.reset();
-        error.innerHTML="";
+        window.location.href = "src/html/home.html";
+        signUpError.innerHTML="";
     }).catch(err =>{
         console.log(err);
-        error.innerHTML= err.message;
+        signUpError.innerHTML= err.message;
     });
 };
 
@@ -166,4 +147,23 @@ if (adminForm){
             console.log(result);
         });
     });
+}
+
+function tenantTab(){
+    tenantSelect.setAttribute("class","tab-active");
+    auditorSelect.setAttribute("class","tab");
+}
+
+function auditorTab(){
+    tenantSelect.setAttribute("class","tab");
+    auditorSelect.setAttribute("class","tab-active");
+}
+
+function signUpLink(){
+    signupF.style.display = "flex";
+}
+
+function closeSignUpForm(){
+    console.log("Closed signup form");
+    signupF.style.display = "none";
 }

@@ -2,8 +2,8 @@
 <html>
   <head>
     <!-- do not remove anything in head, can add stuff if needed though -->
-    <link rel="stylesheet" type="text/css" href="../../src/css/style.css">
-    <link rel="stylesheet" type="text/css" href="../../src/css/create_report.css">
+    <link rel="stylesheet" type="text/css" href="../../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../../css/create_report.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -12,10 +12,16 @@
   <body>
     <div class="report-nav">
         <button class="back-button" onclick="window.location.href='professionalism_staff_hygiene.html';"><i class="fas fa-chevron-left"></i>   Back</button>
-        <h2>Workplace Safety & Health</h2>
+        <h2>GENERAL CLEANLINESS</h2>
         <button class="next-button hide" onclick="goNext()">Next   <i class="fas fa-chevron-right"></i></button>
     </div>
     <div class="main-content-report">
+        <div class="question">
+            <p>Cleaning and maintenance records for equipment, ventilation and exhaust system.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
         <div class="question">
             <p>Adequate and regular pest control i.e. Pest control record.</p>
             <div class="icon">
@@ -47,6 +53,12 @@
             </div>
         </div>
         <div class="question">
+            <p>Tables are cleared promptly within 10 minutes.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
             <p>Fixtures and fittings including shelves, cupboards and drawers are clean and dry, free from pests, and in a good state.</p>
             <div class="icon">
                 <i class="checkbox fas" onclick="change(this)"></i>
@@ -65,7 +77,7 @@
             </div>
         </div>
         <div class="question">
-            <p>Equipment is clean, in good condition and serviced.</p>
+            <p>Equipment, exhaust hood, crockery and utensils are clean, in good condition and serviced.</p>
             <div class="icon">
                 <i class="checkbox fas" onclick="change(this)"></i>
             </div>
@@ -83,10 +95,29 @@
             </div>
         </div>
         <div class="question">
-            <p>Waste is properly managed and disposed.<br>
+            <p>Waste bins are properly lined with plastic bags and covered at all times.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Adequate number of covered waste pedal bins are available and waste is properly managed and disposed.<br>
                 	Waste bins are not over-filled.<br>
-                	Waste Management: Proper disposal of food stuff and waste.
+                	Waste Management: Proper disposal of food stuff and waste.<br>
+                	Waste is properly bagged before disposing it at the waste disposal area/ bin centre.
                 </p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Hand washing facilities are easily accessible, in good working condition and soap is provided.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Adequate facilities for hand hygiene are available including liquid soap and disposable hand towels.</p>
             <div class="icon">
                 <i class="checkbox fas" onclick="change(this)"></i>
             </div>
@@ -94,21 +125,21 @@
     </div>
     <div class="score-bar">
         <h2>SCORE</h2>
-        <h2><span id="score">0</span> / <span id="out-of">12</span></h2>
+        <h2><span id="score">0</span> / <span id="out-of">17</span></h2>
     </div>
 
-    <script src="../../src/js/create_report.js"></script>
+    <script src="../../../js/create_report.js"></script>
 
     <script>
         function goNext() {
             //TO DO: upload score and outOf
             var score = parseInt(document.getElementById("score").innerHTML);
             var outOf = parseInt(document.getElementById("out-of").innerHTML);
-            window.location.href='workplace_safety_health.html';
+            window.location.href='food_hygiene.html';
         }
     </script>
 
     <!--- do not remove this script line, it allows the service worker to function -->
-    <script src="src/js/app.js"></script> 
+    <script src="../js/app.js"></script> 
   </body>
 </html>

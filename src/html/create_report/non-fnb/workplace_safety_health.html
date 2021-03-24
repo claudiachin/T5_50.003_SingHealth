@@ -2,8 +2,8 @@
 <html>
   <head>
     <!-- do not remove anything in head, can add stuff if needed though -->
-    <link rel="stylesheet" type="text/css" href="../../src/css/style.css">
-    <link rel="stylesheet" type="text/css" href="../../src/css/create_report.css">
+    <link rel="stylesheet" type="text/css" href="../../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../../css/create_report.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -11,85 +11,103 @@
   </head>
   <body>
     <div class="report-nav">
-        <button class="back-button" onclick="window.location.href='../start.html';"><i class="fas fa-chevron-left"></i>   Back</button>
-        <h2>PROFESSIONALISM & STAFF HYGIENE</h2>
+        <button class="back-button" onclick="window.location.href='housekeeping_general_cleanliness.html';"><i class="fas fa-chevron-left"></i>   Back</button>
+        <h2>Workplace Safety & Health</h2>
         <button class="next-button hide" onclick="goNext()">Next   <i class="fas fa-chevron-right"></i></button>
     </div>
     <div class="main-content-report">
         <div class="question">
-            <p>Shop is open and ready to service patients/visitors according to operating hours.</p>
+            <p>MSDS for all industrial chemicals are available and up to date.</p>
             <div class="icon">
                 <i class="checkbox fas" onclick="change(this)"></i>
             </div>
         </div>
         <div class="question">
-            <p>Staff Attendance: adequate staff for peak and non-peak hours.</p>
+            <p>Proper chemicals storage.</p>
             <div class="icon">
                 <i class="checkbox fas" onclick="change(this)"></i>
             </div>
         </div>
         <div class="question">
-            <p>At least one (1) clearly assigned person in-charge on site.</p>
+            <p>All detergent and bottles containing liquids are labelled appropriately.</p>
             <div class="icon">
                 <i class="checkbox fas" onclick="change(this)"></i>
             </div>
         </div>
         <div class="question">
-            <p>Staff who are unfit for work due to illness should not report to work.</p>
+            <p>All personnel to wear safety shoes and safety attire where necessary.</p>
             <div class="icon">
                 <i class="checkbox fas" onclick="change(this)"></i>
             </div>
         </div>
         <div class="question">
-            <p>Staff who are fit for work but suffering from the lingering effects of a cough and/or cold should cover their mouths with a surgical mask.</p>
+            <p>Knives and sharp objects are kept at a safe place.</p>
             <div class="icon">
                 <i class="checkbox fas" onclick="change(this)"></i>
             </div>
         </div>
         <div class="question">
-            <p>Clean clothes/uniform or aprons are worn during food preparation and food service.</p>
+            <p>Area under the sink should not be cluttered with items other than washing agents.</p>
             <div class="icon">
                 <i class="checkbox fas" onclick="change(this)"></i>
             </div>
         </div>
         <div class="question">
-            <p>Hair is kept tidy (long hair must be tied up) and covered with clean caps or hair nets where appropriate.</p>
+            <p>Delivery personnel do not stack goods above the shoulder level.</p>
             <div class="icon">
                 <i class="checkbox fas" onclick="change(this)"></i>
             </div>
         </div>
         <div class="question">
-            <p>Sores, wounds or cuts on hands, if any, are covered with waterproof and brightly-coloured plaster.</p>
+            <p>Stacking of goods does not exceed 600mm from the ceiling and heavy items at the bottom, light items on top.</p>
             <div class="icon">
                 <i class="checkbox fas" onclick="change(this)"></i>
             </div>
         </div>
         <div class="question">
-            <p>Hands are washed thoroughly with soap and water, frequently and at appropriate times.</p>
+            <p>Proper signage/ label (fire, hazards, warnings, food stuff) and Exit signs in working order.</p>
             <div class="icon">
                 <i class="checkbox fas" onclick="change(this)"></i>
             </div>
         </div>
         <div class="question">
-            <p>Fingernails are short, clean, unpolished and without nail accessories.</p>
+            <p>Fire extinguishers access is unobstructed; Fire extinguishers are not expired and employees know how to use them.</p>
             <div class="icon">
                 <i class="checkbox fas" onclick="change(this)"></i>
             </div>
         </div>
         <div class="question">
-            <p>No wrist watches/ rings or other hand jewellery (with exception of wedding ring) is worn by staff handling food.</p>
+            <p>Escape route and exits are unobstructed.</p>
             <div class="icon">
                 <i class="checkbox fas" onclick="change(this)"></i>
             </div>
         </div>
         <div class="question">
-            <p>Food is handled with clean utensils and gloves.</p>
+            <p>First aid box is available and well-equipped.</p>
             <div class="icon">
                 <i class="checkbox fas" onclick="change(this)"></i>
             </div>
         </div>
         <div class="question">
-            <p>Disposable gloves are changed regularly and/ or in between tasks i.e. Staff do not handle cash with gloved hands.</p>
+            <p>Electrical sockets are not overloaded – one plug to one socket.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Plugs and cords are intact and free from exposure/ tension with PSB safety mark.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Power points that are in close proximity to flammable and/or water sources are installed with a plastic cover.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Electrical panels / DBs are covered.</p>
             <div class="icon">
                 <i class="checkbox fas" onclick="change(this)"></i>
             </div>
@@ -97,21 +115,21 @@
     </div>
     <div class="score-bar">
         <h2>SCORE</h2>
-        <h2><span id="score">0</span> / <span id="out-of">13</span></h2>
+        <h2><span id="score">0</span> / <span id="out-of">16</span></h2>
     </div>
 
-    <script src="../../src/js/create_report.js"></script>
+    <script src="../../../js/create_report.js"></script>
 
     <script>
         function goNext() {
             //TO DO: upload score and outOf
             var score = parseInt(document.getElementById("score").innerHTML);
             var outOf = parseInt(document.getElementById("out-of").innerHTML);
-            window.location.href='housekeeping_general_cleanliness.html';
+            window.location.href='end.html';
         }
     </script>
 
     <!--- do not remove this script line, it allows the service worker to function -->
-    <script src="src/js/app.js"></script> 
+    <script src="../../js/app.js"></script> 
   </body>
 </html>

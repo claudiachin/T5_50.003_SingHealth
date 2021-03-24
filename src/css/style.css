@@ -364,7 +364,7 @@ body {
     border: none;
     box-shadow: none;
     font-size: 16px;
-    color:  #112444;
+    color:  #F15A22;
     width: 100%;
 }
 .input-field label{
@@ -381,7 +381,7 @@ body {
     transform: translateY(-30px);
     font-size: 14px;
     color: #fff;
-    background: #112444;
+    background: #F15A22;
     padding: 2px 6px;
 }
 .input-field span{
@@ -400,7 +400,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: #112444;
+    background: #F15A22;
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 0.5s ease-in-out;
@@ -415,7 +415,7 @@ body {
 }
 
 .wrapper textarea{
-    outline: #112444;
+    outline: #F15A22;
     padding: 5px;
     width: 400px;
     height: 200px;
@@ -423,7 +423,7 @@ body {
 }
 
 .wrapper span{
-    color: #112444;
+    color: #F15A22;
     float: right;
 }
 

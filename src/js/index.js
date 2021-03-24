@@ -68,6 +68,16 @@ if (login){
     });
 }
 
+function bypass(){
+    // get user info
+    const email = "test@mymail.sutd.edu.sg";
+    const password = "123456789";
+
+    auth.signInWithEmailAndPassword(email, password).then(cred =>{
+        // console.log(cred.user);
+        window.location.href = "src/html/home.html";
+    });
+}
 
 // logout
 if (logout){

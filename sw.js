@@ -20,7 +20,7 @@ self.addEventListener('install', function(event) {
           './src/css/create_report.css',
           './src/js/app.js',
           './src/js/create_report_start.js',
-          './src/js/report.js',
+          './src/js/create_report.js',
           './src/js/makechart.js',
           './src/js/index.js',
           './src/js/multiselect.js',

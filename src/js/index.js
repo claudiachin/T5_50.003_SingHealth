@@ -91,6 +91,7 @@ if (login){
             error.innerHTML= "";
         }).catch(err =>{
             console.log(err);
+            login.reset();
             error.innerHTML= err.message;
         });
     });

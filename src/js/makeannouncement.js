@@ -1,8 +1,3 @@
-const announcementForm = document.querySelector("#announcementForm");
-const title;
-const image;
-const description;
-
 function mock() {
     db.collection("announcements").doc("new").set({
         title: "New announcement",
@@ -32,7 +27,7 @@ function postannouncement() {
     .catch((error) => {
         console.error("Error writing document: ", error);
     });
-    }
+}
 
 function checkFieldsFilled() {
         //checks that all the relevant fields have been filled

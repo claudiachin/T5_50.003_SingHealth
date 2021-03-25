@@ -10,6 +10,12 @@ const submitSignUp = document.querySelector("#submitSignUp");
 const tenantSelect = document.querySelector(".tab");
 const auditorSelect = document.querySelector(".tab-active");
 const signupF = document.querySelector(".bg-modal");
+const loading = document.querySelector("#wrapper");
+
+// loading
+// window.addEventListener("load", function() {
+//     loading.parentElement.removeChild(loading);
+// });
 
 // listen for auth status changes
 auth.onAuthStateChanged(user =>{
@@ -122,12 +128,15 @@ signUpForm.addEventListener("input", ()=>{
     const password = signupForm[`pword`].value;
     const name = signUpForm['name'].value;
     const hospital = signUpForm['hospital'].value;
+    signUpError.innerHTML="";
     if (email == "" || password == "" || name == "" || hospital == "") {
         submitSignUp.setAttribute("disabled", "disabled");
+        submitSignUp.style.backgroundColor = "rgb(146, 146, 146)";
     }
     else{
         console.log("here");
         submitSignUp.removeAttribute("disabled");
+        submitSignUp.style.backgroundColor = "#F15A22";
     }
 });
 
@@ -153,6 +162,7 @@ function signup(){
         console.log(err);
         signupForm.reset();
         signUpError.innerHTML= err.message;
+        submitSignUp.style.backgroundColor = "rgb(146, 146, 146)";
     });
 };
 

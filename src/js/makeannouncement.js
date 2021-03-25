@@ -18,7 +18,7 @@ function postannouncement() {
         title: document.getElementById("count_value_title").value,
         content: document.getElementById("count_value").value,
         datePosted:new Date().getTime(),
-        image:"imageURL",
+        image:document.getElementById("addPicture").src,
         associatedAuditor: "tester"
     })
     .then(() => {

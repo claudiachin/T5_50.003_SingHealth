@@ -34,3 +34,19 @@ function postannouncement() {
     });
     }
 
+function checkFieldsFilled() {
+        //checks that all the relevant fields have been filled
+        var titleTextfield = document.getElementsByClassName("input-field")[0].getElementsByTagName("i");
+    
+        var i = 0;
+        var allFilled = true;
+        while (i<checkboxes.length && allFilled) {
+            if (checkboxes[i].classList.length < 3) {
+                allFilled = false;
+            }
+            i += 1
+        }
+        if (allFilled) {
+            document.getElementsByClassName("primary-button")[0].classList.remove("hide");
+        }
+    }

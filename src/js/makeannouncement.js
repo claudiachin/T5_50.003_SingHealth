@@ -1,8 +1,10 @@
 function mock() {
-    db.collection("annoucements").doc("new").set({
-        title: "New announcement",
-        message: "Testing run.",
-        author: "me"
+    db.collection("announcements").add({
+        title: document.getElementById("count_value_title").value,
+        content: document.getElementById("count_value").value,
+        datePosted:new Date().getTime(),
+        image:"imageURL",
+        associatedAuditor: "user"
     })
     .then(() => {
         console.log("Document successfully written!");

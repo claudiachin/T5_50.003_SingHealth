@@ -1,17 +1,3 @@
-function mock() {
-    db.collection("announcements").doc("new").set({
-        title: "New announcement",
-        message: "Testing run.",
-        author: "me"
-    })
-    .then(() => {
-        console.log("Document successfully written!");
-    })
-    .catch((error) => {
-        console.error("Error writing document: ", error);
-    });
-}
-
 //function to upload announcement to the Firebase
 function postannouncement() {
     db.collection("announcements").add({
@@ -19,7 +5,8 @@ function postannouncement() {
         content: document.getElementById("count_value").value,
         datePosted: perfectDate(),
         image:document.getElementById("addPicture").src,
-        associatedAuditor: "tester"
+        associatedAuditor: "tester",
+        announcementId: Date.now()
     })
     .then(() => {
         console.log("Document successfully written!");
@@ -48,6 +35,12 @@ function checkFieldsFilled() {
             console.log("Not all relevant fields have been filled");
         }
     }
+
+const longEnUSFormatter = new Intl.DateTimeFormat('en-US', {
+    year:  'numeric',
+    month: 'long',
+    day:   'numeric',
+});
 
 function perfectDate(){
     const currentDate = new Date();

@@ -1,5 +1,6 @@
 //function to upload announcement to the Firebase
 function postannouncement() {
+    if (checkFieldsFilled()==true){
     db.collection("announcements").add({
         title: document.getElementById("count_value_title").value,
         content: document.getElementById("count_value").value,
@@ -14,6 +15,7 @@ function postannouncement() {
     .catch((error) => {
         console.error("Error writing document: ", error);
     });
+}
 }
 
 function checkFieldsFilled() {
@@ -31,8 +33,10 @@ function checkFieldsFilled() {
         }
         if (titleFilled && descriptionFilled) {
             console.log("All relevant fields have been filled");
+            return true;
         }else{
             console.log("Not all relevant fields have been filled");
+            return false;
         }
     }
 

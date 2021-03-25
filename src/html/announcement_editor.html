@@ -3,57 +3,20 @@
   <head>
     <!-- do not remove anything in head, can add stuff if needed though -->
     <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/announcements.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://kit.fontawesome.com/215800797e.js" crossorigin="anonymous"></script>
   </head>
-
-  <style>
-      #card{
-          margin:auto;
-          display:block;
-          width: 28vw;
-          height: 89vh;
-      }
-
-      #button{
-          color: transparent;
-      }
-
-      #button::-webkit-file-upload-button{
-          visibility: hidden;
-      }
-
-      #button::before{
-          content: "Upload Image";
-          color: white;
-          display: inline-block;
-          background: #F15A22;
-          border: 1px solid rgb(187, 75, 0);
-          border-radius: 3px;
-          padding: 5px 8px;
-          cursor: pointer;
-          font-weight: 700;
-          font-size: 10pt;
-      }
-
-      #button:hover::before{
-          border-color: black;
-          background-color: #ff8255;
-      }
-
-      #button:focus{
-          outline: none;
-      }
-
-  </style>
-
+  
   <body>
-    <div class="container">
+    <div class="main-content-annc">
         <a href="announcements.html"><p>< Announcements<br></p></a> 
         <h1>Create New Announcement</h1>
+
         <br>
+
         <form>
             <div class="input-field">
                 <input id="count_value_title" type="text" name="" required="">
@@ -61,64 +24,28 @@
                 <span id="count_no_title">0</span>
                 <br clear="both">
             </div>
-
-            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
-            <script>
-                $(document).ready(function(){
-                $("#count_value_title").on("keyup", function(){
-                    $("#count_no_title").text($("#count_value_title").val().length)
-                    });
-                });
-            </script>
         </form>
+
         <br>
-        <input type="file" id="button">
-        <div class="wrapper">
-            <img id="addPicture" src="../resources/AddPictureOrange.jpg" height=220px width=400px/></img>
+
+        <div class="deconstructed-pancake">
+            <div>
+                <div>
+                    <img id="addPicture" src="../resources/AddPictureOrange.jpg"/></img>
+                </div>
+                <input type="file" id="button">
+            </div>
+
+            <div>
+                <textarea id="count_value" rows = "5" cols="65" placeholder="Add description here...."></textarea>
+                <br>
+                <span id="count_no">0</span>
+                <br clear="both">
+            </div>
         </div>
 
-        <script type="text/javascript">
-            let img = document.getElementById('addPicture');
-            let button = document.getElementById('button');
-            button.addEventListener('change',function(){
-                if(this.files[0].type!='image/jpeg'&&this.files[0].type!="image/png"&&this.files[0].type!="image/gif"){
-                    alert("You have to upload an image file");
-                }else{
-                    img.style.display="block";
-                    img.src=URL.createObjectURL(this.files[0]);
-                }
-                
-                /*console.log(this.files[0].name)
-                console.log(this.files[0].type)
-                console.log(this.files[0].size)*/
-            })
-        </script>
-
-
-        <div class="wrapper">
-            <textarea id="count_value" rows = "5" cols="65" placeholder="Add description here...."></textarea>
-            <br>
-            <span id="count_no">0</span>
-            <br clear="both">
-        </div>
-
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
-        <script>
-            $(document).ready(function(){
-            $("#count_value").on("keyup", function(){
-                $("#count_no").text($("#count_value").val().length)
-                });
-            });
-        </script>
         <button class="primary-button" onclick=postannouncement()>Post</button>
         <button id="check-fields-filled" onclick=checkFieldsFilled()>Check fields filled</button>
-        <br>
-        </div>
-        <br>
-        <br>
-
     </div>
 
     <div class="navbar">
@@ -136,14 +63,41 @@
             <button class="button" onclick="window.location.href='directory.html';"><i class="fas fa-th-list"></i></button>
         </div>
     </div>
-    <!-- tenant navbar 
-    <div class="navbar navbar-tenant">
-        <div id="home" class="nav-active"><i class="fas fa-home"></i></div>
-        <div id="annoucements"><i class="fas fa-bullhorn"></i></div>
-        <div id="directory"><i class="fas fa-th-list"></i></div>
-        <div id="past-report"><i class="fas fa-file-alt"></i></div>
-    </div>
-    -->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+        $("#count_value_title").on("keyup", function(){
+            $("#count_no_title").text($("#count_value_title").val().length)
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        let img = document.getElementById('addPicture');
+        let button = document.getElementById('button');
+        button.addEventListener('change',function(){
+            if(this.files[0].type!='image/jpeg'&&this.files[0].type!="image/png"&&this.files[0].type!="image/gif"){
+                alert("You have to upload an image file");
+            }else{
+                img.style.display="block";
+                img.src=URL.createObjectURL(this.files[0]);
+            }
+            
+            /*console.log(this.files[0].name)
+            console.log(this.files[0].type)
+            console.log(this.files[0].size)*/
+        })
+    </script>
+
+    <script>
+        $(document).ready(function(){
+        $("#count_value").on("keyup", function(){
+            $("#count_no").text($("#count_value").val().length)
+            });
+        });
+    </script>
 
     <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>

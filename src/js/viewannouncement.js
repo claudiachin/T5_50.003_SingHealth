@@ -1,14 +1,9 @@
-const announcementForm = document.querySelector("#announcementForm");
-const title;
-const image;
-const description;
-
 function retrieveData(){
-db.collection("auditors").onSnapshot(snapshot => {
-    setupDetails(snapshot.docs, user.uid);
-}), err => {
-console.log(err.message);
-}
+    db.collection("announcements").onSnapshot(snapshot => {
+        setupDetails(snapshot.docs, user.uid);
+    }), err => {
+    console.log(err.message);
+    }
 }
 
 // setup guides
@@ -23,21 +18,17 @@ const setupDetails = (data, id) => {
 };
 
 function displayDetails(details){
-    const name = `
-        Welcome,<br><span>${details.name}</span>
+    const title = `
+        Welcome,<br><span>${details.title}</span>
     `;
 
     const html = `
         <h2><b>Hospital</b><br></h3> 
-        <p>${details.hospital}<br></p>
+        <p>${details.content}<br></p>
         <br>
 
         <h2><b>Email</b><br></h3> 
-        <p>${details.email}<br></p>
+        <p>${details.imageURL}<br></p>
     `;
-    if (auditorName && accountDetails){
-        auditorName.innerHTML = name;
-        accountDetails.innerHTML = html;
-    }
     
 }

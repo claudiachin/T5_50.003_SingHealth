@@ -6,6 +6,7 @@ const adminForm = document.querySelector(".admin-actions");
 const adminItems = document.querySelectorAll(".admin");
 const error = document.querySelector(".error");
 const signUpError = document.querySelector(".signUpError");
+const submitSignUp = document.querySelector("#submitSignUp");
 const tenantSelect = document.querySelector(".tab");
 const auditorSelect = document.querySelector(".tab-active");
 const signupF = document.querySelector(".bg-modal");
@@ -116,11 +117,27 @@ function logout(){
 };
 
 // signup
+signUpForm.addEventListener("input", ()=>{
+    const email = signupForm[`email`].value;
+    const password = signupForm[`pword`].value;
+    const name = signUpForm['name'].value;
+    const hospital = signUpForm['hospital'].value;
+    if (email == "" || password == "" || name == "" || hospital == "") {
+        submitSignUp.setAttribute("disabled", "disabled");
+    }
+    else{
+        console.log("here");
+        submitSignUp.removeAttribute("disabled");
+    }
+});
+
+
 function signup(){
     const email = signupForm[`email`].value;
     const password = signupForm[`pword`].value;
     const name = signUpForm['name'].value;
     const hospital = signUpForm['hospital'].value;
+
     console.log(email, name, hospital);
     auth.createUserWithEmailAndPassword(email,password).then(cred => {
         return db.collection("auditors").doc(cred.user.uid).set({
@@ -134,6 +151,7 @@ function signup(){
         signUpError.innerHTML="";
     }).catch(err =>{
         console.log(err);
+        signupForm.reset();
         signUpError.innerHTML= err.message;
     });
 };

@@ -48,8 +48,21 @@
       </table>
       </div>
 
+
+
+
+
+      <div class="pretty p-icon p-round">
+        <input type="radio" name="icon" />
+        <div class="state p-primary-o">
+            <i class="icon mdi mdi-check"></i>
+            <label>Dollar</label>
+        </div>
+    </div>
+
+
       <div class="select-wrapper">
-        <span class="multi-select-custom"></span>
+        <span class="multi-select-custom" id="multi"></span>
         <button onclick="resetCustomMulti()">Reset</button>       
       </div>
 
@@ -180,6 +193,9 @@
         }
       </style>
 
+<p id="test" onclick="test()">hi<br></p>
+
+<script> function test(){ if(customIconMulti.value().length!=0){document.getElementById("test").innerText=customIconMulti.value();}else{document.getElementById("test").innerText="None chosen";}}</script>
 
 
   <div class="container">

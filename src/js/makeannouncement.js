@@ -17,7 +17,7 @@ function postannouncement() {
     db.collection("announcements").add({
         title: document.getElementById("count_value_title").value,
         content: document.getElementById("count_value").value,
-        datePosted:new Date().getTime(),
+        datePosted: perfectDate(),
         image:document.getElementById("addPicture").src,
         associatedAuditor: "tester"
     })
@@ -48,3 +48,11 @@ function checkFieldsFilled() {
             console.log("Not all relevant fields have been filled");
         }
     }
+
+function perfectDate(){
+    const currentDate = new Date();
+    const currentDayOfMonth = currentDate.getDate();
+    const currentMonth = currentDate.getMonth(); // Be careful! January is 0, not 1
+    const currentYear = currentDate.getFullYear();
+    return dateString = currentDayOfMonth + "-" + (currentMonth + 1) + "-" + currentYear;
+}

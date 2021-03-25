@@ -1,227 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
 
-   <!-- do not remove anything in head, can add stuff if needed though -->
-   <link rel="stylesheet" type="text/css" href="../css/style.css">
-   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  
-   <script src="https://kit.fontawesome.com/215800797e.js" crossorigin="anonymous"></script>
+    <!-- do not remove anything in head, can add stuff if needed though -->
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/trends.css">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    
+    <script src="https://kit.fontawesome.com/215800797e.js" crossorigin="anonymous"></script>
 
-  <meta charset="UTF-8">
-  
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://unpkg.com/select-pure@latest/dist/bundle.min.js"></script>
+    <meta charset="UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <script src="https://unpkg.com/select-pure@latest/dist/bundle.min.js"></script>
+  </head>
 
-</head>
-<body>
-
+  <body>
     <div class="top-flap">
         <p>Trends</p>
-        <!-- <h2>Name</h2> -->
     </div>
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <!--Ignore this dummy formatting first
-    TO IMPLEMENT  the drop down and checkbox within the top flap potentially-->
-    
+    <div class="main-content">
 
-    <div style="width:800px; margin:0 auto;">
-      <table>
-        <tbody>
-          <tr>           
-            <td><input type="radio" name="tenanttype" id="nonFB" value="1"></td>
-            <td>Non F&B</td>
-            <td><input type="radio" name="tenanttype" id="FB" value="1"></td>
-            <td>F&B</td>   
-          </tr>
-        </tbody>
-      </table>
+      <div><p style="font-weight: bold;">Compare:</p></div>
+      <form class="radio-button-form"> 
+        <div>
+          <input type="radio" name="tenanttype" id="nonFB" value="1">
+          <label for="nonFB">Non F&B</label>
+        </div>          
+        <div>
+          <input type="radio" name="tenanttype" id="FB" value="1">
+          <label for="FB">F&B</label>
+        </div>
+      </form>
+      
+      <br>
+
+      <div><p style="font-weight: bold;">Choose tenants:</p></div>
+      <div>
+        <span class="multi-select-custom"></span>
+        <button id="reset-button" onclick="resetCustomMulti()">Reset</button>       
       </div>
 
+      <div class="container">
+        <canvas id="myChart"></canvas>
+      </div>
 
+    </div>
 
-
-
-      <div class="pretty p-icon p-round">
-        <input type="radio" name="icon" />
-        <div class="state p-primary-o">
-            <i class="icon mdi mdi-check"></i>
-            <label>Dollar</label>
+    <div class="navbar">
+        <div id="home" class="nav-active">
+            <button class="button" onclick="window.location.href='home.html';"><i class="fas fa-home"></i></button>
+        </div>
+        <div id="annoucements">
+            <i class="fas fa-bullhorn button"></i>
+        </div>
+        <div id="new-report">
+            <i class="fas fa-plus-circle" onclick="window.location.href='create_report/start.html';"></i></div>
+        <div id="trends">
+            <button class="button" onclick="window.location.href='trends.html';"><i class="fas fa-chart-line"></i></button></div>
+        <div id="directory">
+            <button class="button" onclick="window.location.href='directory.html';"><i class="fas fa-th-list"></i></button>
         </div>
     </div>
 
-
-      <div class="select-wrapper">
-        <span class="multi-select-custom" id="multi"></span>
-        <button id="reset" onclick="resetCustomMulti()">Reset</button>       
-      </div>
-
-
-      <style>
-        body {
-          font-family: "Roboto", sans-serif;
-        }
-  
-        .select-wrapper {
-          margin: auto;
-          max-width: 600px;
-          width: calc(100% - 40px);
-        }
-  
-        .select-pure__select {
-          align-items: center;
-          background: #f9f9f8;
-          border-radius: 4px;
-          border: 1px solid rgba(0, 0, 0, 0.15);
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-          box-sizing: border-box;
-          color: #363b3e;
-          cursor: pointer;
-          display: flex;
-          font-size: 16px;
-          font-weight: 500;
-          justify-content: left;
-          min-height: 44px;
-          padding: 5px 10px;
-          position: relative;
-          transition: 0.2s;
-          width: 100%;
-        }
-  
-        .select-pure__options {
-          border-radius: 4px;
-          border: 1px solid rgba(0, 0, 0, 0.15);
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-          box-sizing: border-box;
-          color: #363b3e;
-          display: none;
-          left: 0;
-          max-height: 221px;
-          overflow-y: scroll;
-          position: absolute;
-          top: 50px;
-          width: 100%;
-          z-index: 5;
-        }
-  
-        .select-pure__select--opened .select-pure__options {
-          display: block;
-        }
-  
-        .select-pure__option {
-          background: #fff;
-          border-bottom: 1px solid #e4e4e4;
-          box-sizing: border-box;
-          height: 44px;
-          line-height: 25px;
-          padding: 10px;
-        }
-  
-        .select-pure__option--disabled {
-          color: #e4e4e4;
-        }
-  
-        .select-pure__option--selected {
-          color: #e4e4e4;
-          cursor: initial;
-          pointer-events: none;
-        }
-  
-        .select-pure__option--hidden {
-          display: none;
-        }
-  
-        .select-pure__selected-label {
-          align-items: 'center';
-          background: #5e6264;
-          border-radius: 4px;
-          color: #fff;
-          cursor: initial;
-          display: inline-flex;
-          justify-content: 'center';
-          margin: 5px 10px 5px 0;
-          padding: 3px 7px;
-        }
-  
-        .select-pure__selected-label:last-of-type {
-          margin-right: 0;
-        }
-  
-        .select-pure__selected-label i {
-          cursor: pointer;
-          display: inline-block;
-          margin-left: 7px;
-        }
-  
-        .select-pure__selected-label img {
-          cursor: pointer;
-          display: inline-block;
-          height: 18px;
-          margin-left: 7px;
-          width: 14px;
-        }
-  
-        .select-pure__selected-label i:hover {
-          color: #e4e4e4;
-        }
-  
-        .select-pure__autocomplete {
-          background: #f9f9f8;
-          border-bottom: 1px solid #e4e4e4;
-          border-left: none;
-          border-right: none;
-          border-top: none;
-          box-sizing: border-box;
-          font-size: 16px;
-          outline: none;
-          padding: 10px;
-          width: 100%;
-        }
-  
-        .select-pure__placeholder--hidden {
-          display: none;
-        }
-      </style>
-
-<p id="test" onclick="test()">hi<br></p>
-
-<script> function test(){ if(customIconMulti.value().length!=0){document.getElementById("test").innerText=customIconMulti.value();}else{document.getElementById("test").innerText="None chosen";}}</script>
-
-
-  <div class="container">
-    <canvas id="myChart"></canvas>
-  </div>
-
- 
-
-<div class="navbar">
-    <div id="home" class="nav-active">
-        <button class="button" onclick="window.location.href='home.html';"><i class="fas fa-home"></i></button>
-    </div>
-    <div id="annoucements">
-        <i class="fas fa-bullhorn button"></i>
-    </div>
-    <div id="new-report">
-        <i class="fas fa-plus-circle" onclick="window.location.href='create_report/start.html';"></i></div>
-    <div id="trends">
-        <button class="button" onclick="window.location.href='trends.html';"><i class="fas fa-chart-line"></i></button></div>
-    <div id="directory">
-        <button class="button" onclick="window.location.href='directory.html';"><i class="fas fa-th-list"></i></button>
-    </div>
-</div>
-
-<script src="../js/app.js"></script> 
-<script src="../js/multiselect.js"></script> 
-<script src="../js/makechart.js"></script>
-</body>
+    <script src="../js/app.js"></script> 
+    <script src="../js/multiselect.js"></script> 
+    <script src="../js/makechart.js"></script>
+    
+  </body>
 </html>

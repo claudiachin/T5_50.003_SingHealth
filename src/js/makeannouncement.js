@@ -1,4 +1,4 @@
-function mock() {
+function postannouncement() {
     db.collection("announcements").add({
         title: document.getElementById("count_value_title").value,
         content: document.getElementById("count_value").value,

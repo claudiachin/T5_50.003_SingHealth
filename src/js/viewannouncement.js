@@ -9,26 +9,41 @@ function retrieveData(){
 // setup guides
 const setupDetailsAnnouncement = (data) => {
     data.forEach(doc => {
+        // console.log(doc.data().announcementId);
+        if(doc.data().announcementId=="1616686189655"){
             displayDetailsAnnouncement(doc.data());
+        }
         })
         
     };
 
 function displayDetailsAnnouncement(details){
-    const title = `The title is: ${details.title}`;
+    const title =  details.title;
 
-    const description = `The description is: ${details.content}`;
+    const description = details.content;
 
-    const imageLink=`The image URL is: ${details.image}`;
+    const imageLink=details.image;
 
-    const datePosted=`The date posted is: ${details.datePosted}`;
+    const datePosted=details.datePosted;
 
-    const associatedAuditor=`The associated auditor is: ${details.associatedAuditor}`;
+    const associatedAuditor=details.associatedAuditor;
+
+    const announcementId=details.announcementId;
+    setAnnouncementFields(title,imageLink, datePosted,description);
     console.log(title);
     console.log(description);
     console.log(imageLink);
     console.log(datePosted);
     console.log(associatedAuditor);
+    console.log(announcementId);
     console.log("\n");
     
+}
+
+function setAnnouncementFields(title,imageLink,datePosted, description) {
+    //checks that all the relevant fields have been filled
+    document.getElementById("announcement_title").innerHTML = title;
+    document.getElementById("announcement_image").src = imageLink;
+    document.getElementById("date_posted").innerHTML = datePosted;
+    document.getElementById("announcement_desc").innerHTML = description;
 }

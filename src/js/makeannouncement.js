@@ -6,7 +6,7 @@ function postannouncement() {
         datePosted: perfectDate(),
         image:document.getElementById("addPicture").src,
         associatedAuditor: "tester",
-        announcementId: Date.now()
+        announcementId: String(Date.now())
     })
     .then(() => {
         console.log("Document successfully written!");

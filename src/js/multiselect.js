@@ -24,7 +24,7 @@
           value: "Heavenly Wang Cafe",
         },
       ],
-      value: [],
+      value: ["Mr Bean"],
       multiple: true,
       autocomplete: true,
       inlineIcon: customIcon,

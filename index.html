@@ -29,11 +29,11 @@
         <form id="login">
             <div class="form-input">
               <i class="fa fa-envelope icon"></i>
-              <input type="email" id="email" name="email" placeholder="Email"><br>
+              <input type="email" id="email" name="email" placeholder="Email"/><br>
             </div>
             <div class="form-input">
               <i class="fa fa-lock icon"></i>
-              <input type="password" id="pword" name="pword"  placeholder="Password">
+              <input type="password" id="pword" name="pword"  placeholder="Password"/>
             </div>
             <button id="clickLogin" class="primary-button" form="login">Login</button>
         </form>
@@ -53,21 +53,21 @@
         <form id="signUpForm">
             <div class="signUpForm-input">
               <i class="fa fa-user icon"></i>
-              <input type="text" name="name" placeholder="Name" required>
+              <input type="text" name="name" placeholder="Name"/>
             </div>
             <div class="signUpForm-input">
               <i class="fa fa-key icon"></i>
-              <input type="password" name="pword" placeholder="Password" required>
+              <input type="password" name="pword" placeholder="Password"/>
             </div>
             <div class="signUpForm-input">
               <i class="fa fa-envelope icon"></i>
-              <input type="email" name="email" placeholder="Email" required>
+              <input type="email" name="email" placeholder="Email"/>
             </div>
             <div class="signUpForm-input">
               <i class="fa fa-hospital icon"></i>
-              <input type="text" name="hospital" placeholder="Hospital" required>
+              <input type="text" name="hospital" placeholder="Hospital"/>
             </div>
-            <button type="button" onclick=signup()>Submit</button>
+            <button id="submitSignUp" type="button" onclick=signup() disabled="disabled">Submit</button>
             <br>
             <p class="signUpError" style="color: crimson;"></p>
         </form>

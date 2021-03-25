@@ -97,9 +97,9 @@
 
 
         <div class="wrapper">
-            <textarea id="count_value" rows = "5" cols="65">Add description...</textarea>
+            <textarea id="count_value" rows = "5" cols="65" placeholder="Add description here...."></textarea>
             <br>
-            <span id="count_no">18</span>
+            <span id="count_no">0</span>
             <br clear="both">
         </div>
 
@@ -112,8 +112,8 @@
                 });
             });
         </script>
-        <button class="primary-button" onclick="postBtn()">Post</button>
-        <button id="add_announcement" onclick=postannouncement()>Add announcement</button>
+        <button class="primary-button" onclick=postannouncement()>Post</button>
+        <button id="check-fields-filled" onclick=checkFieldsFilled()>Check fields filled</button>
         <br>
         </div>
         <br>

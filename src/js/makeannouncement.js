@@ -19,7 +19,7 @@ function postannouncement() {
         content: document.getElementById("count_value").value,
         datePosted:new Date().getTime(),
         image:"imageURL",
-        associatedAuditor: "user"
+        associatedAuditor: "tester"
     })
     .then(() => {
         console.log("Document successfully written!");

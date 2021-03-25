@@ -12,7 +12,7 @@ function mock() {
     });
 }
 
-//function to upload announcement to the web
+//function to upload announcement to the Firebase
 function postannouncement() {
     db.collection("announcements").add({
         title: document.getElementById("count_value_title").value,
@@ -31,17 +31,20 @@ function postannouncement() {
 
 function checkFieldsFilled() {
         //checks that all the relevant fields have been filled
-        var titleTextfield = document.getElementsByClassName("input-field")[0].getElementsByTagName("i");
+        var titleTextfield = document.getElementById("count_value_title").value;
+        var descriptionTextfield = document.getElementById("count_value").value;
     
-        var i = 0;
-        var allFilled = true;
-        while (i<checkboxes.length && allFilled) {
-            if (checkboxes[i].classList.length < 3) {
-                allFilled = false;
-            }
-            i += 1
+        var titleFilled = false;
+        var descriptionFilled = false;
+        if (titleTextfield !=""){
+            titleFilled = true;
         }
-        if (allFilled) {
-            document.getElementsByClassName("primary-button")[0].classList.remove("hide");
+        if (descriptionTextfield !=""){
+            descriptionFilled = true;
+        }
+        if (titleFilled && descriptionFilled) {
+            console.log("All relevant fields have been filled");
+        }else{
+            console.log("Not all relevant fields have been filled");
         }
     }

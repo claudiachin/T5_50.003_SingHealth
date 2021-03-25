@@ -13,41 +13,48 @@
         <p>Announcements</p>
     </div>
     <div class="main-content">
-            <div>
-                <a href="announcement_view.html"><p id="announcement001"><b>Announcement Title</b></p></a>
-                <p>Announcement Excerpt approx. two lines long<br></p> 
-                <h6>Posted on 26/2/2021 at 4.06 am<br></h6> 
-            </div>
-            <hr>
-            <div>
-                <p id="announcement002"><b>Announcement Title</b></p>
-                <p>Announcement Excerpt approx. two lines long<br></p> 
-                <h6>Posted on 26/2/2021 at 4.06 am<br></h6> 
-            </div>
-            <hr>
-            <div>
-                <p id="announcement003"><b>Announcement Title</b></p>
-                <p>Announcement Excerpt approx. two lines long<br></p> 
-                <h6>Posted on 26/2/2021 at 4.06 am<br></h6> 
-            </div>
-            <hr>
-            <div>
-                <p id="announcement004"><b>Announcement Title</b></p>
-                <p>Announcement Excerpt approx. two lines long<br></p> 
-                <h6>Posted on 26/2/2021 at 4.06 am<br></h6> 
-            </div>
-            <hr>
-            <div>
-                <p id="announcement005"><b>Announcement Title</b></p>
-                <p>Announcement Excerpt approx. two lines long<br></p> 
-                <h6>Posted on 26/2/2021 at 4.06 am<br></h6> 
-            </div>
-            <hr>
-            <div>
-                <p id="announcement006"><b>Announcement Title</b></p>
-                <p>Announcement Excerpt approx. two lines long<br></p> 
-                <h6>Posted on 26/2/2021 at 4.06 am<br></h6> 
-            </div>
+        <div id="list"></div>
+        <script>
+            // to change to reading from firebase
+            var names = ["Announcement 1","Announcement 2","Announcement 3"];
+    
+            for (i=0; i<names.length; i++) {
+                var tenant = document.createElement("p");
+                var tenantText = document.createTextNode(names[i]);
+                tenant.appendChild(tenantText);
+                tenant.classList.add("tenant-text");
+    
+                var inst = document.createElement("p");
+                var instText = document.createTextNode("[Announcement Description of Two-Liner]");
+                inst.appendChild(instText);
+    
+                var date = document.createElement("h6");
+                var dateText = document.createTextNode("Announcement made on 14/2/2020");
+                date.appendChild(dateText);
+    
+                var sect = document.createElement("div");
+                sect.appendChild(tenant);
+                sect.appendChild(inst);
+                sect.appendChild(date);
+                sect.classList.add("sect")
+    
+                var icon = document.createElement("div");
+                icon.innerHTML = '<i class="fas fa-chevron-right"></i>'
+                
+                var card = document.createElement("div");
+                card.appendChild(sect)
+                card.appendChild(icon);
+                card.classList.add("card");
+                card.id = "card-"+i;
+                card.onclick = function() { selectTenant(this) };
+    
+                var split = document.createElement("hr");
+    
+                var list = document.getElementById("list");
+                list.appendChild(card);
+                list.appendChild(split);
+            }
+            </script>
             <button class="primary-button" onclick="window.location.href='announcement_editor.html';">Create New Announcement</button>
     </div>
 

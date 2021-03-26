@@ -29,6 +29,7 @@
     ]
   },
   options: {
+    
     title: {
       display: true,
       text: 'Audit Scores'

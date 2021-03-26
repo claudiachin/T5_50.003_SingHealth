@@ -11,6 +11,11 @@ const tenantSelect = document.querySelector(".tab");
 const auditorSelect = document.querySelector(".tab-active");
 const signupF = document.querySelector(".bg-modal");
 const loading = document.querySelector("#wrapper");
+const tabBar = document.querySelector(".tab-bar");
+const role = document.querySelector(".tab-active");
+
+let tempRole = null;
+let actualRole = "auditors";
 
 // loading
 // window.addEventListener("load", function() {
@@ -24,11 +29,13 @@ auth.onAuthStateChanged(user =>{
         user.getIdTokenResult().then(idTokenResult =>{
             console.log(`admin: ${idTokenResult.claims.admin}`);
             user.admin = idTokenResult.claims.admin;
-            setupUI(user);
+            // setupUI(user);
         });
         console.log("User logged in");
         // get data
-        db.collection("auditors").onSnapshot(snapshot => {
+        console.log(tempRole);
+        console.log(actualRole);
+        db.collection(actualRole).onSnapshot(snapshot => {
             setupDetails(snapshot.docs, user.uid);
         }), err => {
         console.log(err.message);
@@ -40,15 +47,15 @@ auth.onAuthStateChanged(user =>{
 });
 
 // setup UI
-const setupUI = (user) =>{
-    if (user){
-        if (user.admin){
-            adminItems.forEach(item => item.style.display = "block");
-        }
-    }else{
-        adminItems.forEach(item => item.style.display = "none");
-    }
-}
+// const setupUI = (user) =>{
+//     if (user){
+//         if (user.admin){
+//             adminItems.forEach(item => item.style.display = "block");
+//         }
+//     }else{
+//         adminItems.forEach(item => item.style.display = "none");
+//     }
+// }
 
 
 // setup guides
@@ -82,6 +89,12 @@ function displayDetails(details){
     
 }
 
+// tabBar.addEventListener("click", (e) =>{
+//     e.preventDefault();
+//     actor = tabBar.firstElementChild.getAttribute("class");
+//     console.log(actor);
+// });
+
 // login
 if (login){
     login.addEventListener('submit', (e) =>{
@@ -93,6 +106,15 @@ if (login){
     
         auth.signInWithEmailAndPassword(email, password).then(cred =>{
             // console.log(cred.user);
+            tempRole = tabBar.firstElementChild.getAttribute("class");
+            console.log(tempRole);
+            if (tempRole === "tab-active"){
+                actualRole = "auditors";
+            }
+            else{
+                actualRole = "tenants";
+            }
+
             window.location.href = "src/html/home.html";
             login.reset();
             error.innerHTML= "";

@@ -11,103 +11,85 @@
   </head>
   <body>
     <div class="report-nav">
-        <button class="back-button" onclick="window.location.href='housekeeping_general_cleanliness.html';"><i class="fas fa-chevron-left"></i>   Back</button>
-        <h2>Workplace Safety & Health</h2>
+        <button class="back-button" onclick="window.location.href='workplace_safety_health.html';"><i class="fas fa-chevron-left"></i>   Back</button>
+        <h2>COVID Compliance</h2>
         <button class="next-button hide" onclick="goNext()">Next   <i class="fas fa-chevron-right"></i></button>
     </div>
     <div class="main-content-report">
         <div class="question">
-            <p>MSDS for all industrial chemicals are available and up to date.</p>
+            <p>SafeEntry has been implemented for dine-in customers.</p>
             <div class="icon">
                 <i class="checkbox fas" onclick="change(this)"></i>
             </div>
         </div>
         <div class="question">
-            <p>Proper chemicals storage.</p>
+            <p>Temperature screening is conducted for customers of outlets that are located outside of institution’s temperature screening zone.</p>
             <div class="icon">
                 <i class="checkbox fas" onclick="change(this)"></i>
             </div>
         </div>
         <div class="question">
-            <p>All detergent and bottles containing liquids are labelled appropriately.</p>
+            <p>Table and seating arrangement adheres to the one-metre spacing between tables or groups. Where tables/seats are fixed, tables/seats should be marked out, ensuring at least one-metre spacing.</p>
             <div class="icon">
                 <i class="checkbox fas" onclick="change(this)"></i>
             </div>
         </div>
         <div class="question">
-            <p>All personnel to wear safety shoes and safety attire where necessary.</p>
+            <p>Queue is demarcated to ensure at least one-metre spacing between customers such as entrances and cashier counters (e.g. through floor markers).</p>
             <div class="icon">
                 <i class="checkbox fas" onclick="change(this)"></i>
             </div>
         </div>
         <div class="question">
-            <p>Knives and sharp objects are kept at a safe place.</p>
+            <p>Staff to ensure customers maintain safe distance of one-metre when queuing and seated.</p>
             <div class="icon">
                 <i class="checkbox fas" onclick="change(this)"></i>
             </div>
         </div>
         <div class="question">
-            <p>Area under the sink should not be cluttered with items other than washing agents.</p>
+            <p>Staff to ensure customers wear a mask at all times, unless eating or drinking.</p>
             <div class="icon">
                 <i class="checkbox fas" onclick="change(this)"></i>
             </div>
         </div>
         <div class="question">
-            <p>Delivery personnel do not stack goods above the shoulder level.</p>
+            <p>Hand sanitizers are placed at high touch areas (i.e. tray return, collection point, outlet entrance/exit).</p>
             <div class="icon">
                 <i class="checkbox fas" onclick="change(this)"></i>
             </div>
         </div>
         <div class="question">
-            <p>Stacking of goods does not exceed 600mm from the ceiling and heavy items at the bottom, light items on top.</p>
+            <p>Outlet promotes use of cashless payment modes.</p>
             <div class="icon">
                 <i class="checkbox fas" onclick="change(this)"></i>
             </div>
         </div>
         <div class="question">
-            <p>Proper signage/ label (fire, hazards, warnings, food stuff) and Exit signs in working order.</p>
+            <p>All staff to wear a mask at all times, unless eating or drinking.</p>
             <div class="icon">
                 <i class="checkbox fas" onclick="change(this)"></i>
             </div>
         </div>
         <div class="question">
-            <p>Fire extinguishers access is unobstructed; Fire extinguishers are not expired and employees know how to use them.</p>
+            <p>Mask worn by staff is in the correct manner (i.e. cover nose and mouth, no hanging of mask under the chin/neck).</p>
             <div class="icon">
                 <i class="checkbox fas" onclick="change(this)"></i>
             </div>
         </div>
         <div class="question">
-            <p>Escape route and exits are unobstructed.</p>
+            <p>All staff to record their temperature daily.</p>
             <div class="icon">
                 <i class="checkbox fas" onclick="change(this)"></i>
             </div>
         </div>
         <div class="question">
-            <p>First aid box is available and well-equipped.</p>
+            <p>Staff to maintain safe distance of one-metre (where possible) and not congregate, including at common areas, and during break/meal times.</p>
             <div class="icon">
                 <i class="checkbox fas" onclick="change(this)"></i>
             </div>
         </div>
         <div class="question">
-            <p>Electrical sockets are not overloaded – one plug to one socket.</p>
-            <div class="icon">
-                <i class="checkbox fas" onclick="change(this)"></i>
-            </div>
-        </div>
-        <div class="question">
-            <p>Plugs and cords are intact and free from exposure/ tension with PSB safety mark.</p>
-            <div class="icon">
-                <i class="checkbox fas" onclick="change(this)"></i>
-            </div>
-        </div>
-        <div class="question">
-            <p>Power points that are in close proximity to flammable and/or water sources are installed with a plastic cover.</p>
-            <div class="icon">
-                <i class="checkbox fas" onclick="change(this)"></i>
-            </div>
-        </div>
-        <div class="question">
-            <p>Electrical panels / DBs are covered.</p>
+            <p>Check with supervisor that all staff record SafeEntry check-in and check-out (Note: Supervisor is accountable for adherence).</p>
             <div class="icon">
                 <i class="checkbox fas" onclick="change(this)"></i>
             </div>
@@ -115,7 +97,7 @@
     </div>
     <div class="score-bar">
         <h2>SCORE</h2>
-        <h2><span id="score">0</span> / <span id="out-of">16</span></h2>
+        <h2><span id="score">0</span> / <span id="out-of">13</span></h2>
     </div>
 
     <script src="../../../js/create_report.js"></script>
@@ -125,11 +107,11 @@
             //TO DO: upload score and outOf
             var score = parseInt(document.getElementById("score").innerHTML);
             var outOf = parseInt(document.getElementById("out-of").innerHTML);
-            window.location.href='covid.html';
+            window.location.href='end.html';
         }
     </script>
 
     <!--- do not remove this script line, it allows the service worker to function -->
-    <script src="../../js/app.js"></script> 
+    <script src="../../../js/app.js"></script> 
   </body>
 </html>

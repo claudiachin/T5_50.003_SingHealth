@@ -50,7 +50,6 @@ function filter() {
 }
 
 var prev = '';
-var curr = ''
 
 function select(ele) {
   if (prev != '') {

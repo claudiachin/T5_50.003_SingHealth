@@ -118,3 +118,17 @@
 .score-bar h2 {
     color: #fff !important;
 }
+
+.photo-flap, .deadline-div {
+    background: #F15A22;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 8px;
+}
+
+input[type=date] {
+    border: none;
+    background: none;
+    font-weight: 275;
+}

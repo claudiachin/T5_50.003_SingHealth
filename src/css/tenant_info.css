@@ -1,0 +1,36 @@
+.main-content-tenant-info {
+    padding: 44px 32px 96px;
+}
+
+.heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+#tenant-contract {
+    border: none;
+    border-radius: 32px;
+    padding: 16px;
+    background: #F15A22;
+    color: #fff;
+}
+
+#tenant-contract > i {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info {
+    padding: 32px 0 24px;
+}
+.info > div {
+    margin-bottom: 8px;
+}
+
+.card > div > p {
+    font-weight: bold;
+}

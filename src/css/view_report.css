@@ -192,6 +192,9 @@ div.hover-shadow {
     flex: 1;
     border: none;
     border-bottom: black 1px solid;
+    font-size: 16px;
+    font-family: 'Poppins';
+    font-weight: 275;
 }
 
 .bubble {

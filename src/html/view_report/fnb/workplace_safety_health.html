@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- do not remove anything in head, can add stuff if needed though -->
+    <link rel="stylesheet" type="text/css" href="../../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../../css/create_report.css">
+    <link rel="stylesheet" type="text/css" href="../../../css/view_report.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://kit.fontawesome.com/215800797e.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="report-nav">
+        <button class="back-button" onclick="window.location.href='healthier_choice.html';"><i class="fas fa-chevron-left"></i>   Back</button>
+        <h2>Workplace Safety & Health</h2>
+        <button class="next-button hide" onclick="goNext()">Next   <i class="fas fa-chevron-right"></i></button>
+    </div>
+    <div class="main-content-view-report">
+        <div class="question">
+            <p>All food handlers have Basic Food Hygiene certificate and a valid Refresher Food Hygiene certificate (if applicable).</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>MSDS for all industrial chemicals are available and up to date.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Proper chemicals storage.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>All detergent and bottles containing liquids are labelled appropriately.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>All personnel to wear safety shoes and safety attire where necessary.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Knives and sharp objects are kept at a safe place.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Area under the sink should not be cluttered with items other than washing agents.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Delivery personnel do not stack goods above the shoulder level.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Stacking of goods does not exceed 600mm from the ceiling and heavy items at the bottom, light items on top.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Proper signage/ label (fire, hazards, warnings, food stuff) and Exit signs in working order.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Equipment, crockery and utensils are not chipped, broken or cracked.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Fire extinguishers access is unobstructed; Fire extinguishers are not expired and employees know how to use them.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Escape route and exits are unobstructed.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>First aid box is available and well-equipped.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Electrical sockets are not overloaded – one plug to one socket.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Plugs and cords are intact and free from exposure/ tension with PSB safety mark.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Power points that are in close proximity to flammable and/or water sources are installed with a plastic cover.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Electrical panels / DBs are covered.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+    </div>
+    <div class="bottom-items">
+        <div class="photo-album">
+            <div class="photo-flap">
+                <h2>Photos</h2>
+                <div><i class="fas fa-chevron-down" aria-hidden="true" onclick="togglePhotos(this)"></i></div>
+            </div>
+            <div id="photos" style="display:none">
+                <div class="photos-row"></div>
+            </div>
+        </div>
+
+        <div class="chat">
+            <div class="chat-flap">
+                <h2>Chat</h2>
+                <div><i class="fas fa-chevron-down" aria-hidden="true" onclick="toggleChat(this)"></i></div>
+            </div>
+            <div id="chat-bubbles" style="display:none">
+                <div id="bubbles"></div>
+                <div id="send-msg-area">
+                    <input type="text" id="textMsg" placeholder="Send a message...">
+                    <i class="fas fa-paper-plane" id="send-button" onclick="sendMsg()"></i>
+                </form>
+            </div>
+        </div>
+
+        <div class="score-bar-view-report">
+            <h2>SCORE</h2>
+            <h2><span id="score">0</span> / <span id="out-of">13</span></h2>
+        </div>
+    </div>
+
+    <div id="gallery" class="gallery">
+        <span class="close-button cursor" onclick="closeModal()"><i class="fas fa-times"></i></i></span>
+        <div class="gallery-content">
+            <!-- Next/previous controls -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+    </div>
+
+    <script src="../../../js/view_report.js"></script>
+
+    <!--- do not remove this script line, it allows the service worker to function -->
+    <script src="../js/app.js"></script> 
+  </body>
+</html>

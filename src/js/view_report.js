@@ -41,6 +41,7 @@ function toggleChat(icon) {
         chatArea.style.display = "none";
     }
     toggleArrow(icon);
+    document.getElementById("send-msg-area").scrollIntoView();
 }
 
 function toggleArrow(icon) {

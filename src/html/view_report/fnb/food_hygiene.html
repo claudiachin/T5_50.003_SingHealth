@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- do not remove anything in head, can add stuff if needed though -->
+    <link rel="stylesheet" type="text/css" href="../../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../../css/create_report.css">
+    <link rel="stylesheet" type="text/css" href="../../../css/view_report.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://kit.fontawesome.com/215800797e.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="report-nav">
+        <button class="back-button" onclick="window.location.href='housekeeping_general_cleanliness.html';"><i class="fas fa-chevron-left"></i>   Back</button>
+        <h2>Food Hygiene</h2>
+        <button class="next-button hide" onclick="goNext()">Next   <i class="fas fa-chevron-right"></i></button>
+    </div>
+    <div class="main-content-view-report">
+        <div class="question">
+            <p>Food is stored in appropriate conditions and at an appropriate temperature.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Food and non-food are clearly segregated i.e. Non-food items (e.g. insecticides, detergents and other chemicals) are not stored together with the food items.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Food is not placed near sources of contamination.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Storage of food does not invite pest infestation.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Dry goods (e.g. canned food and drinks) and other food items are stored neatly on shelves, off the floor and away from walls.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Proper stock rotation system such as the First-Expired-First-Out (FEFO) system is used for inventory management.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Food is protected from contamination; packaging is intact and no products are found with signs of spoilage.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Ice machine is clean and well maintained. Only ice is stored in the ice machine to prevent contamination of the ice.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Scoop for ice is stored outside the ice machine in a dedicated container.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Food supplied is clean and not expired.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Clear labelling of date of date of preparation/ manufacture/ expiry on all food containers/packaging.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Cooked food is properly covered to prevent cross-contamination.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Proper work flow and segregation of areas to prevent cross-contamination between raw and cooked/ ready-to-eat food areas.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Proper separation of cooked food/ ready-to-eat food, raw meat, seafood and vegetable to prevent cross-contamination e.g. Different chopping boards, knives and other utensils are used for cooked/ ready-to-eat and raw food.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Frozen food is thawed in chiller, microwave or under running water.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Ingredients used are clean and washed thoroughly before cooking.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>All cooking ingredient (e.g. cooking oil, sauces) are properly covered in proper containers and properly labelled, indicating the content and date of expiry.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>All sauces are stored at appropriate condition & temperature.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Cooking oil is not used for more than 1 day.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Cooking oil is stored properly with a cover.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Perishable food is stored in the fridge.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Raw food and cooked food/ready-to-serve food are clearly segregated. Cold and/or hot holding units are clean and well-maintained.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Food preparation area is free of bird and animal (e.g. dog or cat).</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Food preparation area is clean, free of pests and in good state of repair.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Food is not prepared on the floor, near drain or near/ in toilet.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Personal belongings are kept separately in the staff locker area or cabinet, away from the food storage and preparation area.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Daily Temperature Log for food storage units (freezers, chillers, warmers, steamers, ovens) using independent thermometer, etc. is maintained for inspection from time to time.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Food storage units (freezers, chillers, warmers, steamers, ovens) are kept clean and well maintained. All rubber gaskets of refrigerators / warmers are free from defect, dirt and mould.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Food storage units are not overstocked to allow good air circulation.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>For walk-in freezers and chillers, food items are stored neatly on shelves and off the floor.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Frozen food is stored at a temperature of not more than -12°C i.e. Freezer’s temperature: < -12°C.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Chilled food is stored at a temperature of not more than 4°C i.e. Chiller’s temperature: 0°C ~ 4°C.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Hot food are held above 60°C i.e. Food warmer’s temperature: > 60°C.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Perishable food is stored at a temperature of not more than 4°C.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Dairy products are stored at a temperature of not more than 7°C.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Cooked/ ready-to-eat food are stored above raw food.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Food items are properly wrapped/covered in proper containers and protected from contamination.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+    </div>
+    <div class="bottom-items">
+        <div class="photo-album">
+            <div class="photo-flap">
+                <h2>Photos</h2>
+                <div><i class="fas fa-chevron-down" aria-hidden="true" onclick="togglePhotos(this)"></i></div>
+            </div>
+            <div id="photos" style="display:none">
+                <div class="photos-row"></div>
+            </div>
+        </div>
+
+        <div class="chat">
+            <div class="chat-flap">
+                <h2>Chat</h2>
+                <div><i class="fas fa-chevron-down" aria-hidden="true" onclick="toggleChat(this)"></i></div>
+            </div>
+            <div id="chat-bubbles" style="display:none">
+                <div id="bubbles"></div>
+                <div id="send-msg-area">
+                    <input type="text" id="textMsg" placeholder="Send a message...">
+                    <i class="fas fa-paper-plane" id="send-button" onclick="sendMsg()"></i>
+                </form>
+            </div>
+        </div>
+
+        <div class="score-bar-view-report">
+            <h2>SCORE</h2>
+            <h2><span id="score">0</span> / <span id="out-of">13</span></h2>
+        </div>
+    </div>
+
+    <div id="gallery" class="gallery">
+        <span class="close-button cursor" onclick="closeModal()"><i class="fas fa-times"></i></i></span>
+        <div class="gallery-content">
+            <!-- Next/previous controls -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+    </div>
+
+    <script src="../../../js/view_report.js"></script>
+
+    <!--- do not remove this script line, it allows the service worker to function -->
+    <script src="../js/app.js"></script> 
+  </body>
+</html>

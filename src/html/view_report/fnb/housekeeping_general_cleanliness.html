@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- do not remove anything in head, can add stuff if needed though -->
+    <link rel="stylesheet" type="text/css" href="../../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../../css/create_report.css">
+    <link rel="stylesheet" type="text/css" href="../../../css/view_report.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://kit.fontawesome.com/215800797e.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="report-nav">
+        <button class="back-button" onclick="window.location.href='professionalism_staff_hygiene.html';"><i class="fas fa-chevron-left"></i>   Back</button>
+        <h2>GENERAL CLEANLINESS</h2>
+        <button class="next-button hide" onclick="goNext()">Next   <i class="fas fa-chevron-right"></i></button>
+    </div>
+    <div class="main-content-view-report">
+        <div class="question">
+            <p>Cleaning and maintenance records for equipment, ventilation and exhaust system.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Adequate and regular pest control i.e. Pest control record.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Goods and equipment are within shop boundary.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Store display/ Shop front is neat and tidy.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Work/ serving area is neat, clean and free of spillage.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Uncluttered circulation space free of refuse/ furniture.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Tables are cleared promptly within 10 minutes.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Fixtures and fittings including shelves, cupboards and drawers are clean and dry, free from pests, and in a good state.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Ceiling/ ceiling boards are free from stains/ dust with no gaps.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Fans and air-con units are in proper working order and clean and free from dust. Proper maintenance and routine cleaning are carried out regularly.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Equipment, exhaust hood, crockery and utensils are clean, in good condition and serviced.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Surfaces, walls and ceilings within customer areas are dry and clean.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Floor within customer areas is clean, dry and non-greasy.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Waste bins are properly lined with plastic bags and covered at all times.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Adequate number of covered waste pedal bins are available and waste is properly managed and disposed.<br>
+                	Waste bins are not over-filled.<br>
+                	Waste Management: Proper disposal of food stuff and waste.<br>
+                	Waste is properly bagged before disposing it at the waste disposal area/ bin centre.
+                </p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Hand washing facilities are easily accessible, in good working condition and soap is provided.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Adequate facilities for hand hygiene are available including liquid soap and disposable hand towels.</p>
+            <div class="icon">
+                <i class="checkbox fas" onclick="change(this)"></i>
+            </div>
+        </div>
+    </div>
+    <div class="bottom-items">
+        <div class="photo-album">
+            <div class="photo-flap">
+                <h2>Photos</h2>
+                <div><i class="fas fa-chevron-down" aria-hidden="true" onclick="togglePhotos(this)"></i></div>
+            </div>
+            <div id="photos" style="display:none">
+                <div class="photos-row"></div>
+            </div>
+        </div>
+
+        <div class="chat">
+            <div class="chat-flap">
+                <h2>Chat</h2>
+                <div><i class="fas fa-chevron-down" aria-hidden="true" onclick="toggleChat(this)"></i></div>
+            </div>
+            <div id="chat-bubbles" style="display:none">
+                <div id="bubbles"></div>
+                <div id="send-msg-area">
+                    <input type="text" id="textMsg" placeholder="Send a message...">
+                    <i class="fas fa-paper-plane" id="send-button" onclick="sendMsg()"></i>
+                </form>
+            </div>
+        </div>
+
+        <div class="score-bar-view-report">
+            <h2>SCORE</h2>
+            <h2><span id="score">0</span> / <span id="out-of">13</span></h2>
+        </div>
+    </div>
+
+    <div id="gallery" class="gallery">
+        <span class="close-button cursor" onclick="closeModal()"><i class="fas fa-times"></i></i></span>
+        <div class="gallery-content">
+            <!-- Next/previous controls -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+    </div>
+
+    <script src="../../../js/view_report.js"></script>
+
+    <!--- do not remove this script line, it allows the service worker to function -->
+    <script src="../js/app.js"></script> 
+  </body>
+</html>

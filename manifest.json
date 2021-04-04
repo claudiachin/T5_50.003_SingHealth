@@ -1,9 +1,27 @@
 {
   "name": "SingHealth Audit App",
   "short_name": "SingHealth",
-  "start_url": "/index.html",
+  "start_url": "index.html",
   "scope": ".",
   "display": "standalone",
   "background_color" : "#fff",
-  "orientation": "portrait-primary"
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "src/resources/singhealth_icon_144.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "src/resources/singhealth_icon_192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "src/resources/singhealth_icon_512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "prefer_related_applications": false
 }

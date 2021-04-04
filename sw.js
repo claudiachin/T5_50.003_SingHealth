@@ -1,7 +1,7 @@
-self.addEventListener('install', function(event) {
+self.addEventListener('install', function (event) {
   event.waitUntil(
     caches.open('first-app')
-      .then(function(cache) {
+      .then(function (cache) {
         cache.addAll([
           './',
           './index.html',
@@ -14,13 +14,13 @@ self.addEventListener('install', function(event) {
           './src/html/pastreports.html',
           './src/html/trends.html',
           './create_report/start.html',
-          
+
           './src/css/style.css',
           './src/css/index.css',
           './src/css/bell.css',
           './src/css/file-document.css',
           './src/css/create_report.css',
-          
+
           './src/js/app.js',
           './src/js/create_report_start.js',
           './src/js/create_report.js',
@@ -41,12 +41,29 @@ self.addEventListener('install', function(event) {
   return self.clients.claim();
 });
 
-self.addEventListener('fetch', function(event) {
-  console.log(event.request.url);
- 
+self.addEventListener('fetch', function (event) {
   event.respondWith(
-    caches.match(event.request).then(function(response) {
-      return response || fetch(event.request);
+    caches.match(event.request).then(function (response) {
+      if (response) {
+        return response
+      }
+
+      return fetch(event.request).then(
+        function (response) {
+          // Check if we received a valid response
+          if (!response || response.status !== 200 || response.type !== 'basic') {
+            return response;
+          }
+
+          var responseToCache = response.clone();
+
+          caches.open('first-app')
+            .then(function (cache) {
+              cache.put(event.request, responseToCache);
+            });
+
+          return response;
+        });
     })
   );
- });
+});

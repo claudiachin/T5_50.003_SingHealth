@@ -1,7 +1,9 @@
 {
-  "name": "SingHealth",
+  "name": "SingHealth Audit App",
+  "short_name": "SingHealth",
   "start_url": "/index.html",
   "scope": ".",
   "display": "standalone",
+  "background_color" : "#fff",
   "orientation": "portrait-primary"
 }

@@ -47,4 +47,9 @@ function openContract(){
 
 function selectReport(report){
     console.log(report.id);
+    localStorage.setItem("prevUrl", window.location.href);
+    localStorage.setItem("type", document.getElementById("type").innerHTML);
+    localStorage.setItem("reportName", report.firstChild.firstChild.innerHTML);
+    localStorage.setItem("reportDate", report.firstChild.lastChild.innerHTML);
+    window.location.href = 'view_report/start.html';
 }

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- do not remove anything in head, can add stuff if needed though -->
+    <link rel="stylesheet" type="text/css" href="../../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../../css/create_report.css">
+    <link rel="stylesheet" type="text/css" href="../../../css/view_report.css">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://kit.fontawesome.com/215800797e.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="report-nav">
+        <button class="back-button" onclick="window.location.href='../start.html';"><i class="fas fa-chevron-left"></i>
+            Back</button>
+        <h2>PROFESSIONALISM & STAFF HYGIENE</h2>
+        <button class="next-button" onclick="window.location.href='housekeeping_general_cleanliness.html';">Next <i
+                class="fas fa-chevron-right"></i></button>
+    </div>
+    <div class="main-content-view-report">
+        <div class="question">
+            <p>Shop is open and ready to service patients/visitors according to operating hours.</p>
+            <div class="icon">
+                <i class="checkbox fas"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Staff Attendance: adequate staff for peak and non-peak hours.</p>
+            <div class="icon">
+                <i class="checkbox fas"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>At least one (1) clearly assigned person in-charge on site.</p>
+            <div class="icon">
+                <i class="checkbox fas"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Staff who are unfit for work due to illness should not report to work.</p>
+            <div class="icon">
+                <i class="checkbox fas"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Staff who are fit for work but suffering from the lingering effects of a cough and/or cold should cover
+                their mouths with a surgical mask.</p>
+            <div class="icon">
+                <i class="checkbox fas"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Clean clothes/uniform or aprons are worn during food preparation and food service.</p>
+            <div class="icon">
+                <i class="checkbox fas"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Hair is kept tidy (long hair must be tied up) and covered with clean caps or hair nets where appropriate.
+            </p>
+            <div class="icon">
+                <i class="checkbox fas"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Sores, wounds or cuts on hands, if any, are covered with waterproof and brightly-coloured plaster.</p>
+            <div class="icon">
+                <i class="checkbox fas"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Hands are washed thoroughly with soap and water, frequently and at appropriate times.</p>
+            <div class="icon">
+                <i class="checkbox fas"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Fingernails are short, clean, unpolished and without nail accessories.</p>
+            <div class="icon">
+                <i class="checkbox fas"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>No wrist watches/ rings or other hand jewellery (with exception of wedding ring) is worn by staff
+                handling food.</p>
+            <div class="icon">
+                <i class="checkbox fas"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Food is handled with clean utensils and gloves.</p>
+            <div class="icon">
+                <i class="checkbox fas"></i>
+            </div>
+        </div>
+        <div class="question">
+            <p>Disposable gloves are changed regularly and/ or in between tasks i.e. Staff do not handle cash with
+                gloved hands.</p>
+            <div class="icon">
+                <i class="checkbox fas"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-items">
+        <div class="photo-album">
+            <div class="photo-flap">
+                <h2>Photos</h2>
+                <div><i class="fas fa-chevron-down" aria-hidden="true" onclick="togglePhotos(this)"></i></div>
+            </div>
+            <div id="photos" style="display:none">
+                <div class="photos-row"></div>
+            </div>
+        </div>
+
+        <div class="chat">
+            <div class="chat-flap">
+                <h2>Chat</h2>
+                <div><i class="fas fa-chevron-down" aria-hidden="true" onclick="toggleChat(this)"></i></div>
+            </div>
+            <div id="chat-bubbles" style="display:none">placeholder</div>
+        </div>
+
+        <div class="score-bar-view-report">
+            <h2>SCORE</h2>
+            <h2><span id="score">0</span> / <span id="out-of">13</span></h2>
+        </div>
+    </div>
+
+    <div id="gallery" class="gallery">
+        <span class="close-button cursor" onclick="closeModal()"><i class="fas fa-times"></i></i></span>
+        <div class="gallery-content">
+            <!-- Next/previous controls -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+    </div>
+
+    <script src="../../../js/view_report.js"></script>
+
+    <!--- do not remove this script line, it allows the service worker to function -->
+    <script src="../js/app.js"></script>
+</body>
+
+</html>

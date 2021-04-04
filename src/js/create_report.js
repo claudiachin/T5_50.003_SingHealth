@@ -169,3 +169,20 @@ function displayFileNames(fileUploadBtn) {
         fileUploadBtn.parentNode.previousSibling.appendChild(file);
     }
 }
+
+function upload() {
+    //TO DO: upload score and outOf and indivQnData
+    var checkboxes = document.getElementsByClassName("main-content-report")[0].getElementsByTagName("i");
+    var data = []
+    for (i=0; i<checkboxes.length; i++) {
+        if (checkboxes[i].classList.contains("fa-window-minimize")) { //invalid
+            data.push(-1);
+        } else if (checkboxes[i].classList.contains("fa-check")) { //yes
+            data.push(1);
+        } else if (checkboxes[i].classList.contains("fa-times")) { //no
+            data.push(0); 
+        } 
+    }
+    var score = parseInt(document.getElementById("score").innerHTML);
+    var outOf = parseInt(document.getElementById("out-of").innerHTML);
+}

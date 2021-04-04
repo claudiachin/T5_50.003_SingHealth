@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- do not remove anything in head, can add stuff if needed though -->
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../css/create_report.css">
+    <link rel="stylesheet" type="text/css" href="../../css/view_report.css">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://kit.fontawesome.com/215800797e.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="report-nav">
+        <button class="back-button"><i class="fas fa-times"></i> Back</button>
+        <h2>Start</h2>
+        <button class="next-button" onclick="goNext()">Next <i class="fas fa-chevron-right"></i></button>
+    </div>
+    <div class="main-content-report startEnd">
+        <div>
+            <h1 id="title">Report 1</h1>
+            <p id="date">25/05/2021</p>
+        </div>
+        <div>
+            <h2>Overall Score:</h2>
+            <h1 id="overall"></h1>
+        </div>
+    </div>
+
+    <script>
+        //fill page with local variables
+        document.getElementsByClassName("back-button")[0].onclick = function () { window.location.href = localStorage.getItem("prevUrl"); };
+        document.getElementById("title").innerHTML = localStorage.getItem("reportName");
+        document.getElementById("date").innerHTML = localStorage.getItem("reportDate");
+
+        // replace with get from firebase
+        document.getElementById("overall").innerHTML = "71.1%";
+
+        function goNext() {
+            var decode = document.createElement("textarea");
+            decode.innerHTML = localStorage.getItem("type");
+            var type = decode.value;
+            if (type == "F&B") {
+                window.location.href = "fnb/professionalism_staff_hygiene.html";
+            } else if (type == "Non-F&B") {
+                window.location.href = "non-fnb/professionalism_staff_hygiene.html";
+            }
+        }
+    </script>
+
+    <!--- do not remove this script line, it allows the service worker to function -->
+    <script src="../js/app.js"></script>
+
+</body>
+
+</html>

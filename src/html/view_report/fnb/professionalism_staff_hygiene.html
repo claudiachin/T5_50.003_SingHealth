@@ -37,7 +37,7 @@
         <div class="question">
             <p>At least one (1) clearly assigned person in-charge on site.</p>
             <div class="icon">
-                <i class="checkbox fas"></i>
+                <i class="checkbox fas"></i> 
             </div>
         </div>
         <div class="question">
@@ -122,7 +122,13 @@
                 <h2>Chat</h2>
                 <div><i class="fas fa-chevron-down" aria-hidden="true" onclick="toggleChat(this)"></i></div>
             </div>
-            <div id="chat-bubbles" style="display:none">placeholder</div>
+            <div id="chat-bubbles" style="display:none">
+                <div id="bubbles"></div>
+                <div id="send-msg-area">
+                    <input type="text" id="textMsg" placeholder="Send a message...">
+                    <i class="fas fa-paper-plane" id="send-button" onclick="sendMsg()"></i>
+                </form>
+            </div>
         </div>
 
         <div class="score-bar-view-report">

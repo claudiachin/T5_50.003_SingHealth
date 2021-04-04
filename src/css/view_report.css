@@ -63,7 +63,9 @@
 
 .photos-column > div {
     width: 25vw;
+    max-width: 150px;
     height: 25vw;
+    max-height: 150px;
 }
 
 .gallery {
@@ -150,10 +152,6 @@
     top: 0;
 }
 
-img {
-    margin-bottom: -4px;
-}
-
 .caption-container {
     text-align: center;
     background-color: black;
@@ -174,8 +172,64 @@ div.hover-shadow {
 }
 
 #chat-bubbles {
-    padding: 8px 32px;
+    padding: 4px 24px;
     background: #fff;
     max-height: 250px;
     overflow-y: scroll;
+}
+
+#send-msg-area {
+    display: flex;
+    align-items: center;
+    padding: 16px 0 0;
+}
+
+#send-msg-area > * {
+    margin: 4px;
+}
+
+#textMsg {
+    flex: 1;
+    border: none;
+    border-bottom: black 1px solid;
+}
+
+.bubble {
+    display: flex;
+    margin: 8px 0;
+}
+
+.bubble > img {
+    height: 48px;
+    margin: 4px;
+}
+
+.bubble > .message-box > p {
+    flex: 1;
+    max-width: 400px;
+    margin: 4px;
+}
+
+#bubbles {
+    display: flex;
+    flex-direction: column;
+}
+
+.left {
+    align-self: flex-end;
+}
+.right {
+    align-self: flex-start;
+}
+
+.left > .message-box {
+    padding: 8px;
+    background-color: #d8d8d8;
+    border-radius: 8px;
+}
+
+.right > .message-box {
+    padding: 8px;
+    background-color: #ecab93;
+    border-radius: 8px;
 }

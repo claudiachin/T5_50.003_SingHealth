@@ -137,3 +137,50 @@ function showSlides(n) {
         slides[slideIndex - 1].style.display = "block";
     }
 }
+
+function sendMsg() {
+    alert(document.getElementById("textMsg").value);
+    document.getElementById("textMsg").value = "";
+}
+
+//get msgs from firebase
+msgs = [];
+senders = [];
+time = [];
+for (i=0; i<5; i++) {
+    msgs.push("hello");
+    if (i%2==0) {
+        senders.push("auditor");
+    } else {
+        senders.push("tenant");
+    }
+    time.push(new Date().toDateString());
+}
+
+chatBubblesArea = document.getElementById("bubbles");
+for (i=0; i<msgs.length; i++) {
+    var message = document.createElement("p");
+    messageText = document.createTextNode(msgs[i]);
+    message.appendChild(messageText);
+
+    var messageBox = document.createElement("div");
+    messageBox.appendChild(message);
+    messageBox.classList.add("message-box");
+
+    var profile = document.createElement("img");
+    profile.src = "../../../resources/profile.png";
+
+    var bubble = document.createElement("div");
+    if (senders[i] == "tenant") {
+        bubble.append(profile);
+        bubble.append(messageBox);
+        bubble.classList.add("right");
+    } else {
+        bubble.append(messageBox);
+        bubble.append(profile);
+        bubble.classList.add("left");
+    }
+    bubble.classList.add("bubble");
+
+    chatBubblesArea.append(bubble);
+}

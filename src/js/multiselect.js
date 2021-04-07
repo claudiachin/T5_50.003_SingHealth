@@ -47,3 +47,6 @@
     var resetCustomMulti = function() {
       customIconMulti.reset();
     };
+
+
+    function getSelected(){return customIconMulti.value();}

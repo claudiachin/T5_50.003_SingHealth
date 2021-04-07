@@ -20,16 +20,7 @@
         label: "Mr Bean",
         borderColor: "#8e5ea2",
         fill: false
-      }, { 
-        data: [88,88,88,90,92,96,97,95,95,95],
-        hidden: true,
-        label: "K-cuts",
-        borderColor: "#3cba9f",
-        showLine:false,
-        
-        fill: false,
-        radius: 0
-      }
+      },
     ]
   },
   options: {
@@ -46,7 +37,12 @@ function addData( label, data) {
   //lineChart.data.labels.push(label);
   lineChart.data.datasets.push(data);
   data.label=label;
-  data.borderColor="#3cba9f",
+  data.borderColor="#3cba9f";
+  data.fill=false;
+  data.data=data;
+ 
+
+
   lineChart.update();
 
 }

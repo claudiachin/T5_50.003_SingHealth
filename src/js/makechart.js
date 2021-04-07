@@ -22,9 +22,13 @@
         fill: false
       }, { 
         data: [88,88,88,90,92,96,97,95,95,95],
+        hidden: true,
         label: "K-cuts",
         borderColor: "#3cba9f",
-        fill: false
+        showLine:false,
+        
+        fill: false,
+        radius: 0
       }
     ]
   },
@@ -36,3 +40,30 @@
     }
   }
 });
+
+//To add DataSet
+function addData( label, data) {
+  //lineChart.data.labels.push(label);
+  lineChart.data.datasets.push(data);
+  data.label=label;
+  data.borderColor="#3cba9f",
+  lineChart.update();
+
+}
+
+//To edit-> but should remove all
+function removeData(chart) {
+  chart.data.labels.pop();
+  chart.data.datasets.forEach((dataset) => {
+      dataset.data.pop();
+  });
+  chart.update();
+}
+
+/*
+// Filter out and set back into chart.data.datasets
+chart.data.datasets = chart.data.datasets.filter(function(obj) {
+  return (obj.label != targetLabel); 
+});
+// Repaint
+chart.update();*/

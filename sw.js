@@ -27,9 +27,9 @@ urlsToCache = [
   '/src/resources/AddPicture.JPG',
   './src/resources/AddPictureOrange.jpg',
   './src/resources/profile.png',
-  'src/resources/singhealth_icon_144.png',
-  'src/resources/singhealth_icon_192.png',
-  'src/resources/singhealth_icon_512.png',
+  './src/resources/singhealth_icon_144.png',
+  './src/resources/singhealth_icon_192.png',
+  './src/resources/singhealth_icon_512.png',
   './src/resources/undraw_Working_oh83.svg',
 
   'https://kit.fontawesome.com/215800797e.js',
@@ -39,6 +39,7 @@ self.addEventListener('install', function (event) {
   event.waitUntil(
     caches.open('singhealth')
       .then(function (cache) {
+        console.log('Opened cache');
         return cache.addAll(urlsToCache);
       })
   );

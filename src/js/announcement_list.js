@@ -1,6 +1,7 @@
 
 // to change to reading from firebase
 var names = ["New Tenancy Info", "New Rules and Regulations", "Happy Easter to All!", "Merry Christmas dear All", "Rules and Regulations V.1.0", "Chinese New Year Event"];
+//var ids = [Ag4cToniR044TVOP6dXk,LFAGLNYXc1SKLdVIo4ZP,]
 
 for (i = 0; i < names.length; i++) {
     var tenant = document.createElement("p");

@@ -1,43 +1,79 @@
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+var firebaseConfig = {
+    apiKey: "AIzaSyBl1hU_vW6IbzkF0XTqvnBlWyLrTmgybns",
+    authDomain: "singhealth-221e6.firebaseapp.com",
+    projectId: "singhealth-221e6",
+    appId: "1:684333425325:web:59bbff097942477f599c24",
+    measurementId: "G-SYJWNBX65P"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+const functions = firebase.functions();
 
-// to change to reading from firebase
-var names = ["Heavenly Wang- Wang Cafe", "O' Coffee Club", "O Chang Kee", "Noel Gifts International", "Mr Bean", "K-Cuts"];
+db.settings({ timestampsInSnapshots: true });
 
-for (i = 0; i < names.length; i++) {
-    var tenant = document.createElement("p");
-    var tenantText = document.createTextNode(names[i]);
-    tenant.appendChild(tenantText);
-    tenant.classList.add("tenant-text");
+// // add some dummy data to firebase
+// for (i=0; i<5; i++) {
+//     db.collection("tenants").doc().set({
+//         tenantName: "Test "+i,
+//         hospital: "Some Hospital",
+//         location: "B1-0"+i,
+//         owners: ["Amy", "Ben"],
+//         type: "FB",
+//         email: "some@email.com",
+//         expiry: firebase.firestore.FieldValue.serverTimestamp(),
+//     })
+//     .then(() => {
+//         console.log("Document successfully written!");
+//     })
+//     .catch((error) => {
+//         console.error("Error writing document: ", error);
+//     });
+// }
 
-    var inst = document.createElement("p");
-    var instText = document.createTextNode("[SingHealth Instiution] [F&B Store]");
-    inst.appendChild(instText);
+db.collection("tenants").get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+        console.log(doc.id);
 
-    var date = document.createElement("h6");
-    var dateText = document.createTextNode("Latest report made on 14/2/2020");
-    date.appendChild(dateText);
+        var tenant = document.createElement("p");
+        var tenantText = document.createTextNode(doc.data().tenantName);
+        tenant.appendChild(tenantText);
+        tenant.classList.add("tenant-text");
 
-    var sect = document.createElement("div");
-    sect.appendChild(tenant);
-    sect.appendChild(inst);
-    sect.appendChild(date);
-    sect.classList.add("sect")
+        var inst = document.createElement("p");
+        var instText = document.createTextNode("[" + doc.data().hospital + "] [" + doc.data().type + " Store]");
+        inst.appendChild(instText);
 
-    var icon = document.createElement("div");
-    icon.innerHTML = '<i class="fas fa-chevron-right"></i>'
+        var date = document.createElement("h6");
+        var dateText = document.createTextNode("Latest report made on 14/2/2020");
+        date.appendChild(dateText);
 
-    var card = document.createElement("div");
-    card.appendChild(sect)
-    card.appendChild(icon);
-    card.classList.add("card");
-    card.id = "card-" + i;
-    card.onclick = function () { selectTenant(this) };
+        var sect = document.createElement("div");
+        sect.appendChild(tenant);
+        sect.appendChild(inst);
+        sect.appendChild(date);
+        sect.classList.add("sect")
 
-    var split = document.createElement("hr");
+        var icon = document.createElement("div");
+        icon.innerHTML = '<i class="fas fa-chevron-right"></i>'
 
-    var list = document.getElementById("list");
-    list.appendChild(card);
-    list.appendChild(split);
-}
+        var card = document.createElement("div");
+        card.appendChild(sect)
+        card.appendChild(icon);
+        card.classList.add("card");
+        card.id = doc.id;
+        card.onclick = function () { selectTenant(this) };
+
+        var split = document.createElement("hr");
+
+        var list = document.getElementById("list");
+        list.appendChild(card);
+        list.appendChild(split);
+    });
+});
 
 function filter() {
     // Declare variables
@@ -61,5 +97,6 @@ function filter() {
 function selectTenant(ele) {
     console.log(ele.id);
     url = 'tenant_info.html?name=' + encodeURIComponent(ele.firstChild.firstChild.innerHTML);
+    localStorage.setItem("tenantID", ele.id);
     window.location.href = url;
 }

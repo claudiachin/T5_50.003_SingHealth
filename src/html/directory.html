@@ -1,42 +1,46 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <!-- do not remove anything in head, can add stuff if needed though -->
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://kit.fontawesome.com/215800797e.js" crossorigin="anonymous"></script>
-  </head>
-  <body>
-    <div class="top-flap">
-        <p>Directory</p>
-    </div>
 
-    <div class="main-content">
-        <input type="text" id="search" onkeyup="filter()" placeholder="Search..">
-        <div id="list"></div>
-    </div>
+<head>
+  <!-- do not remove anything in head, can add stuff if needed though -->
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://kit.fontawesome.com/215800797e.js" crossorigin="anonymous"></script>
+</head>
 
-    <script src="../js/directory.js"></script>
+<body>
+  <div class="top-flap">
+    <p>Directory</p>
+  </div>
 
+  <div class="main-content">
+    <input type="text" id="search" onkeyup="filter()" placeholder="Search..">
+    <div id="list"></div>
+  </div>
+
+  </div>
+  <div class="navbar">
+    <div id="home" class="nav-active">
+      <button class="button" onclick="window.location.href='home.html';"><i class="fas fa-home"></i></button>
     </div>
-    <div class="navbar">
-      <div id="home" class="nav-active">
-          <button class="button" onclick="window.location.href='home.html';"><i class="fas fa-home"></i></button>
-      </div>
-      <div id="annoucements">
-          <button class="button" onclick="window.location.href='announcements.html';"><i class="fas fa-bullhorn"></i></button>
-      </div>
-      <div id="new-report">
-          <i class="fas fa-plus-circle" onclick="window.location.href='create_report/start.html';"></i></div>
-      <div id="trends">
-          <button class="button" onclick="window.location.href='trends.html';"><i class="fas fa-chart-line"></i></button></div>
-      <div id="directory">
-          <i class="fas fa-th-list button"></i>
-      </div>
+    <div id="annoucements">
+      <button class="button" onclick="window.location.href='announcements.html';"><i
+          class="fas fa-bullhorn"></i></button>
     </div>
-    <!-- tenant navbar 
+    <div id="new-report">
+      <i class="fas fa-plus-circle" onclick="window.location.href='create_report/start.html';"></i>
+    </div>
+    <div id="trends">
+      <button class="button" onclick="window.location.href='trends.html';"><i class="fas fa-chart-line"></i></button>
+    </div>
+    <div id="directory">
+      <i class="fas fa-th-list button"></i>
+    </div>
+  </div>
+  <!-- tenant navbar 
     <div class="navbar navbar-tenant">
         <div id="home" class="nav-active"><i class="fas fa-home"></i></div>
         <div id="annoucements"><i class="fas fa-bullhorn"></i></div>
@@ -44,8 +48,15 @@
         <div id="past-report"><i class="fas fa-file-alt"></i></div>
     </div>
     -->
+  <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-functions.js"></script>
 
-    <!--- do not remove this script line, it allows the service worker to function -->
-    <script src="../js/app.js"></script> 
-  </body>
+  <script src="../js/directory.js"></script>
+  
+  <!--- do not remove this script line, it allows the service worker to function -->
+  <script src="../js/app.js"></script>
+</body>
+
 </html>

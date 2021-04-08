@@ -8,7 +8,7 @@ for (i = 0; i < params.length; i++) {
 
 document.getElementById('announcement_title').innerHTML = data.name;
 document.getElementById('announcement_image').src = "../resources/AddPictureOrange.jpg";
-document.getElementById('date_posted').innerHTML = string(docId);
+document.getElementById('date_posted').innerHTML = data.name;
 document.getElementById('announcement_desc').innerHTML = "asdjahdakhdakdad";
 
 function retrieveData(){
@@ -23,7 +23,7 @@ function retrieveData(){
 const setupDetailsAnnouncement = (data) => {
     data.forEach(doc => {
         // console.log(doc.data().announcementId);
-        if(doc.data().docId==docId){
+        if(doc.data().title==data.name){
             displayDetailsAnnouncement(doc.data());
         }
         })
@@ -51,4 +51,12 @@ function displayDetailsAnnouncement(details){
     console.log(announcementId);
     console.log("\n");
     
+}
+
+function setAnnouncementFields(title,imageLink,datePosted, description) {
+    //checks that all the relevant fields have been filled
+    document.getElementById("announcement_title").innerHTML = title;
+    document.getElementById("announcement_image").src = "../resources/AddPictureOrange.jpg";
+    document.getElementById("date_posted").innerHTML = datePosted;
+    document.getElementById("announcement_desc").innerHTML = description;
 }

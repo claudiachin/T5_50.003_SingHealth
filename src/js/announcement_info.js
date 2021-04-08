@@ -5,7 +5,7 @@ for (i = 0; i < params.length; i++) {
     var tmp = params[i].split('=');
     data[tmp[0]] = decodeURIComponent(tmp[1]);
 }
-document.getElementById('tenant-name').innerHTML = data.name;
+document.getElementById('announcement-name').innerHTML = data.name;
 
 
 // to change to reading from firebase
@@ -39,10 +39,6 @@ for (i = 0; i < reports.length; i++) {
     var list = document.getElementById("list");
     list.appendChild(card);
     list.appendChild(split);
-}
-
-function openContract(){
-    console.log("open contract");
 }
 
 function selectReport(report){

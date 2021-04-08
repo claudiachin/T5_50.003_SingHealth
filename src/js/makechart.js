@@ -33,11 +33,12 @@
 });
 
 //To add DataSet
-function addData( label, data) {
+function addData( label, data,color) {
   //lineChart.data.labels.push(label);
   lineChart.data.datasets.push(data);
   data.label=label;
-  data.borderColor="#3cba9f";
+  data.borderColor=color;
+  //data.borderColor="#3cba9f";
   data.fill=false;
   data.data=data;
  
@@ -53,6 +54,20 @@ function removeData() {
   lineChart.update();
 }
 
+
+
+
+
+
+
+
+
+function generateRandomColor()
+{
+    var randomColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+    return randomColor;
+    //random color will be freshly served
+}
 /*
 // Filter out and set back into chart.data.datasets
 chart.data.datasets = chart.data.datasets.filter(function(obj) {

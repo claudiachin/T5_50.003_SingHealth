@@ -26,34 +26,29 @@
 
       <div><p style="font-weight: bold;">Compare:</p></div>
 
-<div id="radiobuttons">
-      <form>
-        <input type="radio" name="choice" value="Institution"> Institution
-        <input type="radio" name="choice" value="Tenants"> Tenants
-       <!-- <input type="button" id="btn" value="Show Selected Value">-->
-      </form></div>
+      <div id="radiobuttons">
+          <form>
+            <input type="radio" name="choice" value="Institution"> Institution
+            <input type="radio" name="choice" value="Tenants"> Tenants
+          <!-- <input type="button" id="btn" value="Show Selected Value">-->
+          </form></div>
 
 
+          <br>
 
-
-      
-      <br>
-
-      <div><p id="toggle" style="font-weight: bold;"></p></div>
-      <div>
-        <span id="multi" class="allmulti-select-custom" style="display:none;"></span>
-        <span id="inst" class="multi-select-custom" style="display:none;"></span></div>
-      
-      <div>  <span> 
-         <button id="reset-button" onclick="resetCustomMulti(customIconMulti)"style="display:none;">Reset</button>
-        <button id="instreset-button" onclick="resetCustomMulti(institutionsonly)"style="display:none;">Reset</button>
-       </span></div>
-        <div><span>
-        <button  id="generate" onclick="generate(customIconMulti)"style="display:none;">Generate</button> 
-        <button  id="instgenerate" onclick="generate(institutionsonly)"style="display:none;">Generate</button> </span> 
+          <div><p id="toggle" style="font-weight: bold;"></p></div>
+          <div>
+            <span id="multi" class="allmulti-select-custom" style="display:none;"></span>
+            <span id="inst" class="multi-select-custom" style="display:none;"></span></div>
+          
+          <div>  <span> 
+            <button id="reset-button" onclick="resetCustomMulti(customIconMulti)"style="display:none;">Reset</button>
+            <button id="instreset-button" onclick="resetCustomMulti(institutionsonly)"style="display:none;">Reset</button>
+          </span></div>
+            <div><span>
+            <button  id="generate" onclick="generate(customIconMulti)"style="display:none;">Generate</button> 
+            <button  id="instgenerate" onclick="generate(institutionsonly)"style="display:none;">Generate</button> </span> 
       </div>
-
-
 
 
       <script> 
@@ -86,41 +81,14 @@
              document.querySelector('#instgenerate').style.display="none";}
         };
 
-
-      function myFunction(item, index) {
-          addData(item, [88,88,88,90,92,96,97,95,95,95],generateRandomColor());}
-        
         /*function anotherFunction(item, index) {
           if(item.value==="CGH branch- Kopitiam"){item.disabled=true;}}*/
-
-      function generate(selector){ if(selector.value().length!=0){
-        removeData();}else{console.log("None chosen. Please make a selection.");}
-        var selected = getSelected(selector);
-        selected.forEach(myFunction);
-
-        /*var apples = customIconMulti.option;
-        apples.forEach(anotherFunction);
-
-        
-        
-         document.getElementById("hi").innerText=(customIconMulti.options);*/
-        }
-
-
 
          // customIconMulti.option().value("CGH branch- Kopitiam")["CGH branch- Kopitiam"].disabled=true;
           //$('#multiSelect option[value="CGH branch- Kopitiam"]').prop('selected',true);
           //$('#multiSelect').prop('disabled',true);      
 
         </script>
-
-
-
-
-
-
-
-
 
       <div class="container">
         <canvas  id="myChart"></canvas>

@@ -343,13 +343,16 @@ body {
 
 .container{
     position:relative;
-    width:500px;
-    padding:40px;
+    width:auto;
 }
 
 .container h2{
     color: #999;
     margin-bottom: 45px;
+}
+
+.container button{
+    font-size: 14px;
 }
 
 .input-field{
@@ -426,10 +429,6 @@ body {
 .wrapper span{
     color: #F15A22;
     float: right;
-}
-
-.container button{
-    font-size: 14px;
 }
 
 #search {

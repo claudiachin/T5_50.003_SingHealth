@@ -39,11 +39,15 @@
       
       <br>
 
-      <div><p id="toggle" style="font-weight: bold;">Choose tenants:</p></div>
+      <div><p id="toggle" style="font-weight: bold;"></p></div>
       <div>
-        <span id="multi" class="multi-select-custom"></span>
-        <button id="reset-button" onclick="resetCustomMulti()">Reset</button>
-        <button  id="generate" onclick="generate()">Generate</button>  
+        <span id="multi" class="allmulti-select-custom" style="display:none;"></span>
+        <span id="inst" class="multi-select-custom" style="display:none;"></span>
+       <span> <button id="reset-button" onclick="resetCustomMulti(customIconMulti)"style="display:none;">Reset</button>
+        <button  id="generate" onclick="generate(customIconMulti)"style="display:none;">Generate</button>  </span>
+        <span><button id="instreset-button" onclick="resetCustomMulti(institutionsonly)"style="display:none;">Reset</button>
+        
+        <button  id="instgenerate" onclick="generate(institutionsonly)"style="display:none;">Generate</button> </span> 
       </div>
 
 
@@ -63,6 +67,20 @@
             }
             document.getElementById("toggle").innerHTML = "Choose "+selectedValue;
             //generate();
+           if(selectedValue==="Institution"){
+             document.querySelector('#inst').style.display="block";
+             document.querySelector('#multi').style.display="none";
+             document.querySelector('#instreset-button').style.display="block";
+             document.querySelector('#reset-button').style.display="none";
+             document.querySelector('#instgenerate').style.display="block";
+             document.querySelector('#generate').style.display="none";}
+           if(selectedValue==="Tenants"){
+             document.querySelector('#multi').style.display="block";
+             document.querySelector('#inst').style.display="none";
+             document.querySelector('#reset-button').style.display="block";
+             document.querySelector('#instreset-button').style.display="none"
+             document.querySelector('#generate').style.display="block";
+             document.querySelector('#instgenerate').style.display="none";}
         };
 
 
@@ -72,9 +90,9 @@
         /*function anotherFunction(item, index) {
           if(item.value==="CGH branch- Kopitiam"){item.disabled=true;}}*/
 
-      function generate(){ if(customIconMulti.value().length!=0){
+      function generate(selector){ if(selector.value().length!=0){
         removeData();}else{console.log("None chosen. Please make a selection.");}
-        var selected = getSelected();
+        var selected = getSelected(selector);
         selected.forEach(myFunction);
 
         /*var apples = customIconMulti.option;

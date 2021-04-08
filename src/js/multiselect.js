@@ -2,7 +2,7 @@
     var customIcon = document.createElement('img');
     customIcon.src = './icon.svg';
     //var fb=document.getElementById("fb").value;
-    var customIconMulti = new SelectPure(".multi-select-custom", {
+    var customIconMulti = new SelectPure(".allmulti-select-custom", {
       options: [
 
         {
@@ -260,10 +260,72 @@
 
 
 
+    var institutionsonly = new SelectPure(".multi-select-custom", {
+      options: [
 
-    var resetCustomMulti = function() {
-      customIconMulti.reset();
+        {
+          label:"ALL",
+          value:"ALL"},
+          {
+            label:"CGH",
+            value:"CGH"},
+            {
+              label:"KKH",
+              value:"KKH"},
+              {
+                label:"SGH",
+                value:"SGH"},
+                {
+                  label:"SKH",
+                  value:"SKH"},
+                  {
+                    label:"NCCS",
+                    value:"NCCS"},
+                    {
+                      label:"NHCS",
+                      value:"NHCS"},
+                      {
+                        label:"BVH",
+                        value:"BVH"},
+                        {
+                          label:"OCH",
+                          value:"OCH"},
+                          {
+                            label:"Academia",
+                            value:"Academia"},       
+      ],
+      value: ["ALL"],
+      multiple: true,
+      autocomplete: true,
+      inlineIcon: customIcon,
+      onChange: value => { console.log(value); },
+      classNames: {
+        select: "select-pure__select",
+        dropdownShown: "select-pure__select--opened",
+        multiselect: "select-pure__select--multiple",
+        label: "select-pure__label",
+        placeholder: "select-pure__placeholder",
+        dropdown: "select-pure__options",
+        option: "select-pure__option",
+        autocompleteInput: "select-pure__autocomplete",
+        selectedLabel: "select-pure__selected-label",
+        selectedOption: "select-pure__option--selected",
+        placeholderHidden: "select-pure__placeholder--hidden",
+        optionHidden: "select-pure__option--hidden",
+      }
+    });
+
+
+
+
+
+
+
+    var resetCustomMulti = function(selecting) {
+      selecting.reset();
     };
 
+    
 
-    function getSelected(){return customIconMulti.value();}
+
+    function getSelected(selecting){return selecting.value();}

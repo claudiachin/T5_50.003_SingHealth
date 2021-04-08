@@ -1,3 +1,20 @@
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+var firebaseConfig = {
+    apiKey: "AIzaSyBl1hU_vW6IbzkF0XTqvnBlWyLrTmgybns",
+    authDomain: "singhealth-221e6.firebaseapp.com",
+    projectId: "singhealth-221e6",
+    appId: "1:684333425325:web:59bbff097942477f599c24",
+    measurementId: "G-SYJWNBX65P"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+const functions = firebase.functions();
+
+db.settings({ timestampsInSnapshots: true });
+
+
 var url = window.location.href;
 params = url.split('?')[1].split('&');
 data = {};
@@ -8,8 +25,9 @@ for (i = 0; i < params.length; i++) {
 
 document.getElementById('announcement_title').innerHTML = data.name;
 document.getElementById('announcement_image').src = "../resources/AddPictureOrange.jpg";
-document.getElementById('date_posted').innerHTML = doc.data().id;
+document.getElementById('date_posted').innerHTML = "placeholdertext";
 document.getElementById('announcement_desc').innerHTML = localStorage.getItem('announcementId');
+
 
 db.collection('announcements').orderBy('timestamp').onSnapshot((snapshot) =>{
     snapshot.docs.forEach(doc =>{

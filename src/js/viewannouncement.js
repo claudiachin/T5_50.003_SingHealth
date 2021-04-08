@@ -10,13 +10,13 @@ db.collection('announcements').orderBy('timestamp').onSnapshot((snapshot) =>{
 
 
 function renderAnnouncementList(docID, doc){
-    var tenant = document.createElement("p");
-    var tenantText = document.createTextNode(doc.title);
-    tenant.appendChild(tenantText);
-    tenant.classList.add("tenant-text");
+    var announcement = document.createElement("p");
+    var announcementText = document.createTextNode(doc.title);
+    announcement.appendChild(announcementText);
+    announcement.classList.add("announcement-text");
 
     var inst = document.createElement("p");
-    var instText = document.createTextNode(doc.content.substring(0,30) + "...");
+    var instText = document.createTextNode(doc.content.substring(0,300) + "...");
     inst.appendChild(instText);
 
     var date = document.createElement("h6");
@@ -24,7 +24,7 @@ function renderAnnouncementList(docID, doc){
     date.appendChild(dateText);
 
     var sect = document.createElement("div");
-    sect.appendChild(tenant);
+    sect.appendChild(announcement);
     sect.appendChild(inst);
     sect.appendChild(date);
     sect.classList.add("sect")

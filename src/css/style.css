@@ -446,6 +446,10 @@ body {
     font-weight: bold;
 }
 
+.announcement-text {
+    font-weight: bold;
+}
+
 .card {
     margin-bottom: 8px;
     display: flex;

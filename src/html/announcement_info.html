@@ -11,36 +11,30 @@
   </head>
   <body>
 
-    <div class="main-content-tenant-info">
+    <div class="main-content-announcement-info">
 
-        <p><a href="directory.html"><   Directory</a></p>
+        <p><a href="announcements.html"><   Announcements</a></p>
         <div class="heading">
             <h1 id="tenant-name"></h1>
             <button id="tenant-contract" onclick="openContract()"><i class="fas fa-file-alt fa-2x"></i></button>
         </div>
-
-        <div class="info">
-            <div>
-                <p style="font-weight: bold;">Type</p>
-                <p id="type">F&B</p>
+        <div class="main-content-annc">
+            <div class="deconstructed-pancake">
+                <div>
+                    <img id="announcement_image" src=""/></img>
+                </div>
+                <div>
+                    <h6 id="date_posted">Posted on 28/2/2021 at 4.06 am</h6>
+                    <div><p id="announcement_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore 
+                            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
+                            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum 
+                            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
+                            officia deserunt mollit anim id est laborum.</p>    
+                    </div>
+                </div>
             </div>
-            <div>
-                <p style="font-weight: bold;">Hospital, Location</p>
-                <p id="location">placeholder</p>
-            </div>
-            <div>
-                <p style="font-weight: bold;">Owner(s)</p>
-                <p id="owners">placeholder</p>
-            </div>
-            <div>
-                <p style="font-weight: bold;">Tenancy Expiry Date</p>
-                <p id="expiry">placeholder</p>
-            </div>
-        </div>
-
-        <div class="past-reports">
-            <h2>Past Reports</h2>
-            <div id="list"></div>
+            
+            <button id="retrieve-data" onclick=retrieveData()>Retrieve Data</button>
         </div>
         
     </div>

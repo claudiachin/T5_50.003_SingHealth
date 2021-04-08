@@ -7,45 +7,93 @@ for (i = 0; i < params.length; i++) {
 }
 document.getElementById('tenant-name').innerHTML = data.name;
 
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+var firebaseConfig = {
+    apiKey: "AIzaSyBl1hU_vW6IbzkF0XTqvnBlWyLrTmgybns",
+    authDomain: "singhealth-221e6.firebaseapp.com",
+    projectId: "singhealth-221e6",
+    appId: "1:684333425325:web:59bbff097942477f599c24",
+    measurementId: "G-SYJWNBX65P"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+const functions = firebase.functions();
 
-// to change to reading from firebase
-var reports = ["Report 1", "Report 2", "Report 3", "Report 4", "Report 5"];
+db.settings({ timestampsInSnapshots: true });
 
-for (i = 0; i < reports.length; i++) {
-    var report = document.createElement("p");
-    var reportText = document.createTextNode(reports[i]);
-    report.appendChild(reportText);
+var tenantID = localStorage.getItem("tenantID");
 
-    var date = document.createElement("h6");
-    var dateText = document.createTextNode("14/2/2020");
-    date.appendChild(dateText);
+// // make some dummy report data and add to tenant
+// for (i=0; i<1; i++) {
+//     db.collection("reports").doc().set({
+//         associatedAuditor: "2tgfvXgpc3XG0J2LYOI7UglSpYp1",
+//         associatedTenant: tenantID,
+//         dateCreated: firebase.firestore.FieldValue.serverTimestamp(),
+//     })
+//     .then(() => {
+//         console.log("Document successfully written!");
+//     })
+//     .catch((error) => {
+//         console.error("Error writing document: ", error);
+//     });
+// }
 
-    var sect = document.createElement("div");
-    sect.appendChild(report);
-    sect.appendChild(date);
+// db.collection("reports").get().then((querySnapshot) => {
+//     querySnapshot.forEach((doc) => {
+//         if (doc.data().associatedTenant == tenantID) {
+//             var ref = db.collection("reports").doc(doc.id);
+//             db.collection("tenants").doc(tenantID).update({
+//                 reports: firebase.firestore.FieldValue.arrayUnion(ref),
+//             })
+//         }
+//     })
+// });
 
-    var icon = document.createElement("div");
-    icon.innerHTML = '<i class="fas fa-chevron-right"></i>'
+db.collection("reports").orderBy("dateCreated").get().then((querySnapshot) => {
+    var count = 0;
+    querySnapshot.forEach((doc) => {
+        if (doc.data().associatedTenant == tenantID) {
+            var report = document.createElement("p");
+            var reportText = document.createTextNode("Report #" + count);
+            report.appendChild(reportText);
 
-    var card = document.createElement("div");
-    card.appendChild(sect)
-    card.appendChild(icon);
-    card.classList.add("card");
-    card.id = "report-" + i;
-    card.onclick = function () { selectReport(this) };
+            var date = document.createElement("h6");
+            var dateData = new Date(doc.data().dateCreated.seconds * 1000);
+            var dateText = document.createTextNode(dateData.toDateString());
+            date.appendChild(dateText);
 
-    var split = document.createElement("hr");
+            var sect = document.createElement("div");
+            sect.appendChild(report);
+            sect.appendChild(date);
 
-    var list = document.getElementById("list");
-    list.appendChild(card);
-    list.appendChild(split);
-}
+            var icon = document.createElement("div");
+            icon.innerHTML = '<i class="fas fa-chevron-right"></i>'
 
-function openContract(){
+            var card = document.createElement("div");
+            card.appendChild(sect)
+            card.appendChild(icon);
+            card.classList.add("card");
+            card.id = doc.id;
+            card.onclick = function () { selectReport(this) };
+
+            var split = document.createElement("hr");
+
+            var list = document.getElementById("list");
+            list.insertBefore(split, list.firstChild);
+            list.insertBefore(card, list.firstChild);
+        }
+        count += 1;
+    })
+});
+
+function openContract() {
     console.log("open contract");
 }
 
-function selectReport(report){
+function selectReport(report) {
     console.log(report.id);
     localStorage.setItem("prevUrl", window.location.href);
     localStorage.setItem("type", document.getElementById("type").innerHTML);

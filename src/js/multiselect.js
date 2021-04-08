@@ -269,9 +269,3 @@ var institutionsonly = new SelectPure(".multi-select-custom", {
     optionHidden: "select-pure__option--hidden",
   }
 });
-
-
-var resetCustomMulti = function(selecting) {
-  selecting.reset();
-};
-

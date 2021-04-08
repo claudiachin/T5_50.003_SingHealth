@@ -1,4 +1,6 @@
 let lineChart;
+const myChart = document.querySelector("#myChart");
+
 function displayTrends(){
   let myChart = document.getElementById('myChart').getContext('2d');
 
@@ -32,6 +34,7 @@ function generate(selector){
   console.log("customiconmulti: " + selector.value()); 
   var selected = selector.value();
   if(selected.length!=0){
+    myChart.style.display="block";
     displayTrends();
     removeData();
   }
@@ -60,8 +63,6 @@ function addData( label, data,color) {
   data.fill=false;
   data.data=data;
  
-
-
   lineChart.update();
 
 }
@@ -72,6 +73,11 @@ function removeData() {
   lineChart.update();
 }
 
+function resetCustomMulti(selecting) {
+  removeData();
+  myChart.style.display="none";
+  selecting.reset();
+};
 
 function generateRandomColor()
 {

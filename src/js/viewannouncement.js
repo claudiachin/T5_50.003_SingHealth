@@ -56,6 +56,7 @@ function renderAnnouncementList(docID, doc){
 
 function selectAnnouncement(ele) {
     console.log(ele.id);
-    url = 'announcement_info.html?name=' + encodeURIComponent(ele.firstChild.firstChild.innerHTML) + encodeURIComponent(ele.firstChild.fourthChild.innerHTML);
+    url = 'announcement_info.html?name=' + encodeURIComponent(ele.firstChild.firstChild.innerHTML);
+    localStorage.setItem('announcementId', ele.id);
     window.location.href = url;
 }

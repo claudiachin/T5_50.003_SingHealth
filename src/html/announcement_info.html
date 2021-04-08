@@ -19,7 +19,7 @@
         </div>
         <div class="main-content-annc">
             <div class="deconstructed-pancake">
-                <div>
+                <div id="imageContainer">
                     <img id="announcement_image" src=""/></img>
                 </div>
                 <div>
@@ -28,8 +28,6 @@
                     </div>
                 </div>
             </div>
-            
-            <button id="retrieve-data" onclick=retrieveData()>Retrieve Data</button>
         </div>
         
     </div>
@@ -50,10 +48,16 @@
         </div>
       </div>
 
-    <script src="../js/announcement_info.js"></script>
-
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-functions.js"></script>
     <!--- do not remove this script line, it allows the service worker to function -->
+<<<<<<< HEAD
     <script src="../js/viewannouncement.js"></script>  
+=======
+    <script src="../js/announcement_info.js"></script>
+>>>>>>> fc490c6daf835768e64c002c3d9af4429ce81c3d
     <script src="../js/app.js"></script> 
   </body>
 </html>

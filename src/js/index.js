@@ -13,6 +13,7 @@ const signupF = document.querySelector(".bg-modal");
 const loading = document.querySelector("#wrapper");
 const tabBar = document.querySelector(".tab-bar");
 const role = document.querySelector(".tab-active");
+const announcementNoti = document.querySelector("#announcementNoti");
 
 let tempRole = null;
 let actualRole = "auditors";
@@ -36,6 +37,7 @@ auth.onAuthStateChanged(user =>{
         // console.log(tempRole);
         // console.log(actualRole);
         getAuditorDetails(actualRole, user.uid);
+        getNumOfAnnouncements();
     }  
     else{
         console.log("user is logged out");
@@ -59,6 +61,28 @@ function getAuditorDetails(actualRole, userUID){
     console.log(err.message);
     }
 };
+
+function getNumOfAnnouncements(){
+    db.collection("announcements").onSnapshot(snapshot => {
+        console.log(snapshot.size);
+        displayAnnouncementNoti(snapshot.size);
+        
+    }), err => {
+    console.log(err.message);
+    }
+};
+
+function displayAnnouncementNoti(count){
+    let display;
+    if (count == 1){
+        display = `<i class="fa gg-bell"></i>${count} New announcement<br>`;
+    } else if (count == 0){
+        display = `<i class="fa gg-bell"></i>No new announcements`;
+    } else{
+        display = `<i class="fa gg-bell"></i>${count} New announcements<br>`;
+    }
+    announcementNoti.innerHTML = display;
+}
 
 // setup UI
 // const setupUI = (user) =>{

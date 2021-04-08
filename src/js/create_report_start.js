@@ -1,34 +1,50 @@
-// to change to reading from firebase
-var names = ["Heavenly Wang- Wang Cafe", "O' Coffee Club", "O Chang Kee", "Noel Gifts International", "Mr Bean", "K-Cuts"];
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+var firebaseConfig = {
+  apiKey: "AIzaSyBl1hU_vW6IbzkF0XTqvnBlWyLrTmgybns",
+  authDomain: "singhealth-221e6.firebaseapp.com",
+  projectId: "singhealth-221e6",
+  appId: "1:684333425325:web:59bbff097942477f599c24",
+  measurementId: "G-SYJWNBX65P"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+const functions = firebase.functions();
 
-for (i=0; i<names.length; i++) {
-  var tenant = document.createElement("p");
-  var tenantText = document.createTextNode(names[i]);
-  tenant.appendChild(tenantText);
-  tenant.classList.add("tenant-text");
+db.settings({ timestampsInSnapshots: true });
 
-  var inst = document.createElement("p");
-  var instText = document.createTextNode("[SingHealth Instiution] [F&B Store]");
-  inst.appendChild(instText);
+db.collection("tenants").get().then((querySnapshot) => {
+  querySnapshot.forEach((doc) => {
+    var tenant = document.createElement("p");
+    var tenantText = document.createTextNode(doc.data().tenantName);
+    tenant.appendChild(tenantText);
+    tenant.classList.add("tenant-text");
 
-  var date = document.createElement("h6");
-  var dateText = document.createTextNode("Latest report made on 14/2/2020");
-  date.appendChild(dateText);
+    var inst = document.createElement("p");
+    var instText = document.createTextNode("[" + doc.data().hospital + "] [" + doc.data().type + " Store]");
+    inst.appendChild(instText);
 
-  var sect = document.createElement("div");
-  sect.appendChild(tenant);
-  sect.appendChild(inst);
-  sect.appendChild(date);
-  sect.classList.add("sect");
-  sect.id = "sect-"+i;
-  sect.onmousedown = function(){ select(this) };
+    var date = document.createElement("h6");
+    var dateText = document.createTextNode("Latest report made on 14/2/2020");
+    date.appendChild(dateText);
 
-  var split = document.createElement("hr");
+    var sect = document.createElement("div");
+    sect.appendChild(tenant);
+    sect.appendChild(inst);
+    sect.appendChild(date);
+    sect.classList.add("sect");
+    sect.id = doc.id;
+    sect.onclick = function () { select(this) };
 
-  var list = document.getElementById("list");
-  list.appendChild(sect);
-  list.appendChild(split);
-}
+    var split = document.createElement("hr");
+
+    var list = document.getElementById("list");
+    list.appendChild(sect);
+    list.appendChild(split);
+  });
+});
 
 function filter() {
   // Declare variables
@@ -61,13 +77,37 @@ function select(ele) {
 }
 
 function goNext() {
-  console.log(prev.id);
-  if (prev != '') {
-    console.log(prev.childNodes[1].innerText);
-    if (prev.childNodes[1].innerText.includes("non-F&B")) {
-      window.location.href='non-fnb/professionalism_staff_hygiene.html';
-    } else {
-      window.location.href='fnb/professionalism_staff_hygiene.html';
-    }
-  }
+  db.collection("reports").add({
+    associatedTenant: prev.id,
+    associatedAuditor: localStorage.getItem("auditorID"),
+    dateCreated: firebase.firestore.FieldValue.serverTimestamp(),
+  })
+    .then((docRef) => {
+      console.log("Document written with ID: ", docRef.id);
+      localStorage.setItem("reportID", docRef.id);
+      localStorage.setItem("tenantID", prev.id);
+      if (prev != '') {
+        console.log(prev.childNodes[1].innerText);
+        if (prev.childNodes[1].innerText.includes("Non-F&B")) {
+          localStorage.setItem("type", "Non-F&B");
+          window.location.href = 'non-fnb/professionalism_staff_hygiene.html';
+        } else {
+          localStorage.setItem("type", "F&B");
+          window.location.href = 'fnb/professionalism_staff_hygiene.html';
+        }
+      }
+    })
+    .catch((error) => {
+      console.error("Error adding document: ", error);
+    });
+}
+
+if (localStorage.getItem("reportID") != null) {
+  reportID = localStorage.getItem("reportID");
+  localStorage.removeItem("reportID");
+  db.collection("reports").doc(reportID).delete().then(() => {
+    console.log("Document successfully deleted!");
+  }).catch((error) => {
+    console.error("Error removing document: ", error);
+  });
 }

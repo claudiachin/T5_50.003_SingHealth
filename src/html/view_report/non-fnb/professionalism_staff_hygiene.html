@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <!-- do not remove anything in head, can add stuff if needed though -->
     <link rel="stylesheet" type="text/css" href="../../../css/style.css">
     <link rel="stylesheet" type="text/css" href="../../../css/create_report.css">
     <link rel="stylesheet" type="text/css" href="../../../css/view_report.css">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://kit.fontawesome.com/215800797e.js" crossorigin="anonymous"></script>
-  </head>
-  <body>
+</head>
+
+<body>
     <div class="report-nav">
-        <button class="back-button" onclick="window.location.href='../start.html';"><i class="fas fa-chevron-left"></i>   Back</button>
+        <button class="back-button" onclick="window.location.href='../start.html';"><i class="fas fa-chevron-left"></i>
+            Back</button>
         <h2>PROFESSIONALISM & STAFF HYGIENE</h2>
-        <button class="next-button" onclick="window.location.href='housekeeping_general_cleanliness.html';">Next   <i class="fas fa-chevron-right"></i></button>
+        <button class="next-button" onclick="window.location.href='housekeeping_general_cleanliness.html';">Next <i
+                class="fas fa-chevron-right"></i></button>
     </div>
     <div class="main-content-view-report">
         <div class="question">
@@ -48,7 +53,8 @@
             </div>
         </div>
         <div class="question">
-            <p>Staff who are fit for work but suffering from the lingering effects of a cough and/or cold should cover their mouths with a surgical mask.</p>
+            <p>Staff who are fit for work but suffering from the lingering effects of a cough and/or cold should cover
+                their mouths with a surgical mask.</p>
             <div class="icon">
                 <i class="checkbox fas" onclick="change(this)"></i>
             </div>
@@ -76,28 +82,35 @@
                 <div id="send-msg-area">
                     <input type="text" id="textMsg" placeholder="Send a message...">
                     <i class="fas fa-paper-plane" id="send-button" onclick="sendMsg()"></i>
-                </form>
+                    </form>
+                </div>
+            </div>
+
+            <div class="score-bar-view-report">
+                <h2>SCORE</h2>
+                <h2><span id="score">0</span> / <span id="out-of">13</span></h2>
             </div>
         </div>
 
-        <div class="score-bar-view-report">
-            <h2>SCORE</h2>
-            <h2><span id="score">0</span> / <span id="out-of">13</span></h2>
+        <div id="gallery" class="gallery">
+            <span class="close-button cursor" onclick="closeModal()"><i class="fas fa-times"></i></i></span>
+            <div class="gallery-content">
+                <!-- Next/previous controls -->
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
         </div>
-    </div>
 
-    <div id="gallery" class="gallery">
-        <span class="close-button cursor" onclick="closeModal()"><i class="fas fa-times"></i></i></span>
-        <div class="gallery-content">
-            <!-- Next/previous controls -->
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
-        </div>
-    </div>
+        <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-functions.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-storage.js"></script>
 
-    <script src="../../../js/view_report.js"></script>
+        <script src="../../../js/view_report.js"></script>
 
-    <!--- do not remove this script line, it allows the service worker to function -->
-    <script src="../js/app.js"></script> 
-  </body>
+        <!--- do not remove this script line, it allows the service worker to function -->
+        <script src="../../../js/app.js"></script>
+</body>
+
 </html>

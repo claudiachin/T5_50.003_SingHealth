@@ -89,6 +89,16 @@ db.collection("reports").orderBy("dateCreated").get().then((querySnapshot) => {
     })
 });
 
+// db.collection("tenants").doc(tenantID).get().then((doc) => {
+//     reportRefs = doc.data().reports;
+//     for (i=0; i<reportRefs.length; i++) {
+//         reportRefs[i].get().then((doc) => {
+//             console.log(doc.id);
+//             console.log(doc.data().dateCreated);
+//         })
+//     }
+// })
+
 function openContract() {
     console.log("open contract");
 }

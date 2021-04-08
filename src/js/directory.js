@@ -15,25 +15,6 @@ const functions = firebase.functions();
 
 db.settings({ timestampsInSnapshots: true });
 
-// // add some dummy data to firebase
-// for (i=0; i<5; i++) {
-//     db.collection("tenants").doc().set({
-//         tenantName: "Test "+i,
-//         hospital: "Some Hospital",
-//         location: "B1-0"+i,
-//         owners: ["Amy", "Ben"],
-//         type: "FB",
-//         email: "some@email.com",
-//         expiry: firebase.firestore.FieldValue.serverTimestamp(),
-//     })
-//     .then(() => {
-//         console.log("Document successfully written!");
-//     })
-//     .catch((error) => {
-//         console.error("Error writing document: ", error);
-//     });
-// }
-
 db.collection("tenants").get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
         console.log(doc.id);

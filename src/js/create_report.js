@@ -34,7 +34,8 @@ function checkFilled() {
         i += 1
     }
     if (allFilled) {
-        document.getElementsByClassName("next-button")[0].classList.remove("hide");
+        var saveButton = document.getElementById("save-button");
+        saveButton.style.display = "";
     }
 }
 
@@ -87,15 +88,15 @@ function togglePhotoFunction(qn, status) {
         //create add photo button + function to display photo
         var imgPicker = document.createElement("div");
         var label = document.createElement("label");
-        label.htmlFor = "imgPicker"+index;
+        label.htmlFor = "imgPicker" + index;
         label.innerHTML = '<i class="fas fa-upload"></i>';
         var input = document.createElement("input");
         input.type = "file";
-        input.id = "imgPicker"+index;
+        input.id = "imgPicker" + index;
         input.accept = "image/*";
         input.multiple = "true";
         input.style.display = "none";
-        input.onchange = function(){ displayFileNames(this) };
+        input.onchange = function () { displayFileNames(this) };
         imgPicker.appendChild(label);
         imgPicker.appendChild(input);
 
@@ -157,7 +158,7 @@ function getIndex(node) {
 function displayFileNames(fileUploadBtn) {
     currFiles = fileUploadBtn.parentNode.previousSibling.children;
     console.log(currFiles.length);
-    for (i = currFiles.length-1; i >= 0; i--) {
+    for (i = currFiles.length - 1; i >= 0; i--) {
         console.log(currFiles[i]);
         currFiles[i].remove();
     }
@@ -170,19 +171,78 @@ function displayFileNames(fileUploadBtn) {
     }
 }
 
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+var firebaseConfig = {
+    apiKey: "AIzaSyBl1hU_vW6IbzkF0XTqvnBlWyLrTmgybns",
+    authDomain: "singhealth-221e6.firebaseapp.com",
+    projectId: "singhealth-221e6",
+    appId: "1:684333425325:web:59bbff097942477f599c24",
+    measurementId: "G-SYJWNBX65P",
+    storageBucket: "gs://singhealth-221e6.appspot.com/"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+const functions = firebase.functions();
+
+db.settings({ timestampsInSnapshots: true });
+
 function upload() {
-    //TO DO: upload score and outOf and indivQnData
+    //TO DO: upload qnsData and photos
+    var inputDivs = document.getElementsByTagName("input");
+    for (i = 0; i < inputDivs.length; i++) {
+        if (inputDivs[i].getAttribute("type") == "file") {
+            photos = inputDivs[i].files;
+            for (j = 0; j < photos.length; j++) {
+                var storageRef = firebase.storage().ref();
+                var uploadTask = storageRef.child(photos[j].name).put(photos[j]);
+
+                uploadTask.on('state_changed',
+                    (snapshot) => {
+                        // Observe state change events such as progress, pause, and resume
+                        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        console.log('Upload is ' + progress + '% done');
+                        switch (snapshot.state) {
+                            case firebase.storage.TaskState.PAUSED: // or 'paused'
+                                console.log('Upload is paused');
+                                break;
+                            case firebase.storage.TaskState.RUNNING: // or 'running'
+                                console.log('Upload is running');
+                                break;
+                        }
+                    },
+                    (error) => {
+                        // Handle unsuccessful uploads
+                    },
+                    () => {
+                        // Handle successful uploads on complete
+                        // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+                        uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                            console.log('File available at', downloadURL);
+                        });
+                    }
+                );
+
+            }
+        }
+    }
+    
     var checkboxes = document.getElementsByClassName("main-content-report")[0].getElementsByTagName("i");
     var data = []
-    for (i=0; i<checkboxes.length; i++) {
+    for (i = 0; i < checkboxes.length; i++) {
         if (checkboxes[i].classList.contains("fa-window-minimize")) { //invalid
             data.push(-1);
         } else if (checkboxes[i].classList.contains("fa-check")) { //yes
             data.push(1);
         } else if (checkboxes[i].classList.contains("fa-times")) { //no
-            data.push(0); 
-        } 
+            data.push(0);
+        }
     }
-    var score = parseInt(document.getElementById("score").innerHTML);
-    var outOf = parseInt(document.getElementById("out-of").innerHTML);
+
+    document.getElementsByClassName("next-button")[0].classList.remove("hide");
+
 }

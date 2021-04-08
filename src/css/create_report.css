@@ -125,10 +125,21 @@
     align-items: center;
     justify-content: space-between;
     padding: 4px 8px;
+    color: #fff;
+}
+
+.photo-flap > h2, .deadline-div > p {
+    color: #fff;
 }
 
 input[type=date] {
     border: none;
     background: none;
     font-weight: 275;
+    color: #fff;
+}
+.save {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

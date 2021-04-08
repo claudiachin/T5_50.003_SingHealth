@@ -48,6 +48,7 @@ function getAuditorDetails(actualRole, userUID){
     console.log(userUID);
     db.collection(actualRole).onSnapshot(snapshot => {
         snapshot.docs.forEach(doc => {
+            localStorage.setItem("auditorID", doc.id);
             if (doc.id == userUID){
                 const data = {
                     email: doc.data().email,

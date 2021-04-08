@@ -37,6 +37,12 @@ function generate(selector){
     myChart.style.display="block";
     displayTrends();
     removeData();
+
+  
+
+
+
+
   }
   else{
     console.log("None chosen. Please make a selection.");
@@ -52,6 +58,16 @@ function generate(selector){
 
   document.getElementById("hi").innerText=(customIconMulti.options);*/
 }
+
+document.getElementById("download").addEventListener('click', function(){
+  /*Get image of canvas element*/
+  var url_base64jp = document.getElementById("myChart").toDataURL("image/jpg");
+  /*get download button (tag: <a></a>) */
+  var a =  document.getElementById("download");
+  /*insert chart image url to download button (tag: <a></a>) */
+  a.href = url_base64jp;
+});
+
 
 //To add DataSet
 function addData( label, data,color) {
@@ -92,3 +108,8 @@ chart.data.datasets = chart.data.datasets.filter(function(obj) {
 });
 // Repaint
 chart.update();*/
+
+
+/*var refs = doc.data().reports
+for (i=0;i<refs.length;i++) 
+    refs[i].get().....*/

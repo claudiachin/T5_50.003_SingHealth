@@ -9,11 +9,11 @@ for (i = 0; i < names.length; i++) {
     tenant.classList.add("tenant-text");
 
     var inst = document.createElement("p");
-    var instText = document.createTextNode("[SingHealth Instiution] [F&B Store]");
+    var instText = document.createTextNode("[SingHealth Instiution] [Announcement]");
     inst.appendChild(instText);
 
     var date = document.createElement("h6");
-    var dateText = document.createTextNode("Latest report made on 14/2/2020");
+    var dateText = document.createTextNode("Latest announcement made on 14/2/2020");
     date.appendChild(dateText);
 
     var sect = document.createElement("div");
@@ -30,7 +30,7 @@ for (i = 0; i < names.length; i++) {
     card.appendChild(icon);
     card.classList.add("card");
     card.id = "card-" + i;
-    card.onclick = function () { selectTenant(this) };
+    card.onclick = function () { selectAnnouncement(this) };
 
     var split = document.createElement("hr");
 
@@ -39,27 +39,8 @@ for (i = 0; i < names.length; i++) {
     list.appendChild(split);
 }
 
-function filter() {
-    // Declare variables
-    var filter = document.getElementById('search').value.toUpperCase();
-    var cards = document.getElementById("list").getElementsByClassName('card');
-
-    // Loop through all list items, and hide those who don't match the search query
-    for (i = 0; i < cards.length; i++) {
-        var tenantName = cards[i].firstChild.firstChild;
-        var txtValue = tenantName.textContent || tenantName.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            cards[i].style.display = "";
-            cards[i].nextElementSibling.style.display = "";
-        } else {
-            cards[i].style.display = "none";
-            cards[i].nextElementSibling.style.display = "none";
-        }
-    }
-}
-
 function selectAnnouncement(ele) {
     console.log(ele.id);
-    url = 'tenant_info.html?name=' + encodeURIComponent(ele.firstChild.firstChild.innerHTML);
+    url = 'announcement_info.html?name=' + encodeURIComponent(ele.firstChild.firstChild.innerHTML);
     window.location.href = url;
 }

@@ -1,4 +1,20 @@
 let lineChart;
+let DATA = {
+  January: [],
+  February: [],
+  March: [],
+  April: [],
+  May: [],
+  June: [],
+  July: [],
+  August: [],
+  September: [],
+  October: [],
+  November: [],
+  December: []
+};
+let tempScores = [];
+
 const myChart = document.querySelector("#myChart");
 
 function displayTrends(){
@@ -26,27 +42,80 @@ function displayTrends(){
   });
 }
 
-function myFunction(item) {
-  addData(item, [88,88,88,90,92,96,97,95,95,95],generateRandomColor());
+// function myFunction(item) {
+//   addData(item, [88,88,88,90,92,96,97,95,95,95],generateRandomColor());
+// }
+function myFunction(item, listOfScores) {
+  addData(item,listOfScores,generateRandomColor());
+}
+
+function getScoreData(item){
+  db.collection("tenants").get().then(snapshot => {
+      snapshot.docs.forEach(doc => {
+        if (item == doc.data().hospital){
+          // console.log(doc.data().reports);
+          let refs = doc.data().reports;
+          for (i=0; i<refs.length; i++){
+            refs[i].get().then(ref =>{
+              // console.log(ref.id);
+              getScores(ref.id);
+            });
+          }
+        }
+      });
+    }).then(()=>{
+      console.log(tempScores);
+      myFunction(item, tempScores);
+    }).catch(err => {
+    console.log(err.message);
+    });
+};
+
+function getScores(id){
+  db.collection("reports").doc(id).onSnapshot(doc => {
+    // console.log(doc.data().overallScore);
+    let score = doc.data().overallScore;
+    // let reportDate = doc.data().dateCreated;
+    // console.log(reportDate);
+    tempScores.push(score);
+    // console.log(tempScores);
+  }), err => {
+  console.log(err.message);
+  };
 }
 
 function generate(selector){
   console.log("customiconmulti: " + selector.value()); 
   var selected = selector.value();
   if(selected.length!=0){
-    myChart.style.display="block";
     displayTrends();
-    removeData();
+    myChart.style.display="block";
+    selected.forEach(item =>{
+        console.log(item);
+        if (item == "CGH"){
+          getScoreData("Changi General Hospital");
+        }else if (item == "KKH"){
+          getScoreData("KK Women's and Children's Hospital");
+        }else if (item == "SGH"){
+          getScoreData("Singapore General Hospital");
+        }else if (item == "SKH"){
+          getScoreData("SengKang General Hospital");
+        }else if (item == "NCCS"){
+          getScoreData("National Cancer Centre Singapore");
+        }else if (item == "NHCS"){
+          getScoreData("National Heart Centre Hospital");
+        }else if (item == "BVH"){
+          getScoreData("Bright Vision Hospital");
+        }else if (item == "OCH"){
+          getScoreData("Outram Community Hospital");
+        }else{
+          getScoreData("Academia");
+        }
+    });
   }
   else{
     console.log("None chosen. Please make a selection.");
   }
-  
-  selected.forEach(item =>{
-      console.log(item);
-      myFunction(item);
-  });
-
   /*var apples = customIconMulti.option;
   apples.forEach(anotherFunction);
 
@@ -54,7 +123,7 @@ function generate(selector){
 }
 
 //To add DataSet
-function addData( label, data,color) {
+function addData(label, data, color) {
   //lineChart.data.labels.push(label);
   lineChart.data.datasets.push(data);
   data.label=label;
@@ -62,7 +131,7 @@ function addData( label, data,color) {
   //data.borderColor="#3cba9f";
   data.fill=false;
   data.data=data;
- 
+  console.log("updating chart...");
   lineChart.update();
 
 }

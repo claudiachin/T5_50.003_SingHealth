@@ -5,10 +5,11 @@ for (i = 0; i < params.length; i++) {
     var tmp = params[i].split('=');
     data[tmp[0]] = decodeURIComponent(tmp[1]);
 }
-document.getElementById('announcement-name').innerHTML = data.name;
-document.getElementById('announcement_image').innerHTML = data.name;
-document.getElementById('date_posted').innerHTML = data.name;
-document.getElementById('announcement_desc').innerHTML = data.name;
+
+document.getElementById('announcement_title').innerHTML = data.name;
+document.getElementById('announcement_image').src = "../resources/AddPictureOrange.jpg";
+document.getElementById('date_posted').innerHTML = string(docId);
+document.getElementById('announcement_desc').innerHTML = "asdjahdakhdakdad";
 
 function retrieveData(){
     db.collection("announcements").onSnapshot(snapshot => {
@@ -22,7 +23,7 @@ function retrieveData(){
 const setupDetailsAnnouncement = (data) => {
     data.forEach(doc => {
         // console.log(doc.data().announcementId);
-        if(doc.data().announcementId=="1616687630703"){
+        if(doc.data().docId==docId){
             displayDetailsAnnouncement(doc.data());
         }
         })
@@ -50,12 +51,4 @@ function displayDetailsAnnouncement(details){
     console.log(announcementId);
     console.log("\n");
     
-}
-
-function setAnnouncementFields(title,imageLink,datePosted, description) {
-    //checks that all the relevant fields have been filled
-    document.getElementById("announcement_title").innerHTML = title;
-    document.getElementById("announcement_image").src = "../resources/AddPictureOrange.jpg";
-    document.getElementById("date_posted").innerHTML = datePosted;
-    document.getElementById("announcement_desc").innerHTML = description;
 }

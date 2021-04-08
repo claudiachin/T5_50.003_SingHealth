@@ -1,21 +1,66 @@
-function retrieveData(){
+const announcementlist = document.querySelector('#announcementList');
+
+db.collection('announcements').orderBy('timestamp').onSnapshot((snapshot) =>{
+    snapshot.docs.forEach(doc =>{
+        // console.log(doc.data());
+        // console.log(doc.id);
+        renderAnnouncementList(doc.id, doc.data());
+    })
+})
+
+
+function renderAnnouncementList(docID, doc){
+    var announcement = document.createElement("p");
+    var announcementText = document.createTextNode(doc.title);
+    announcement.appendChild(announcementText);
+    announcement.classList.add("announcement-text");
+
+    var inst = document.createElement("p");
+    var instText = document.createTextNode(doc.content.substring(0,300) + "...");
+    inst.appendChild(instText);
+
+    var date = document.createElement("h6");
+    var dateText = document.createTextNode(`Posted on ${doc.datePosted} at ${doc.timePosted}`);
+    date.appendChild(dateText);
+
+    var sect = document.createElement("div");
+    sect.appendChild(announcement);
+    sect.appendChild(inst);
+    sect.appendChild(date);
+    sect.classList.add("sect")
+
+    var icon = document.createElement("div");
+    icon.innerHTML = '<i class="fas fa-chevron-right"></i>'
+    
+    var card = document.createElement("div");
+    card.appendChild(sect)
+    card.appendChild(icon);
+    card.classList.add("card");
+    // card.id = "card-"+i;
+    card.id = docID;
+    card.onclick = function() { selectAnnouncement(this) };
+
+    var split = document.createElement("hr");
+
+    var list = document.getElementById("list");
+    list.appendChild(card);
+    list.appendChild(split);
+
+}
+
+// getting announcement from firebase
+function getAnnouncementDetails(){
     db.collection("announcements").onSnapshot(snapshot => {
-        setupDetailsAnnouncement(snapshot.docs);
+        snapshot.docs.forEach(doc => {
+            // console.log(doc.data().announcementId);
+            if(doc.data().announcementId=="1616687630703"){
+                displayDetailsAnnouncement(doc.data());
+            }
+        })
     }), err => {
     console.log(err.message);
     }
-}
-
-// setup guides
-const setupDetailsAnnouncement = (data) => {
-    data.forEach(doc => {
-        // console.log(doc.data().announcementId);
-        if(doc.data().announcementId=="1616687630703"){
-            displayDetailsAnnouncement(doc.data());
-        }
-        })
-        
-    };
+};
 
 function displayDetailsAnnouncement(details){
     const title =  details.title;
@@ -46,4 +91,10 @@ function setAnnouncementFields(title,imageLink,datePosted, description) {
     document.getElementById("announcement_image").src = "../resources/AddPictureOrange.jpg";
     document.getElementById("date_posted").innerHTML = datePosted;
     document.getElementById("announcement_desc").innerHTML = description;
+}
+
+function selectAnnouncement(ele) {
+    console.log(ele.id);
+    url = 'announcement_info.html?name=' + encodeURIComponent(ele.firstChild.firstChild.innerHTML);
+    window.location.href = url;
 }

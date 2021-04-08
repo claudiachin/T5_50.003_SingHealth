@@ -25,40 +25,80 @@
     <div class="main-content">
 
       <div><p style="font-weight: bold;">Compare:</p></div>
-      <form class="radio-button-form"> 
-        <div>
-          <input id= "fb" type="radio" name="tenanttype" id="nonFB" value="1">
-          <label for="nonFB">Non F&B</label>
-        </div>          
-        <div>
-          <input id="nfb" type="radio" name="tenanttype" id="FB" value="1">
-          <label for="FB">F&B</label>
-        </div>
-      </form>
+
+<div id="radiobuttons">
+      <form>
+        <input type="radio" name="choice" value="Institution"> Institution
+        <input type="radio" name="choice" value="Tenants"> Tenants
+       <!-- <input type="button" id="btn" value="Show Selected Value">-->
+      </form></div>
+
+
+
+
       
       <br>
 
-      <div><p style="font-weight: bold;">Choose tenants:</p></div>
+      <div><p id="toggle" style="font-weight: bold;">Choose tenants:</p></div>
       <div>
         <span id="multi" class="multi-select-custom"></span>
         <button id="reset-button" onclick="resetCustomMulti()">Reset</button>
-        <button  id="generate" onclick="generate()">Generate</button>       
+        <button  id="generate" onclick="generate()">Generate</button>  
       </div>
 
 
 
 
-      <script> function generate(){ if(customIconMulti.value().length!=0){
+      <script> 
+        const btn = document.querySelector('#radiobuttons');
+        // handle click button
+        btn.onchange = function () {
+            const rbs = document.querySelectorAll('input[name="choice"]');
+            let selectedValue;
+            for (const rb of rbs) {
+                if (rb.checked) {
+                    selectedValue = rb.value;
+                    break;
+                }
+            }
+            document.getElementById("toggle").innerHTML = "Choose "+selectedValue;
+            //generate();
+        };
+
+
+      function myFunction(item, index) {
+          addData(item, [88,88,88,90,92,96,97,95,95,95],generateRandomColor());}
+        
+        /*function anotherFunction(item, index) {
+          if(item.value==="CGH branch- Kopitiam"){item.disabled=true;}}*/
+
+      function generate(){ if(customIconMulti.value().length!=0){
         removeData();}else{console.log("None chosen. Please make a selection.");}
-        var fruits = getSelected();
-        fruits.forEach(myFunction);
+        var selected = getSelected();
+        selected.forEach(myFunction);
 
-        function myFunction(item, index) {
-          addData(item, [88,88,88,90,92,96,97,95,95,95],generateRandomColor());
-} 
-         
+        /*var apples = customIconMulti.option;
+        apples.forEach(anotherFunction);
 
-        }</script>
+        
+        
+         document.getElementById("hi").innerText=(customIconMulti.options);*/
+        }
+
+
+
+         // customIconMulti.option().value("CGH branch- Kopitiam")["CGH branch- Kopitiam"].disabled=true;
+          //$('#multiSelect option[value="CGH branch- Kopitiam"]').prop('selected',true);
+          //$('#multiSelect').prop('disabled',true);      
+
+        </script>
+
+
+
+
+
+
+
 
 
       <div class="container">

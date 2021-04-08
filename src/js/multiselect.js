@@ -1,11 +1,48 @@
 
     var customIcon = document.createElement('img');
     customIcon.src = './icon.svg';
+    //var fb=document.getElementById("fb").value;
     var customIconMulti = new SelectPure(".multi-select-custom", {
       options: [
+
+        {
+          label:"ALL",
+          value:"ALL"},
+          {
+            label:"CGH",
+            value:"CGH"},
+            {
+              label:"KKH",
+              value:"KKH"},
+              {
+                label:"SGH",
+                value:"SGH"},
+                {
+                  label:"SKH",
+                  value:"SKH"},
+                  {
+                    label:"NCCS",
+                    value:"NCCS"},
+                    {
+                      label:"NHCS",
+                      value:"NHCS"},
+                      {
+                        label:"BVH",
+                        value:"BVH"},
+                        {
+                          label:"OCH",
+                          value:"OCH"},
+                          {
+                            label:"Academia",
+                            value:"Academia"},
+
+
       {
         label:"CGH branch- Kopitiam",
-        value:"CGH branch- Kopitiam"},
+        value:"CGH branch- Kopitiam",
+        disabled:false
+        //disabled:true
+      },
 
         {
           label:"CGH branch- 1983",
@@ -188,19 +225,7 @@
 
       {
       label:"Academia branch- Coffee Club",
-      value:"Academia branch- Coffee Club"} ,
-
-        
-
-                                   
-
-
-
-
-
-    {
-      label:"ALL",
-      value:"ALL"},
+      value:"Academia branch- Coffee Club"} 
 
 
         
@@ -225,6 +250,17 @@
         optionHidden: "select-pure__option--hidden",
       }
     });
+
+
+
+
+
+
+
+
+
+
+
     var resetCustomMulti = function() {
       customIconMulti.reset();
     };

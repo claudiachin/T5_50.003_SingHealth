@@ -8,8 +8,17 @@ for (i = 0; i < params.length; i++) {
 
 document.getElementById('announcement_title').innerHTML = data.name;
 document.getElementById('announcement_image').src = "../resources/AddPictureOrange.jpg";
-document.getElementById('date_posted').innerHTML = data.name;
+document.getElementById('date_posted').innerHTML = doc.data().id;
 document.getElementById('announcement_desc').innerHTML = localStorage.getItem('announcementId');
+
+db.collection('announcements').orderBy('timestamp').onSnapshot((snapshot) =>{
+    snapshot.docs.forEach(doc =>{
+        // console.log(doc.data());
+        // console.log(doc.id);
+        renderAnnouncementList(doc.id, doc.data());
+    })
+})
+
 
 function retrieveData(){
     db.collection("announcements").onSnapshot(snapshot => {
@@ -23,7 +32,7 @@ function retrieveData(){
 const setupDetailsAnnouncement = (data) => {
     data.forEach(doc => {
         // console.log(doc.data().announcementId);
-        if(doc.data().title==data.name){
+        if(doc.id==localStorage.getItem('announcementId')){
             displayDetailsAnnouncement(doc.data());
         }
         })

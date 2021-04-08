@@ -9,7 +9,7 @@ for (i = 0; i < params.length; i++) {
 document.getElementById('announcement_title').innerHTML = data.name;
 document.getElementById('announcement_image').src = "../resources/AddPictureOrange.jpg";
 document.getElementById('date_posted').innerHTML = data.name;
-document.getElementById('announcement_desc').innerHTML = "asdjahdakhdakdad";
+document.getElementById('announcement_desc').innerHTML = localStorage.getItem('announcementId');
 
 function retrieveData(){
     db.collection("announcements").onSnapshot(snapshot => {

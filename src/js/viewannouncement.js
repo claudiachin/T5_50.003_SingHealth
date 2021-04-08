@@ -38,7 +38,7 @@ function renderAnnouncementList(docID, doc){
     card.classList.add("card");
     // card.id = "card-"+i;
     card.id = docID;
-    card.onclick = function() { selectTenant(this) };
+    card.onclick = function() { selectAnnouncement(this) };
 
     var split = document.createElement("hr");
 
@@ -91,4 +91,10 @@ function setAnnouncementFields(title,imageLink,datePosted, description) {
     document.getElementById("announcement_image").src = "../resources/AddPictureOrange.jpg";
     document.getElementById("date_posted").innerHTML = datePosted;
     document.getElementById("announcement_desc").innerHTML = description;
+}
+
+function selectAnnouncement(ele) {
+    console.log(ele.id);
+    url = 'announcement_info.html?name=' + encodeURIComponent(ele.firstChild.firstChild.innerHTML);
+    window.location.href = url;
 }

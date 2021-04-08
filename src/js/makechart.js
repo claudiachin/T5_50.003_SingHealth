@@ -48,12 +48,9 @@ function addData( label, data) {
 }
 
 //To edit-> but should remove all
-function removeData(chart) {
-  chart.data.labels.pop();
-  chart.data.datasets.forEach((dataset) => {
-      dataset.data.pop();
-  });
-  chart.update();
+function removeData() {
+  lineChart.data.datasets.length=0;
+  lineChart.update();
 }
 
 /*

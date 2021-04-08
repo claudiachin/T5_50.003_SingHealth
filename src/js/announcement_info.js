@@ -5,51 +5,57 @@ for (i = 0; i < params.length; i++) {
     var tmp = params[i].split('=');
     data[tmp[0]] = decodeURIComponent(tmp[1]);
 }
-document.getElementById('tenant-name').innerHTML = data.name;
+document.getElementById('announcement-name').innerHTML = data.name;
+document.getElementById('announcement_image').innerHTML = data.name;
+document.getElementById('date_posted').innerHTML = data.name;
+document.getElementById('announcement_desc').innerHTML = data.name;
 
-
-// to change to reading from firebase
-var reports = ["Report 1", "Report 2", "Report 3", "Report 4", "Report 5"];
-
-for (i = 0; i < reports.length; i++) {
-    var report = document.createElement("p");
-    var reportText = document.createTextNode(reports[i]);
-    report.appendChild(reportText);
-
-    var date = document.createElement("h6");
-    var dateText = document.createTextNode("14/2/2020");
-    date.appendChild(dateText);
-
-    var sect = document.createElement("div");
-    sect.appendChild(report);
-    sect.appendChild(date);
-
-    var icon = document.createElement("div");
-    icon.innerHTML = '<i class="fas fa-chevron-right"></i>'
-
-    var card = document.createElement("div");
-    card.appendChild(sect)
-    card.appendChild(icon);
-    card.classList.add("card");
-    card.id = "report-" + i;
-    card.onclick = function () { selectReport(this) };
-
-    var split = document.createElement("hr");
-
-    var list = document.getElementById("list");
-    list.appendChild(card);
-    list.appendChild(split);
+function retrieveData(){
+    db.collection("announcements").onSnapshot(snapshot => {
+        setupDetailsAnnouncement(snapshot.docs);
+    }), err => {
+    console.log(err.message);
+    }
 }
 
-function openContract(){
-    console.log("open contract");
+// setup guides
+const setupDetailsAnnouncement = (data) => {
+    data.forEach(doc => {
+        // console.log(doc.data().announcementId);
+        if(doc.data().announcementId=="1616687630703"){
+            displayDetailsAnnouncement(doc.data());
+        }
+        })
+        
+    };
+
+function displayDetailsAnnouncement(details){
+    const title =  details.title;
+
+    const description = details.content;
+
+    const imageLink=details.image;
+
+    const datePosted=details.datePosted;
+
+    const associatedAuditor=details.associatedAuditor;
+
+    const announcementId=details.announcementId;
+    setAnnouncementFields(title,imageLink, datePosted,description);
+    console.log(title);
+    console.log(description);
+    console.log(imageLink);
+    console.log(datePosted);
+    console.log(associatedAuditor);
+    console.log(announcementId);
+    console.log("\n");
+    
 }
 
-function selectReport(report){
-    console.log(report.id);
-    localStorage.setItem("prevUrl", window.location.href);
-    localStorage.setItem("type", document.getElementById("type").innerHTML);
-    localStorage.setItem("reportName", report.firstChild.firstChild.innerHTML);
-    localStorage.setItem("reportDate", report.firstChild.lastChild.innerHTML);
-    window.location.href = 'view_report/start.html';
+function setAnnouncementFields(title,imageLink,datePosted, description) {
+    //checks that all the relevant fields have been filled
+    document.getElementById("announcement_title").innerHTML = title;
+    document.getElementById("announcement_image").src = "../resources/AddPictureOrange.jpg";
+    document.getElementById("date_posted").innerHTML = datePosted;
+    document.getElementById("announcement_desc").innerHTML = description;
 }

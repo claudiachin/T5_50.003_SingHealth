@@ -33,18 +33,32 @@ auth.onAuthStateChanged(user =>{
         });
         console.log("User logged in");
         // get data
-        console.log(tempRole);
-        console.log(actualRole);
-        db.collection(actualRole).onSnapshot(snapshot => {
-            setupDetails(snapshot.docs, user.uid);
-        }), err => {
-        console.log(err.message);
-        }
+        // console.log(tempRole);
+        // console.log(actualRole);
+        getAuditorDetails(actualRole, user.uid);
     }  
     else{
         console.log("user is logged out");
     }
 });
+
+function getAuditorDetails(actualRole, userUID){
+    console.log(userUID);
+    db.collection(actualRole).onSnapshot(snapshot => {
+        snapshot.docs.forEach(doc => {
+            if (doc.id == userUID){
+                const data = {
+                    email: doc.data().email,
+                    hospital: doc.data().hospital,
+                    name: doc.data().name
+                };
+                displayDetails(data.email, data.hospital, data.name);
+            }
+        });
+    }), err => {
+    console.log(err.message);
+    }
+};
 
 // setup UI
 // const setupUI = (user) =>{
@@ -57,30 +71,18 @@ auth.onAuthStateChanged(user =>{
 //     }
 // }
 
-
-// setup guides
-const setupDetails = (data, id) => {
-    data.forEach(doc => {
-        if (doc.id == id){
-            // console.log(doc.data());
-            displayDetails(doc.data());
-        }
-        
-    });
-};
-
-function displayDetails(details){
+function displayDetails(fetchedEmail, fetchedHospital, fetchedName){
     const name = `
-        Welcome,<br><span>${details.name}</span>
+        Welcome,<br><span>${fetchedName}</span>
     `;
 
     const html = `
         <h2><b>Hospital</b><br></h3> 
-        <p>${details.hospital}<br></p>
+        <p>${fetchedHospital}<br></p>
         <br>
 
         <h2><b>Email</b><br></h3> 
-        <p>${details.email}<br></p>
+        <p>${fetchedEmail}<br></p>
     `;
     if (auditorName && accountDetails){
         auditorName.innerHTML = name;

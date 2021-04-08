@@ -28,16 +28,6 @@ document.getElementById('announcement_image').src = "../resources/AddPictureOran
 document.getElementById('date_posted').innerHTML = "placeholdertext";
 document.getElementById('announcement_desc').innerHTML = localStorage.getItem('announcementId');
 
-
-db.collection('announcements').orderBy('timestamp').onSnapshot((snapshot) =>{
-    snapshot.docs.forEach(doc =>{
-        // console.log(doc.data());
-        // console.log(doc.id);
-        renderAnnouncementList(doc.id, doc.data());
-    })
-})
-
-
 function retrieveData(){
     db.collection("announcements").onSnapshot(snapshot => {
         setupDetailsAnnouncement(snapshot.docs);

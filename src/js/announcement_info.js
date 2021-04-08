@@ -25,16 +25,14 @@ for (i = 0; i < params.length; i++) {
 
 document.getElementById('announcement_title').innerHTML = data.name;
 document.getElementById('announcement_image').src = "../resources/AddPictureOrange.jpg";
-document.getElementById('date_posted').innerHTML = "placeholdertext";
-document.getElementById('announcement_desc').innerHTML = localStorage.getItem('announcementId');
 
-function retrieveData(){
+(function retrieveData(){ //self invoking function
     db.collection("announcements").onSnapshot(snapshot => {
         setupDetailsAnnouncement(snapshot.docs);
     }), err => {
     console.log(err.message);
     }
-}
+})();
 
 // setup guides
 const setupDetailsAnnouncement = (data) => {

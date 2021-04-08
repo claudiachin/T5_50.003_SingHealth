@@ -8,45 +8,45 @@
         value:"CGH branch- Kopitiam"},
 
         {
-          label:"1983",
-          value:"1983"},
+          label:"CGH branch- 1983",
+          value:"CGH branch- 1983"},
 
           {
-            label:"Subway",
-            value:"Subway"},
+            label:"CGH branch- Subway",
+            value:"CGH branch- Subway"},
             {
-              label:"7-Eleven",
-              value:"7-Eleven"},
+              label:"CGH branch- 7-Eleven",
+              value:"CGH branch- 7-Eleven"},
               {
-                label:"Starbucks",
-                value:"Starbucks"},
+                label:"CGH branch- Starbucks",
+                value:"CGH branch- Starbucks"},
                 {
-                  label:"UmiSushi",
-                  value:"UmiSushi"},
+                  label:"CGH branch- UmiSushi",
+                  value:"CGH branch- UmiSushi"},
                   {
                     label:"CGH branch- Mr Bean",
                     value:"CGH branch- Mr Bean"},
                     {
-                      label:"Gong Cha",
-                      value:"Gong Cha"},
+                      label:"CGH branch- Gong Cha",
+                      value:"CGH branch- Gong Cha"},
                     {
-                      label:"Foodfare",
-                      value:"Foodfare"},
+                      label:"CGH branch- Foodfare",
+                      value:"CGH branch- Foodfare"},
                       {
-                        label:"168 Florist",
-                        value:"168 Florist"},
+                        label:"CGH branch- 168 Florist",
+                        value:"CGH branch- 168 Florist"},
       {
-        label:"KKH branch-Mr Bean",
-        value:"KKH branch-Mr Bean"},
+        label:"KKH branch- Mr Bean",
+        value:"KKH branch- Mr Bean"},
         {
-          label:"Delifrance",
-          value:"Delifrance"},
+          label:"KKH branch- Delifrance",
+          value:"KKH branch- Delifrance"},
           {
             label:"KKH branch- Orchird Thai",
             value:"KKH branch- Orchird Thai"},
             {
-              label:"FairPrice Xpress",
-              value:"FairPrice Xpress"},
+              label:"KKH branch- FairPrice Xpress",
+              value:"KKH branch- FairPrice Xpress"},
               {
                 label:"KKH branch- Triplets",
                 value:"KKH branch- Triplets"},
@@ -54,8 +54,8 @@
                   label:"KKH branch- Kopitiam",
                   value:"KKH branch- Kopitiam"},
                   {
-                    label:"Ma Mum",
-                    value:"Ma Mum"},
+                    label:"KKH branch- Ma Mum",
+                    value:"KKH branch- Ma Mum"},
                     {
                       label:"KKH branch- Heavenly Wang",
                       value:"KKH branch- Heavenly Wang"},
@@ -66,33 +66,33 @@
                           label:"KKH branch- Coffee Bean",
                           value:"KKH branch- Coffee Bean"},
                           {
-                            label:"Eu Yan Sang",
-                            value:"Eu Yan Sang"},
+                            label:"KKH branch- Eu Yan Sang",
+                            value:"KKH branch- Eu Yan Sang"},
                             {
-                              label:"Huaxia Taimaobi Centre",
-                              value:"Huaxia Taimaobi Centre"},
+                              label:"KKH branch- Huaxia Taimaobi Centre",
+                              value:"KKH branch- Huaxia Taimaobi Centre"},
                               {
-                                label:"Mothercare",
-                                value:"Mothercare"},
+                                label:"KKH branch- Mothercare",
+                                value:"KKH branch- Mothercare"},
                                 {
-                                  label:"The Choice Gigft House",
-                                  value:"The Choice Gigft House"},
+                                  label:"KKH branch- The Choice Gigft House",
+                                  value:"KKH branch- The Choice Gigft House"},
                                   {
-                                    label:"B&G LifeCasting",
-                                    value:"B&G LifeCasting"},
+                                    label:"KKH branch- B&G LifeCasting",
+                                    value:"KKH branch- B&G LifeCasting"},
                                     {
-                                      label:"Junior Page",
-                                      value:"Junior Page"},
+                                      label:"KKH branch- Junior Page",
+                                      value:"KKH branch- Junior Page"},
                                       {
                                         label:"KKH branch- Noel Gifts",
                                         value:"KKH branch- Noel Gifts"},
                                         {
-                                          label:"Spextacular Optics",
-                                          value:"Spextacular Optics"},
+                                          label:"KKH branch- Spextacular Optics",
+                                          value:"KKH branch- Spextacular Optics"},
 
       {
-        label:"Kaki Makan",
-        value:"Kaki Makan"},
+        label:"SGH branch- Kaki Makan",
+        value:"SGH branch- Kaki Makan"},
         {
           label:"SGH branch- Coffee Bean",
           value:"SGH branch- Coffee Bean"},
@@ -100,8 +100,8 @@
             label:"SGH branch- Triplets",
             value:"SGH branch- Triplets"},
             {
-              label:"7-Eleven",
-              value:"7-Eleven"},
+              label:"SGH branch- 7-Eleven",
+              value:"SGH branch- 7-Eleven"},
               {
                 label:"SGH branch- Kaffe & Toast",
                 value:"SGH branch- Kaffe & Toast"},
@@ -118,18 +118,18 @@
                         label:"SGH Branch- Mr Bean",
                         value:"SGH Branch- Mr Bean",},
                         {
-                          label:"Lifeforce Limbs",
-                          value:"Lifeforce Limbs"},
+                          label:"SGH branch- Lifeforce Limbs",
+                          value:"SGH branch- Lifeforce Limbs"},
                           {
-                            label:"Noel",
-                            value:"Noel"},
+                            label:"SGH branch- Noel",
+                            value:"SGH branch- Noel"},
                             {
-                              label:"Lifeline",
-                              value:"Lifeline"},
+                              label:"SGH branch- Lifeline",
+                              value:"SGH branch- Lifeline"},
 
       {
-      label:"Koufu",
-      value:"Koufu"},
+      label:"SKH branch- Koufu",
+      value:"SKH branch- Koufu"},
         {
           label:"SKH branch- Mr Bean",
           value:"SKH branch- Mr Bean"},
@@ -140,32 +140,64 @@
               label:"SKH branch- Polar",
               value:"SKH branch- Polar"},
               {
-                label:"Coffee Club",
-                value:"Coffee Club"},
+                label:"SKH branch- Coffee Club",
+                value:"SKH branch- Coffee Club"},
                 {
                   label:"SKH branch-Heavenly Wang",
                   value:"SKH branch-Heavenly Wang"},
                   {
-                    label:"Aunty Rosie",
-                    value:"Aunty Rosie"},
+                    label:"SKH branch- Aunty Rosie",
+                    value:"SKH branch- Aunty Rosie"},
                     {
-                      label:"Jewel Coffee",
-                      value:"Jewel Coffee"},
+                      label:"SKH branch- Jewel Coffee",
+                      value:"SKH branch- Jewel Coffee"},
                       {
-                        label:"Cheers",
-                        value:"Cheers"},
+                        label:"SKH branch- Cheers",
+                        value:"SKH branch- Cheers"},
                         {
                           label:"SKH branch- Noel Gifts",
                           value:"SKH branch- Noel Gifts"},
                           {
-                            label:"Kcuts",
-                            value:"Kcuts"},
+                            label:"SKH branch- Kcuts",
+                            value:"SKH branch- Kcuts"},
                             {
-                              label:"Anytime Fitness",
-                              value:"Anytime Fitness"},
+                              label:"SKH branch- Anytime Fitness",
+                              value:"SKH branch- Anytime Fitness"},
                               {
-                                label:"Kindermusk",
-                                value:"Kindermusk"},
+                                label:"SKH branch- Kindermusk",
+                                value:"SKH branch- Kindermusk"},
+
+
+      {
+        label:"NCHS branch- Kopitiam",
+        value:"NCHS branch- Kopitiam"},
+        {
+          label:"NCHS branch- Kaffe & Toast",
+          value:"NCHS branch- Kaffe & Toast"},
+
+
+      {
+        label:"OCH branch- Starbucks",
+        value:"OCH branch- Starbucks"},
+        {
+          label:"OCH branch- The Caffeine Experience",
+          value:"OCH branch- The Caffeine Experience"} ,
+          {
+            label:"OCH branch- Fairprice Express",
+            value:"OCH branch- Fairprice Express"} ,
+
+      {
+      label:"Academia branch- Coffee Club",
+      value:"Academia branch- Coffee Club"} ,
+
+        
+
+                                   
+
+
+
+
+
     {
       label:"ALL",
       value:"ALL"},

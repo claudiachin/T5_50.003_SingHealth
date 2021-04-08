@@ -23,10 +23,16 @@ function renderAnnouncementList(docID, doc){
     var dateText = document.createTextNode(`Posted on ${doc.datePosted} at ${doc.timePosted}`);
     date.appendChild(dateText);
 
+    var ids = document.createElement("h6");
+    var idsText = document.createTextNode(`Doc Id: ${docID}`);
+    ids.appendChild(idsText);
+    ids.classList.add("ids-text");
+
     var sect = document.createElement("div");
     sect.appendChild(announcement);
     sect.appendChild(inst);
     sect.appendChild(date);
+    sect.appendChild(ids);
     sect.classList.add("sect")
 
     var icon = document.createElement("div");
@@ -48,53 +54,8 @@ function renderAnnouncementList(docID, doc){
 
 }
 
-// getting announcement from firebase
-function getAnnouncementDetails(){
-    db.collection("announcements").onSnapshot(snapshot => {
-        snapshot.docs.forEach(doc => {
-            // console.log(doc.data().announcementId);
-            if(doc.data().announcementId=="1616687630703"){
-                displayDetailsAnnouncement(doc.data());
-            }
-        })
-    }), err => {
-    console.log(err.message);
-    }
-};
-
-function displayDetailsAnnouncement(details){
-    const title =  details.title;
-
-    const description = details.content;
-
-    const imageLink=details.image;
-
-    const datePosted=details.datePosted;
-
-    const associatedAuditor=details.associatedAuditor;
-
-    const announcementId=details.announcementId;
-    setAnnouncementFields(title,imageLink, datePosted,description);
-    console.log(title);
-    console.log(description);
-    console.log(imageLink);
-    console.log(datePosted);
-    console.log(associatedAuditor);
-    console.log(announcementId);
-    console.log("\n");
-    
-}
-
-function setAnnouncementFields(title,imageLink,datePosted, description) {
-    //checks that all the relevant fields have been filled
-    document.getElementById("announcement_title").innerHTML = title;
-    document.getElementById("announcement_image").src = "../resources/AddPictureOrange.jpg";
-    document.getElementById("date_posted").innerHTML = datePosted;
-    document.getElementById("announcement_desc").innerHTML = description;
-}
-
 function selectAnnouncement(ele) {
     console.log(ele.id);
-    url = 'announcement_info.html?name=' + encodeURIComponent(ele.firstChild.firstChild.innerHTML);
+    url = 'announcement_info.html?name=' + encodeURIComponent(ele.firstChild.firstChild.innerHTML) + encodeURIComponent(ele.firstChild.fourthChild.innerHTML);
     window.location.href = url;
 }

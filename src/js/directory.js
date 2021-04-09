@@ -79,5 +79,7 @@ function selectTenant(ele) {
     console.log(ele.id);
     url = 'tenant_info.html?name=' + encodeURIComponent(ele.firstChild.firstChild.innerHTML);
     localStorage.setItem("tenantID", ele.id);
+    // if (ele.firstChild.childNodes[1].)
+    // localStorage.setItem("type", ele.id);
     window.location.href = url;
 }

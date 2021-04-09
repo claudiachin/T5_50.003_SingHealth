@@ -36,13 +36,38 @@
         document.getElementById("title").innerHTML = localStorage.getItem("reportName");
         document.getElementById("date").innerHTML = localStorage.getItem("reportDate");
 
+<<<<<<< Updated upstream
         // replace with get from firebase
         document.getElementById("overall").innerHTML = "71.1%";
+=======
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyBl1hU_vW6IbzkF0XTqvnBlWyLrTmgybns",
+            authDomain: "singhealth-221e6.firebaseapp.com",
+            projectId: "singhealth-221e6",
+            appId: "1:684333425325:web:59bbff097942477f599c24",
+            measurementId: "G-SYJWNBX65P",
+            storageBucket: "gs://singhealth-221e6.appspot.com/"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        const functions = firebase.functions();
+
+        db.settings({ timestampsInSnapshots: true });
+
+        var reportID = localStorage.getItem("reportID");
+        console.log(reportID);
+        db.collection("reports").doc(reportID).get().then((doc) => {
+            document.getElementById("overall").innerHTML = doc.data().overallScore + "%";
+        })
+>>>>>>> Stashed changes
 
         function goNext() {
-            var decode = document.createElement("textarea");
-            decode.innerHTML = localStorage.getItem("type");
-            var type = decode.value;
+            type = localStorage.getItem("type");
             if (type == "F&B") {
                 window.location.href = "fnb/professionalism_staff_hygiene.html";
             } else if (type == "Non-F&B") {
@@ -52,7 +77,7 @@
     </script>
 
     <!--- do not remove this script line, it allows the service worker to function -->
-    <script src="../js/app.js"></script>
+    <script src="../../js/app.js"></script>
 
 </body>
 

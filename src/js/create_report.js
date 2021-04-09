@@ -17,19 +17,8 @@ const functions = firebase.functions();
 
 db.settings({ timestampsInSnapshots: true });
 
-//put data in if it exists
 var category = window.location.href.split("/").pop().slice(0, -5);
 var reportID = localStorage.getItem("reportID");
-
-// db.collection("reports").doc(reportID).get().then((doc) => {
-//     if (doc.exists) {
-//         console.log("Document data:", doc.data());
-//     } else {
-//         console.log("No such document!");
-//     }
-// }).catch((error) => {
-//     console.log("Error getting document:", error);
-// });
 
 function change(qn) {
     if (qn.classList.contains("fa-window-minimize")) {
@@ -208,7 +197,10 @@ function displayFileNames(fileUploadBtn) {
 }
 
 function upload() {
+<<<<<<< Updated upstream
     //TO DO: upload qnsData and photos
+=======
+>>>>>>> Stashed changes
     var inputDivs = document.getElementsByTagName("input");
     for (i = 0; i < inputDivs.length; i++) {
         if (inputDivs[i].getAttribute("type") == "file") {

@@ -487,11 +487,11 @@ body {
 }
 
 #imageContainer {
-    width: 690px;
-    height: 440px;
+    width: fit-content;;
+    height: fit-content;;
 }
 
 #imageContainer img {
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 500px;
+    max-height: 500px;
 }

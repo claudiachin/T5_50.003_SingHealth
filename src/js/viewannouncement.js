@@ -16,7 +16,7 @@ function renderAnnouncementList(docID, doc){
     announcement.classList.add("announcement-text");
 
     var inst = document.createElement("p");
-    var instText = document.createTextNode(doc.content.substring(0,300) + "...");
+    var instText = document.createTextNode(doc.content.substring(0,100) + "...");
     inst.appendChild(instText);
 
     var date = document.createElement("h6");

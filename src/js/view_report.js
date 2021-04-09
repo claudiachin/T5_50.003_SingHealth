@@ -17,17 +17,8 @@ const functions = firebase.functions();
 
 db.settings({ timestampsInSnapshots: true });
 
-//get checkbox data (scores) from firebase
+//get data from firebase
 var checkboxes = document.getElementsByClassName("main-content-view-report")[0].getElementsByTagName("i");
-
-var reportID = localStorage.getItem("reportID")
-var category = window.location.href.split("/").pop().slice(0, -5);
-
-db.collection("reports").doc(reportID).get((doc) => {
-    console.log(doc.data());
-    console.log(doc.data()[category+"_scores"]);
-})
-
 var data = [];
 for (i = 0; i < checkboxes.length; i++) {
     data.push(1);
@@ -108,7 +99,7 @@ for (i = 0; i < photos.length; i++) {
     slideImg.style.width = "100%";
 
     numberText = document.createElement("div");
-    numberText.innerHTML = i + 1 + " / " + photos.length;
+    numberText.innerHTML = i+1 + " / " + photos.length;
     numberText.classList.add("numbertext");
 
     gallerySlide = document.createElement("div");
@@ -124,7 +115,7 @@ function getIndex(image) {
     var index = 0;
     while (index < photoColumn.length) {
         if (photoColumn[index].firstChild == image) {
-            return index + 1;
+            return index+1;
         } else {
             index += 1;
         }
@@ -176,9 +167,9 @@ function sendMsg() {
 msgs = [];
 senders = [];
 time = [];
-for (i = 0; i < 5; i++) {
+for (i=0; i<5; i++) {
     msgs.push("hello");
-    if (i % 2 == 0) {
+    if (i%2==0) {
         senders.push("auditor");
     } else {
         senders.push("tenant");
@@ -187,7 +178,7 @@ for (i = 0; i < 5; i++) {
 }
 
 chatBubblesArea = document.getElementById("bubbles");
-for (i = 0; i < msgs.length; i++) {
+for (i=0; i<msgs.length; i++) {
     var message = document.createElement("p");
     messageText = document.createTextNode(msgs[i]);
     message.appendChild(messageText);

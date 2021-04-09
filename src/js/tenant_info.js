@@ -26,6 +26,32 @@ db.settings({ timestampsInSnapshots: true });
 
 var tenantID = localStorage.getItem("tenantID");
 
+// // make some dummy report data and add to tenant
+// for (i=0; i<1; i++) {
+//     db.collection("reports").doc().set({
+//         associatedAuditor: "2tgfvXgpc3XG0J2LYOI7UglSpYp1",
+//         associatedTenant: tenantID,
+//         dateCreated: firebase.firestore.FieldValue.serverTimestamp(),
+//     })
+//     .then(() => {
+//         console.log("Document successfully written!");
+//     })
+//     .catch((error) => {
+//         console.error("Error writing document: ", error);
+//     });
+// }
+
+// db.collection("reports").get().then((querySnapshot) => {
+//     querySnapshot.forEach((doc) => {
+//         if (doc.data().associatedTenant == tenantID) {
+//             var ref = db.collection("reports").doc(doc.id);
+//             db.collection("tenants").doc(tenantID).update({
+//                 reports: firebase.firestore.FieldValue.arrayUnion(ref),
+//             })
+//         }
+//     })
+// });
+
 db.collection("reports").orderBy("dateCreated").get().then((querySnapshot) => {
     var count = 0;
     querySnapshot.forEach((doc) => {
@@ -63,15 +89,25 @@ db.collection("reports").orderBy("dateCreated").get().then((querySnapshot) => {
     })
 });
 
+// db.collection("tenants").doc(tenantID).get().then((doc) => {
+//     reportRefs = doc.data().reports;
+//     for (i=0; i<reportRefs.length; i++) {
+//         reportRefs[i].get().then((doc) => {
+//             console.log(doc.id);
+//             console.log(doc.data().dateCreated);
+//         })
+//     }
+// })
+
 function openContract() {
     console.log("open contract");
 }
 
 function selectReport(report) {
+    console.log(report.id);
     localStorage.setItem("prevUrl", window.location.href);
     localStorage.setItem("type", document.getElementById("type").innerHTML);
     localStorage.setItem("reportName", report.firstChild.firstChild.innerHTML);
     localStorage.setItem("reportDate", report.firstChild.lastChild.innerHTML);
-    localStorage.setItem("reportID", report.id);
     window.location.href = 'view_report/start.html';
 }

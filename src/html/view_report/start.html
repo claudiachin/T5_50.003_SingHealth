@@ -30,44 +30,14 @@
         </div>
     </div>
 
-    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-functions.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-storage.js"></script>
-
     <script>
         //fill page with local variables
         document.getElementsByClassName("back-button")[0].onclick = function () { window.location.href = localStorage.getItem("prevUrl"); };
         document.getElementById("title").innerHTML = localStorage.getItem("reportName");
         document.getElementById("date").innerHTML = localStorage.getItem("reportDate");
 
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        var firebaseConfig = {
-            apiKey: "AIzaSyBl1hU_vW6IbzkF0XTqvnBlWyLrTmgybns",
-            authDomain: "singhealth-221e6.firebaseapp.com",
-            projectId: "singhealth-221e6",
-            appId: "1:684333425325:web:59bbff097942477f599c24",
-            measurementId: "G-SYJWNBX65P",
-            storageBucket: "gs://singhealth-221e6.appspot.com/"
-        };
-
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-        const functions = firebase.functions();
-
-        db.settings({ timestampsInSnapshots: true });
-
-        // on start page
-        var reportID = localStorage.getItem("reportID")
-        console.log(reportID);
-        db.collection("reports").doc(reportID).get((doc) => {
-            console.log(doc.data());
-            document.getElementById("overall").innerHTML = doc.data().overallScore + "%";
-        })
+        // replace with get from firebase
+        document.getElementById("overall").innerHTML = "71.1%";
 
         function goNext() {
             var decode = document.createElement("textarea");

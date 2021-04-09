@@ -81,12 +81,6 @@ function goNext() {
     associatedTenant: prev.id,
     associatedAuditor: localStorage.getItem("auditorID"),
     dateCreated: firebase.firestore.FieldValue.serverTimestamp(),
-    professionalism_staff_hygiene_photoURLs: [],
-    housekeeping_general_cleanliness_photoURLs: [],
-    food_hygiene_photoURLs: [],
-    healthier_choice_photoURLs: [],
-    workplace_safety_health_photoURLs: [],
-    covid_photoURLs: [],
   })
     .then((docRef) => {
       console.log("Document written with ID: ", docRef.id);

@@ -19,8 +19,6 @@ db.settings({ timestampsInSnapshots: true });
 
 //get data from firebase
 var checkboxes = document.getElementsByClassName("main-content-view-report")[0].getElementsByTagName("i");
-<<<<<<< Updated upstream
-=======
 
 var reportID = localStorage.getItem("reportID")
 var category = window.location.href.split("/").pop().slice(0, -5);
@@ -29,7 +27,6 @@ db.collection("reports").doc(reportID).get().then((doc) => {
     console.log(doc.data()[category+"_scores"]);
 })
 
->>>>>>> Stashed changes
 var data = [];
 for (i = 0; i < checkboxes.length; i++) {
     data.push(1);

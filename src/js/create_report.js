@@ -196,69 +196,49 @@ function displayFileNames(fileUploadBtn) {
     }
 }
 
+function uploadImageAsPromise(imageFile) {
+    return new Promise(function (resolve, reject) {
+        var storageRef = firebase.storage().ref(imageFile.name);
+
+        //Upload file
+        var task = storageRef.put(imageFile);
+
+        //Update progress bar
+        task.on('state_changed',
+            function progress(snapshot) {
+                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload is ' + progress + '% done');
+                switch (snapshot.state) {
+                    case firebase.storage.TaskState.PAUSED: // or 'paused'
+                        console.log('Upload is paused');
+                        break;
+                    case firebase.storage.TaskState.RUNNING: // or 'running'
+                        console.log('Upload is running');
+                        break;
+                }
+            },
+            function error(err) {
+
+            },
+            function complete() {
+                task.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                    console.log('File available at', downloadURL);
+                    db.collection("reports").doc(reportID).update({
+                        [category + "_photoURLs"]: firebase.firestore.FieldValue.arrayUnion(downloadURL),
+                    })
+                });
+            }
+        );
+    });
+}
+
 function upload() {
-<<<<<<< Updated upstream
-    //TO DO: upload qnsData and photos
-=======
->>>>>>> Stashed changes
     var inputDivs = document.getElementsByTagName("input");
     for (i = 0; i < inputDivs.length; i++) {
         if (inputDivs[i].getAttribute("type") == "file") {
             photos = inputDivs[i].files;
             for (j = 0; j < photos.length; j++) {
-                var storageRef = firebase.storage().ref();
-                var uploadTask = storageRef.child(photos[j].name).put(photos[j]);
-
-                uploadTask.on('state_changed',
-                    (snapshot) => {
-                        // Observe state change events such as progress, pause, and resume
-                        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-                        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                        console.log('Upload is ' + progress + '% done');
-                        switch (snapshot.state) {
-                            case firebase.storage.TaskState.PAUSED: // or 'paused'
-                                console.log('Upload is paused');
-                                break;
-                            case firebase.storage.TaskState.RUNNING: // or 'running'
-                                console.log('Upload is running');
-                                break;
-                        }
-                    },
-                    (error) => {
-                        // Handle unsuccessful uploads
-                    },
-                    () => {
-                        // Handle successful uploads on complete
-                        // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-                        uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-                            console.log('File available at', downloadURL);
-                            var ref = db.collection("reports").doc(reportID);
-                            ref.get().then((doc) => {
-                                if (doc.data()[category + "_photoURLs"] == null) {
-                                    ref.set({
-                                        [category + "_photoURLs"]: [downloadURL],
-                                    }, {
-                                        merge: true,
-                                    })
-                                        .then(() => {
-                                            console.log("Document successfully written!");
-                                            document.getElementsByClassName("next-button")[0].classList.remove("hide");
-                                        })
-                                        .catch((error) => {
-                                            console.error("Error writing document: ", error);
-                                        });
-                                } else {
-                                    ref.update({
-                                        [category + "_photoURLs"]: firebase.firestore.FieldValue.arrayUnion(downloadURL),
-                                    })
-                                }
-                            }).catch((error) => {
-                                console.log("Error getting document:", error);
-                            });
-                        })
-                    }
-                );
-
+                uploadImageAsPromise(photos[j]);
             }
         }
     }
@@ -297,4 +277,5 @@ function upload() {
         .catch((error) => {
             console.error("Error writing document: ", error);
         });
+
 }

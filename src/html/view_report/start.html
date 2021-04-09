@@ -36,10 +36,6 @@
         document.getElementById("title").innerHTML = localStorage.getItem("reportName");
         document.getElementById("date").innerHTML = localStorage.getItem("reportDate");
 
-<<<<<<< Updated upstream
-        // replace with get from firebase
-        document.getElementById("overall").innerHTML = "71.1%";
-=======
         // Your web app's Firebase configuration
         // For Firebase JS SDK v7.20.0 and later, measurementId is optional
         var firebaseConfig = {
@@ -64,7 +60,6 @@
         db.collection("reports").doc(reportID).get().then((doc) => {
             document.getElementById("overall").innerHTML = doc.data().overallScore + "%";
         })
->>>>>>> Stashed changes
 
         function goNext() {
             type = localStorage.getItem("type");

@@ -42,7 +42,7 @@ db.collection("tenants").doc(tenantID).get().then((doc) => {
 });
 
 db.collection("reports").orderBy("dateCreated").get().then((querySnapshot) => {
-    var count = 0;
+    var count = 1;
     querySnapshot.forEach((doc) => {
         if (doc.data().associatedTenant == tenantID) {
             var report = document.createElement("p");
@@ -73,8 +73,9 @@ db.collection("reports").orderBy("dateCreated").get().then((querySnapshot) => {
             var list = document.getElementById("list");
             list.insertBefore(split, list.firstChild);
             list.insertBefore(card, list.firstChild);
+
+            count += 1;
         }
-        count += 1;
     })
 });
 

@@ -66,6 +66,11 @@
     max-width: 150px;
     height: 25vw;
     max-height: 150px;
+    overflow: hidden;
+}
+
+.photos-column > div > img {
+    width: inherit;
 }
 
 .gallery {

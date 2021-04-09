@@ -15,15 +15,18 @@ const auth = firebase.auth();
 const db = firebase.firestore();
 const functions = firebase.functions();
 
+var imageURL;
+
 //function to upload announcement to the Firebase
 function postannouncement() {
+
     if (checkFieldsFilled()==true){
         db.collection("announcements").add({
             title: document.getElementById("count_value_title").value,
             content: document.getElementById("count_value").value,
             datePosted: perfectDate(),
             timePosted: perfectTime(),
-            image:document.getElementById("addPicture").src,
+            image: imageURL,
             associatedAuditor: "tester",
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
         })
@@ -88,4 +91,38 @@ function perfectTime(){
     }
 
     return timeString + ampm;
+}
+
+function uploadImageAsPromise(imageFile) {
+    return new Promise(function (resolve, reject) {
+        var storageRef = firebase.storage().ref(imageFile.name);
+
+        //Upload file
+        var task = storageRef.put(imageFile);
+
+        //Update progress bar
+        task.on('state_changed',
+            function progress(snapshot) {
+                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload is ' + progress + '% done');
+                switch (snapshot.state) {
+                    case firebase.storage.TaskState.PAUSED: // or 'paused'
+                        console.log('Upload is paused');
+                        break;
+                    case firebase.storage.TaskState.RUNNING: // or 'running'
+                        console.log('Upload is running');
+                        break;
+                }
+            },
+            function error(err) {
+
+            },
+            function complete() {
+                task.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                    console.log('File available at', downloadURL);
+                    imageURL = downloadURL;
+                });
+            }
+        );
+    });
 }

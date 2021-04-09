@@ -71,7 +71,7 @@ function displayDetailsAnnouncement(details){
 function setAnnouncementFields(title,imageLink,datePosted, description) {
     //checks that all the relevant fields have been filled
     document.getElementById("announcement_title").innerHTML = title;
-    document.getElementById("announcement_image").src = "../resources/AddPictureOrange.jpg";
+    document.getElementById("announcement_image").src = imageLink;
     document.getElementById("date_posted").innerHTML = datePosted;
     document.getElementById("announcement_desc").innerHTML = description;
 }

@@ -1,0 +1,28 @@
+.main-content-announcement-info {
+    padding: 44px 32px 96px;
+}
+
+.heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+#date_posted {
+    font-weight: bold;
+}
+
+#announcement_desc{
+    font-weight: 400;
+}
+
+.info {
+    padding: 32px 0 24px;
+}
+.info > div {
+    margin-bottom: 8px;
+}
+
+.card > div > p {
+    font-weight: bold;
+}

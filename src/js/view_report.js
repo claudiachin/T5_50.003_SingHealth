@@ -24,31 +24,59 @@ var reportID = localStorage.getItem("reportID")
 var category = window.location.href.split("/").pop().slice(0, -5);
 
 db.collection("reports").doc(reportID).get().then((doc) => {
-    console.log(doc.data()[category+"_scores"]);
-})
-
-var data = [];
-for (i = 0; i < checkboxes.length; i++) {
-    data.push(1);
-}
-data[1] = 0;
-data[2] = -1;
-
-var score = 0;
-var outOf = data.length;
-for (i = 0; i < data.length; i++) {
-    if (data[i] == 1) { // yes
-        score += 1;
-        checkboxes[i].classList.add("fa-check");
-    } else if (data[i] == -1) { // invalid
-        outOf -= 1;
-        checkboxes[i].classList.add("fa-window-minimize");
-    } else { // no
-        checkboxes[i].classList.add("fa-times");
+    // scores
+    var scores = doc.data()[category + "_scores"];
+    var score = 0;
+    var outOf = scores.length;
+    for (i = 0; i < scores.length; i++) {
+        if (scores[i] == 1) { // yes
+            score += 1;
+            checkboxes[i].classList.add("fa-check");
+        } else if (scores[i] == -1) { // invalid
+            outOf -= 1;
+            checkboxes[i].classList.add("fa-window-minimize");
+        } else { // no
+            checkboxes[i].classList.add("fa-times");
+        }
     }
-}
-document.getElementById("score").innerHTML = score;
-document.getElementById("out-of").innerHTML = outOf;
+    document.getElementById("score").innerHTML = score;
+    document.getElementById("out-of").innerHTML = outOf;
+
+    // photos
+    var photoURLs = doc.data()[category + "_photoURLs"];
+    var photoRow = document.getElementsByClassName("photos-row")[0];
+    var galleryContent = document.getElementsByClassName("gallery-content")[0];
+
+    for (i = 0; i < photoURLs.length; i++) {
+        imgDiv = document.createElement("div");
+        imgDiv.innerHTML = "<img src='" + photoURLs[i] + "'>";
+        imgDiv.onclick = function () { openModal(this) };
+        imgDiv.classList.add("hover-shadow");
+
+        photoColumn = document.createElement("div");
+        photoColumn.classList.add("photos-column");
+        photoColumn.appendChild(imgDiv);
+
+        photoRow.appendChild(photoColumn);
+
+        slideImg = document.createElement("img");
+        slideImg.src = photoURLs[i];
+        slideImg.style.width = "100%";
+
+        numberText = document.createElement("div");
+        numberText.innerHTML = i + 1 + " / " + photoURLs.length;
+        numberText.classList.add("numbertext");
+
+        gallerySlide = document.createElement("div");
+        gallerySlide.classList.add("gallery-slide");
+        gallerySlide.appendChild(slideImg);
+        gallerySlide.appendChild(numberText);
+
+        galleryContent.appendChild(gallerySlide);
+
+        // chat
+    }
+})
 
 function togglePhotos(icon) {
     var photoArea = document.getElementById("photos");
@@ -81,49 +109,12 @@ function toggleArrow(icon) {
     }
 }
 
-//get photos from firebase
-photos = [];
-for (i = 0; i < 9; i++) {
-    photos.push('../../../resources/AddPicture.JPG');
-}
-
-var photoRow = document.getElementsByClassName("photos-row")[0];
-var galleryContent = document.getElementsByClassName("gallery-content")[0];
-
-for (i = 0; i < photos.length; i++) {
-    imgDiv = document.createElement("div");
-    imgDiv.style.background = "url(" + photos[i] + ") 50% 50% no-repeat";
-    imgDiv.onclick = function () { openModal(this) };
-    imgDiv.classList.add("hover-shadow");
-
-    photoColumn = document.createElement("div");
-    photoColumn.classList.add("photos-column");
-    photoColumn.appendChild(imgDiv);
-
-    photoRow.appendChild(photoColumn);
-
-    slideImg = document.createElement("img");
-    slideImg.src = photos[i];
-    slideImg.style.width = "100%";
-
-    numberText = document.createElement("div");
-    numberText.innerHTML = i+1 + " / " + photos.length;
-    numberText.classList.add("numbertext");
-
-    gallerySlide = document.createElement("div");
-    gallerySlide.classList.add("gallery-slide");
-    gallerySlide.appendChild(slideImg);
-    gallerySlide.appendChild(numberText);
-
-    galleryContent.appendChild(gallerySlide);
-}
-
 function getIndex(image) {
     var photoColumn = document.getElementsByClassName("photos-column");
     var index = 0;
     while (index < photoColumn.length) {
         if (photoColumn[index].firstChild == image) {
-            return index+1;
+            return index + 1;
         } else {
             index += 1;
         }
@@ -155,7 +146,7 @@ function currentSlide(n) {
 }
 
 function showSlides(n) {
-    if (galleryContent.hasChildNodes) {
+    if (document.getElementsByClassName("gallery-content")[0].hasChildNodes) {
         var slides = document.getElementsByClassName("gallery-slide");
         if (n > slides.length) { slideIndex = 1 }
         if (n < 1) { slideIndex = slides.length }
@@ -175,9 +166,9 @@ function sendMsg() {
 msgs = [];
 senders = [];
 time = [];
-for (i=0; i<5; i++) {
+for (i = 0; i < 5; i++) {
     msgs.push("hello");
-    if (i%2==0) {
+    if (i % 2 == 0) {
         senders.push("auditor");
     } else {
         senders.push("tenant");
@@ -186,7 +177,7 @@ for (i=0; i<5; i++) {
 }
 
 chatBubblesArea = document.getElementById("bubbles");
-for (i=0; i<msgs.length; i++) {
+for (i = 0; i < msgs.length; i++) {
     var message = document.createElement("p");
     messageText = document.createTextNode(msgs[i]);
     message.appendChild(messageText);

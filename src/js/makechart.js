@@ -153,8 +153,9 @@ function removeData() {
 }
 
 function resetCustomMulti(selecting) {
-  //removeData();
-  lineChart.clear();
+  removeData();
+  //lineChart.clear();
+  //lineChart.reset();
   myChart.style.display="none";
   selecting.reset();
 };

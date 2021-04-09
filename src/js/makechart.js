@@ -1,4 +1,4 @@
-let lineChart;
+var lineChart;
 let DATA = {
   January: [],
   February: [],

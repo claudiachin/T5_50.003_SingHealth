@@ -1,3 +1,36 @@
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+var firebaseConfig = {
+    apiKey: "AIzaSyBl1hU_vW6IbzkF0XTqvnBlWyLrTmgybns",
+    authDomain: "singhealth-221e6.firebaseapp.com",
+    projectId: "singhealth-221e6",
+    appId: "1:684333425325:web:59bbff097942477f599c24",
+    measurementId: "G-SYJWNBX65P",
+    storageBucket: "gs://singhealth-221e6.appspot.com/"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+const functions = firebase.functions();
+
+db.settings({ timestampsInSnapshots: true });
+
+//put data in if it exists
+var category = window.location.href.split("/").pop().slice(0, -5);
+var reportID = localStorage.getItem("reportID");
+
+// db.collection("reports").doc(reportID).get().then((doc) => {
+//     if (doc.exists) {
+//         console.log("Document data:", doc.data());
+//     } else {
+//         console.log("No such document!");
+//     }
+// }).catch((error) => {
+//     console.log("Error getting document:", error);
+// });
+
 function change(qn) {
     if (qn.classList.contains("fa-window-minimize")) {
         qn.classList.remove("fa-window-minimize");
@@ -113,7 +146,10 @@ function togglePhotoFunction(qn, status) {
 
         //create date picker
         var datePicker = document.createElement("div");
-        datePicker.innerHTML = '<input type="date" id="deadline" name="deadline">';
+        var tomorrow = new Date();
+        tomorrow.setDate(new Date().getDate() + 1);
+        var value = tomorrow.getFullYear() + "-" + (tomorrow.getMonth() + 1).toString().padStart(2, '0') + "-" + tomorrow.getDate();
+        datePicker.innerHTML = '<input type="date" id="deadline" name="deadline" value="' + value + '" min="' + value + '">';
 
         //create deadline section
         var deadline = document.createElement("div");
@@ -171,25 +207,6 @@ function displayFileNames(fileUploadBtn) {
     }
 }
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-var firebaseConfig = {
-    apiKey: "AIzaSyBl1hU_vW6IbzkF0XTqvnBlWyLrTmgybns",
-    authDomain: "singhealth-221e6.firebaseapp.com",
-    projectId: "singhealth-221e6",
-    appId: "1:684333425325:web:59bbff097942477f599c24",
-    measurementId: "G-SYJWNBX65P",
-    storageBucket: "gs://singhealth-221e6.appspot.com/"
-};
-
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const db = firebase.firestore();
-const functions = firebase.functions();
-
-db.settings({ timestampsInSnapshots: true });
-
 function upload() {
     //TO DO: upload qnsData and photos
     var inputDivs = document.getElementsByTagName("input");
@@ -223,26 +240,69 @@ function upload() {
                         // For instance, get the download URL: https://firebasestorage.googleapis.com/...
                         uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
                             console.log('File available at', downloadURL);
-                        });
+                            var ref = db.collection("reports").doc(reportID);
+                            ref.get().then((doc) => {
+                                if (doc.data()[category + "_photoURLs"] == null) {
+                                    ref.set({
+                                        [category + "_photoURLs"]: [downloadURL],
+                                    }, {
+                                        merge: true,
+                                    })
+                                        .then(() => {
+                                            console.log("Document successfully written!");
+                                            document.getElementsByClassName("next-button")[0].classList.remove("hide");
+                                        })
+                                        .catch((error) => {
+                                            console.error("Error writing document: ", error);
+                                        });
+                                } else {
+                                    ref.update({
+                                        [category + "_photoURLs"]: firebase.firestore.FieldValue.arrayUnion(downloadURL),
+                                    })
+                                }
+                            }).catch((error) => {
+                                console.log("Error getting document:", error);
+                            });
+                        })
                     }
                 );
 
             }
         }
     }
-    
+
     var checkboxes = document.getElementsByClassName("main-content-report")[0].getElementsByTagName("i");
-    var data = []
+    var score = [];
+    var resolved = [];
+    var deadline = [];
     for (i = 0; i < checkboxes.length; i++) {
         if (checkboxes[i].classList.contains("fa-window-minimize")) { //invalid
-            data.push(-1);
+            score.push(-1);
+            resolved.push(true);
+            deadline.push('');
         } else if (checkboxes[i].classList.contains("fa-check")) { //yes
-            data.push(1);
+            score.push(1);
+            resolved.push(true);
+            deadline.push('');
         } else if (checkboxes[i].classList.contains("fa-times")) { //no
-            data.push(0);
+            score.push(0);
+            resolved.push(false);
+            deadline.push(checkboxes[i].parentNode.parentNode.nextSibling.lastChild.lastChild.firstChild.value);
         }
     }
 
-    document.getElementsByClassName("next-button")[0].classList.remove("hide");
-
+    db.collection("reports").doc(reportID).set({
+        [category + "_scores"]: score,
+        [category + "_resolved"]: resolved,
+        [category + "_deadlines"]: deadline,
+    }, {
+        merge: true,
+    })
+        .then(() => {
+            console.log("Document successfully written!");
+            document.getElementsByClassName("next-button")[0].classList.remove("hide");
+        })
+        .catch((error) => {
+            console.error("Error writing document: ", error);
+        });
 }

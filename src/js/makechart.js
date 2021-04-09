@@ -186,3 +186,52 @@ chart.update();*/
 /*var refs = doc.data().reports
 for (i=0;i<refs.length;i++) 
     refs[i].get().....*/
+
+
+// Example data given in question text
+var data = [
+  ['CGH', 'Average Score: 98'],
+  ['KKH', 'Average Score: 56'],
+  ['SGH', 'Average Score: 88'],
+  ['SKH', 'Average Score: 98'],,
+  ['NCCS','Average Score: 55'],
+  ['NHCS', 'Average Score: 97.5'],
+  ['BVH', 'Average Score: 78'],
+  ['OCH', 'Average Score: 75'],
+  ['Acadmia', 'Average Score: 86'],
+];
+
+// Building the CSV from the Data two-dimensional array
+// Each column is separated by ";" and new line "\n" for next row
+var csvContent = '';
+data.forEach(function(infoArray, index) {
+  dataString = infoArray.join(' ');
+  csvContent += index < data.length ? dataString + '\n' : dataString;
+});
+
+// The download function takes a CSV string, the filename and mimeType as parameters
+// Scroll/look down at the bottom of this snippet to see how download is called
+var download = function(content, fileName, mimeType) {
+  var a = document.createElement('a');
+  mimeType = mimeType || 'application/octet-stream';
+
+  if (navigator.msSaveBlob) { // IE10
+    navigator.msSaveBlob(new Blob([content], {
+      type: mimeType
+    }), fileName);
+  } else if (URL && 'download' in a) { //html5 A[download]
+    a.href = URL.createObjectURL(new Blob([content], {
+      type: mimeType
+    }));
+    a.setAttribute('download', fileName);
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  } else {
+    location.href = 'data:application/octet-stream,' + encodeURIComponent(content); // only this mime type is supported
+  }
+}
+
+
+
+//download(csvContent, 'dowload.csv', 'text/csv;encoding:utf-8');

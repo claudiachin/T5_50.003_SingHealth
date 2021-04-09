@@ -164,6 +164,14 @@ function generateRandomColor()
     return randomColor;
     //random color will be freshly served
 }
+
+function toTimestamp(strDate){
+  var datum = Date.parse(strDate);
+  return datum/1000;
+ }
+
+
+
 /*
 // Filter out and set back into chart.data.datasets
 chart.data.datasets = chart.data.datasets.filter(function(obj) {

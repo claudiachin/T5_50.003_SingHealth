@@ -249,7 +249,7 @@ var institutionsonly = new SelectPure(".multi-select-custom", {
                         label:"Academia",
                         value:"Academia"},       
   ],
-  value: ["ALL"],
+  value: ["SKH"],
   multiple: true,
   autocomplete: true,
   inlineIcon: customIcon,

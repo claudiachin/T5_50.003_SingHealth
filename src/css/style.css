@@ -485,13 +485,3 @@ body {
         transform: rotate(360deg);
     }
 }
-
-#imageContainer {
-    width: fit-content;
-    height: fit-content;
-}
-
-#imageContainer img {
-    max-width: 500px;
-    max-height: 500px;
-}

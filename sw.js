@@ -24,7 +24,7 @@ urlsToCache = [
   './src/js/multiselect.js',
 
   './src/resources/SingHealth_Logo.png',
-  '/src/resources/AddPicture.JPG',
+  './src/resources/AddPicture.JPG',
   './src/resources/AddPictureOrange.jpg',
   './src/resources/profile.png',
   './src/resources/singhealth_icon_144.png',
@@ -72,3 +72,4 @@ self.addEventListener('fetch', function (event) {
     })
   );
 });
+

@@ -15,9 +15,6 @@ const tabBar = document.querySelector(".tab-bar");
 const role = document.querySelector(".tab-active");
 const announcementNoti = document.querySelector("#announcementNoti");
 
-let tempRole = null;
-let actualRole = "auditors";
-
 // loading
 // window.addEventListener("load", function() {
 //     loading.parentElement.removeChild(loading);
@@ -27,28 +24,30 @@ let actualRole = "auditors";
 auth.onAuthStateChanged(user =>{
     if (user){
         // Check admin status
-        user.getIdTokenResult().then(idTokenResult =>{
-            console.log(`admin: ${idTokenResult.claims.admin}`);
-            user.admin = idTokenResult.claims.admin;
-            // setupUI(user);
-        });
+        // user.getIdTokenResult().then(idTokenResult =>{
+        //     console.log(`admin: ${idTokenResult.claims.admin}`);
+        //     user.admin = idTokenResult.claims.admin;
+        //     // setupUI(user);
+        // });
         console.log("User logged in");
         // get data
-        // console.log(tempRole);
-        // console.log(actualRole);
-        getAuditorDetails(actualRole, user.uid);
+        let role = localStorage.getItem("role");
+        getRoleDetails(role,user.uid);
         getNumOfAnnouncements();
     }  
     else{
-        console.log("user is logged out");
+        console.log("User is logged out");
     }
 });
 
-function getAuditorDetails(actualRole, userUID){
+function getRoleDetails(role, userUID){
     console.log(userUID);
-    db.collection(actualRole).onSnapshot(snapshot => {
+    console.log(role);
+    db.collection(role).onSnapshot(snapshot => {
         snapshot.docs.forEach(doc => {
-            localStorage.setItem("auditorID", doc.id);
+            if (role == "auditors") localStorage.setItem("auditorID", userUID);
+            else localStorage.setItem("tenantID", userUID);
+            
             if (doc.id == userUID){
                 const data = {
                     email: doc.data().email,
@@ -133,15 +132,16 @@ if (login){
     
         auth.signInWithEmailAndPassword(email, password).then(cred =>{
             // console.log(cred.user);
-            tempRole = tabBar.firstElementChild.getAttribute("class");
+            let tempRole = tabBar.firstElementChild.getAttribute("class");
             console.log(tempRole);
+            let actualRole = "";
             if (tempRole === "tab-active"){
                 actualRole = "auditors";
             }
             else{
                 actualRole = "tenants";
             }
-
+            localStorage.setItem("role", actualRole);
             window.location.href = "src/html/home.html";
             login.reset();
             error.innerHTML= "";

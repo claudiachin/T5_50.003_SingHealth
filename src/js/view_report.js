@@ -20,7 +20,10 @@ db.settings({ timestampsInSnapshots: true });
 //get data from firebase
 var checkboxes = document.getElementsByClassName("main-content-view-report")[0].getElementsByTagName("i");
 
-var reportID = localStorage.getItem("reportID")
+var reportID = localStorage.getItem("reportID");
+var role = localStorage.getItem("role");
+var auditorID = localStorage.getItem("auditorID");
+var tenantID = localStorage.getItem("tenantID");
 var category = window.location.href.split("/").pop().slice(0, -5);
 
 db.collection("reports").doc(reportID).get().then((doc) => {
@@ -73,10 +76,36 @@ db.collection("reports").doc(reportID).get().then((doc) => {
         gallerySlide.appendChild(numberText);
 
         galleryContent.appendChild(gallerySlide);
-
-        // chat
     }
 })
+
+// chat
+let hygieneChat = db.collection("reports").doc(reportID).collection("hygieneChat");
+
+hygieneChat.orderBy("timestamp").onSnapshot(snapshot =>{
+    console.log(snapshot.size);
+    snapshot.docChanges().forEach((change,ind) =>{
+        let data = change.doc.data();
+        
+        if (change.type === "added") {
+            console.log("New added");
+            getMsgFromFirebase(data, change.doc.id);
+            var chatArea = document.getElementById("chat-bubbles");
+            chatArea.scrollTop = chatArea.scrollHeight;
+
+        }
+        if (change.type === "modified") {
+            console.log("Modified");
+            
+        }
+        if (change.type === "removed") {
+            let msgRemoved = document.getElementById(`${change.doc.id}-msg`);
+            msgRemoved.remove();
+            console.log("Removed");
+        }
+    });
+    
+});
 
 function togglePhotos(icon) {
     var photoArea = document.getElementById("photos");
@@ -90,13 +119,17 @@ function togglePhotos(icon) {
 
 function toggleChat(icon) {
     var chatArea = document.getElementById("chat-bubbles");
+    var sendMsgArea = document.getElementById("send-msg-area");
     if (chatArea.style.display == "none") {
         chatArea.style.display = "";
+        sendMsgArea.style.display = "";
     } else {
         chatArea.style.display = "none";
+        sendMsgArea.style.display = "none";
     }
     toggleArrow(icon);
-    document.getElementById("send-msg-area").scrollIntoView();
+    chatArea.scrollTop = chatArea.scrollHeight;
+    
 }
 
 function toggleArrow(icon) {
@@ -157,29 +190,11 @@ function showSlides(n) {
     }
 }
 
-function sendMsg() {
-    alert(document.getElementById("textMsg").value);
-    document.getElementById("textMsg").value = "";
-}
-
-//get msgs from firebase
-msgs = [];
-senders = [];
-time = [];
-for (i = 0; i < 5; i++) {
-    msgs.push("hello");
-    if (i % 2 == 0) {
-        senders.push("auditor");
-    } else {
-        senders.push("tenant");
-    }
-    time.push(new Date().toDateString());
-}
-
-chatBubblesArea = document.getElementById("bubbles");
-for (i = 0; i < msgs.length; i++) {
+function getMsgFromFirebase(data, msgID){
+    //get msgs from firebase
+    chatBubblesArea = document.getElementById("bubbles");
     var message = document.createElement("p");
-    messageText = document.createTextNode(msgs[i]);
+    messageText = document.createTextNode(data.content);
     message.appendChild(messageText);
 
     var messageBox = document.createElement("div");
@@ -190,16 +205,78 @@ for (i = 0; i < msgs.length; i++) {
     profile.src = "../../../resources/profile.png";
 
     var bubble = document.createElement("div");
-    if (senders[i] == "tenant") {
+    if ((data.from == tenantID && role == "tenants") || (data.from == auditorID && role == "auditors")) {
         bubble.append(profile);
         bubble.append(messageBox);
-        bubble.classList.add("right");
+        bubble.classList.add("left");
     } else {
         bubble.append(messageBox);
         bubble.append(profile);
-        bubble.classList.add("left");
+        bubble.classList.add("right");
     }
     bubble.classList.add("bubble");
+    bubble.setAttribute("id", `${msgID}-msg`);
 
     chatBubblesArea.append(bubble);
 }
+
+
+function sendMessage(object){
+    // console.log(object)
+    hygieneChat.add(object).then(added => {
+        console.log("message sent ",added)
+    }).catch(err => {
+        console.err("Error occured",err)
+    })
+
+}
+
+// function deleteMessage(doc_id){
+//     var flag = window.confirm("Are you sure to want delete ?")
+
+//     if(flag){
+
+//         db.collection("chats").doc(doc_id).delete();
+//         console.log("Deleted");
+
+//     }
+// }
+
+// on click function
+function sendMsg(){
+
+    var message = document.getElementById("textMsg").value;
+    console.log(message);
+    if(message){
+        if (role == "tenants"){
+            // insert message 
+            sendMessage({
+                from : tenantID,
+                content : message,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                to: auditorID
+            })
+        }
+        else{
+            // insert message 
+            sendMessage({
+                from : auditorID,
+                content : message,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                to: tenantID
+            })
+        }
+
+        document.getElementById("textMsg").value = "";
+    }
+}
+
+// Send message when user enter key
+document.getElementById("textMsg").addEventListener("keyup", function(event) {
+
+    // get key code of enter
+    if(event.keyCode == 13){ // enter
+       sendMsg();
+    }
+
+})

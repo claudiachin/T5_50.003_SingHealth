@@ -66,8 +66,13 @@ db.collection("reports").orderBy("dateCreated").get().then((querySnapshot) => {
             card.appendChild(icon);
             card.classList.add("card");
             card.id = doc.id;
-            card.onclick = function () { selectReport(this) };
-
+            card.onclick = function () { selectReport(this)};
+            if (localStorage.getItem("role") == "tenants"){
+                localStorage.setItem("auditorID", doc.data().associatedAuditor);
+            }else{
+                localStorage.setItem("tenantID", doc.data().associatedTenant);
+            }
+            
             var split = document.createElement("hr");
 
             var list = document.getElementById("list");

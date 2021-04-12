@@ -183,10 +183,12 @@ div.hover-shadow {
     overflow-y: scroll;
 }
 
+
 #send-msg-area {
     display: flex;
+    background: #fff;
     align-items: center;
-    padding: 16px 0 0;
+    padding: 16px 32px;
 }
 
 #send-msg-area > * {
@@ -216,6 +218,12 @@ div.hover-shadow {
     flex: 1;
     max-width: 400px;
     margin: 4px;
+}
+
+.bubble > .message-box > h5 {
+    font-size: 0.6em;
+    font-weight: lighter;
+    text-align: right;
 }
 
 #bubbles {

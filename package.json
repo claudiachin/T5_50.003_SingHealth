@@ -25,6 +25,7 @@
     "puppeteer": "^8.0.0"
   },
   "dependencies": {
+    "@firebase/testing": "^0.20.11",
     "@google-cloud/storage": "^5.8.3",
     "firebase": "^8.3.2"
   },

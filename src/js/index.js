@@ -1,12 +1,12 @@
 const login = document.querySelector("#login");
-const signupForm = document.querySelector("#signUpForm");
+// const signupForm = document.querySelector("#signUpForm");
 const accountDetails = document.querySelector(".accountDetails");
 const auditorName = document.querySelector(".auditorName");
 const adminForm = document.querySelector(".admin-actions");
 const adminItems = document.querySelectorAll(".admin");
 const error = document.querySelector(".error");
-const signUpError = document.querySelector(".signUpError");
-const submitSignUp = document.querySelector("#submitSignUp");
+// const signUpError = document.querySelector(".signUpError");
+// const submitSignUp = document.querySelector("#submitSignUp");
 const tenantSelect = document.querySelector(".tab");
 const auditorSelect = document.querySelector(".tab-active");
 const signupF = document.querySelector(".bg-modal");
@@ -153,67 +153,70 @@ if (login){
     });
 }
 
-// Bypass login user an authenticated account
-function bypass(){
-    // get user info
-    const email = "test@mymail.sutd.edu.sg";
-    const password = "123456789";
-
-    auth.signInWithEmailAndPassword(email, password).then(cred =>{
-        // console.log(cred.user);
-        window.location.href = "src/html/home.html";
-    });
-};
-
 // logout
 function logout(){
     auth.signOut();
     window.location.href = "../../index.html";
 };
 
-// signup
-signUpForm.addEventListener("input", ()=>{
-    const email = signupForm[`email`].value;
-    const password = signupForm[`pword`].value;
-    const name = signUpForm['name'].value;
-    const hospital = signUpForm['hospital'].value;
-    signUpError.innerHTML="";
-    if (email == "" || password == "" || name == "" || hospital == "") {
-        submitSignUp.setAttribute("disabled", "disabled");
-        submitSignUp.style.backgroundColor = "rgb(146, 146, 146)";
-    }
-    else{
-        console.log("here");
-        submitSignUp.removeAttribute("disabled");
-        submitSignUp.style.backgroundColor = "#F15A22";
-    }
-});
+///////////////////// EXTRA /////////////////////
+// // Bypass login user an authenticated account
+// function bypass(){
+//     // get user info
+//     const email = "test@mymail.sutd.edu.sg";
+//     const password = "123456789";
+
+//     auth.signInWithEmailAndPassword(email, password).then(cred =>{
+//         // console.log(cred.user);
+//         window.location.href = "src/html/home.html";
+//     });
+// };
 
 
-function signup(){
-    const email = signupForm[`email`].value;
-    const password = signupForm[`pword`].value;
-    const name = signUpForm['name'].value;
-    const hospital = signUpForm['hospital'].value;
 
-    console.log(email, name, hospital);
-    auth.createUserWithEmailAndPassword(email,password).then(cred => {
-        return db.collection("auditors").doc(cred.user.uid).set({
-            email: email,
-            name: name,
-            hospital: hospital
-        });
-    }).then(()=>{
-        signupForm.reset();
-        window.location.href = "src/html/home.html";
-        signUpError.innerHTML="";
-    }).catch(err =>{
-        console.log(err);
-        signupForm.reset();
-        signUpError.innerHTML= err.message;
-        submitSignUp.style.backgroundColor = "rgb(146, 146, 146)";
-    });
-};
+// // signup
+// signUpForm.addEventListener("input", ()=>{
+//     const email = signupForm[`email`].value;
+//     const password = signupForm[`pword`].value;
+//     const name = signUpForm['name'].value;
+//     const hospital = signUpForm['hospital'].value;
+//     signUpError.innerHTML="";
+//     if (email == "" || password == "" || name == "" || hospital == "") {
+//         submitSignUp.setAttribute("disabled", "disabled");
+//         submitSignUp.style.backgroundColor = "rgb(146, 146, 146)";
+//     }
+//     else{
+//         console.log("here");
+//         submitSignUp.removeAttribute("disabled");
+//         submitSignUp.style.backgroundColor = "#F15A22";
+//     }
+// });
+
+
+// function signup(){
+//     const email = signupForm[`email`].value;
+//     const password = signupForm[`pword`].value;
+//     const name = signUpForm['name'].value;
+//     const hospital = signUpForm['hospital'].value;
+
+//     console.log(email, name, hospital);
+//     auth.createUserWithEmailAndPassword(email,password).then(cred => {
+//         return db.collection("auditors").doc(cred.user.uid).set({
+//             email: email,
+//             name: name,
+//             hospital: hospital
+//         });
+//     }).then(()=>{
+//         signupForm.reset();
+//         window.location.href = "src/html/home.html";
+//         signUpError.innerHTML="";
+//     }).catch(err =>{
+//         console.log(err);
+//         signupForm.reset();
+//         signUpError.innerHTML= err.message;
+//         submitSignUp.style.backgroundColor = "rgb(146, 146, 146)";
+//     });
+// };
 
 // Add admin cloud function
 if (adminForm){
@@ -237,11 +240,11 @@ function auditorTab(){
     auditorSelect.setAttribute("class","tab-active");
 }
 
-function signUpLink(){
-    signupF.style.display = "flex";
-}
+// function signUpLink(){
+//     signupF.style.display = "flex";
+// }
 
-function closeSignUpForm(){
-    console.log("Closed signup form");
-    signupF.style.display = "none";
-}
+// function closeSignUpForm(){
+//     console.log("Closed signup form");
+//     signupF.style.display = "none";
+// }

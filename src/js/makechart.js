@@ -234,4 +234,76 @@ var download = function(content, fileName, mimeType) {
 
 
 
-//download(csvContent, 'dowload.csv', 'text/csv;encoding:utf-8');
+var arrayofScores={};
+
+
+
+function getid(selected){
+db.collection('tenants').onSnapshot((snapshot) =>{
+  snapshot.docs.forEach(doc =>{
+      // console.log(doc.data());
+      if(selected==doc.data().branch)
+       //tenantID=doc.id;
+       localStorage.setItem("tenantID",doc.id);
+       //console.log(tenantID);
+  })
+})
+}
+
+
+//get array of scores (unfiltered by time period)
+function getlist(selected){
+getid(selected);
+console.log(localStorage.getItem("tenantID"));
+
+db.collection("reports").orderBy("dateCreated").get().then((querySnapshot) => {
+  var count = 0;
+  querySnapshot.forEach((doc) => {
+      if (doc.data().associatedTenant == localStorage.getItem("tenantID")) {
+        console.log(doc.data().overallScore);
+        arrayofScores[count]=doc.data().overallScore;
+        count += 1;
+        console.log(count);
+      }
+  });console.log(arrayofScores);
+});
+console.log(arrayofScores);}
+
+getlist("SKH branch- Mr Bean");//testing
+
+
+
+
+
+
+function average(array) {
+  let a = new Array(12); 
+  if (array.length==0){    
+      for (let i=0; i<12; ++i) {a[i] = 0;}
+      return a;
+  }
+
+ 
+  for(i=0;i<12;i++){
+      var ans=0;
+     for(j=0;j<array.length;j++){
+
+      if(typeof array[j][i]=== 'undefined'){
+          ans+=0;    
+      }
+         ans+=array[j][i];
+     }
+     
+     a[i]=ans/array.length;
+  }
+
+  
+  return a;
+}
+
+
+
+
+
+
+//load(csvContent, 'dowload.csv', 'text/csv;encoding:utf-8');

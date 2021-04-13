@@ -1,4 +1,4 @@
-var imageURL;
+var imageURL = "https://firebasestorage.googleapis.com/v0/b/singhealth-221e6.appspot.com/o/transparent.png?alt=media&token=9a09012e-cacd-4c3e-b107-e4c9473d1395";
 
 //function to upload announcement to the Firebase
 function postannouncement() {

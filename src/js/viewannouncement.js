@@ -23,16 +23,16 @@ function renderAnnouncementList(docID, doc){
     var dateText = document.createTextNode(`Posted on ${doc.datePosted} at ${doc.timePosted}`);
     date.appendChild(dateText);
 
-    var ids = document.createElement("h6");
+    /*var ids = document.createElement("h6");
     var idsText = document.createTextNode(`Doc Id: ${docID}`);
     ids.appendChild(idsText);
-    ids.classList.add("ids-text");
+    ids.classList.add("ids-text");*/
 
     var sect = document.createElement("div");
     sect.appendChild(announcement);
     sect.appendChild(inst);
     sect.appendChild(date);
-    sect.appendChild(ids);
+    //sect.appendChild(ids);
     sect.classList.add("sect")
 
     var icon = document.createElement("div");

@@ -52,7 +52,7 @@ function displayDetailsAnnouncement(details){
 
     const imageLink=details.image;
 
-    const datePosted=details.datePosted;
+    const datePosted="Date posted: "+ details.datePosted + " at " + details.timePosted + " SGT";
 
     const associatedAuditor=details.associatedAuditor;
 

@@ -495,3 +495,7 @@ body {
     max-width: 500px;
     max-height: 500px;
 }
+
+#make-announcement-button{
+    margin-bottom: 20px;
+}

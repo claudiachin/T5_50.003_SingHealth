@@ -1,33 +1,45 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <!-- do not remove anything in head, can add stuff if needed though -->
     <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <link rel="stylesheet" type="text/css" href="../css/announcement_info.css">
+    <link rel="stylesheet" type="text/css" href="../css/tenant_info.css">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://kit.fontawesome.com/215800797e.js" crossorigin="anonymous"></script>
-  </head>
-  <body>
+</head>
 
-    <div class="main-content-announcement-info">
-        <p><a href="announcements.html"> <Announcements</a></p>
+<body>
+
+    <div class="main-content-tenant-info">
+
+        <p><a href="tenant_directory.html">
+                <Directory</a>
+        </p>
         <div class="heading">
-            <h1 id="announcement_title">Announcement Title</h1>
+            <h1 id="tenant-name"></h1>
+            <button id="tenant-contract" onclick="openContract()"><i class="fas fa-file-alt fa-2x"></i></button>
         </div>
-        <div class="main-content-annc">
-            <div class="deconstructed-pancake">
-                <div id="imageContainer">
-                    <img id="announcement_image" src=""/></img>
-                </div>
-                <div>
-                    <h6 id="date_posted"></h6>
-                    <p id="announcement_desc"></p>    
-                </div>
+
+        <div class="info">
+            <div>
+                <p style="font-weight: bold;">Type</p>
+                <p id="type">placeholder</p>
             </div>
+            <div>
+                <p style="font-weight: bold;">Hospital, Location</p>
+                <p id="location">placeholder</p>
+            </div>
+            <div>
+                <p style="font-weight: bold;">Owner(s)</p>
+                <p id="owners">placeholder</p>
+            </div>
+            
         </div>
-        
+
     </div>
 
     <div class="navbar" id="navbarauditors" >
@@ -40,7 +52,7 @@
         <div id="list">
             <button class="button" onclick="window.location.href='tenant_directory.html';"><i class="fas fa-th-list"></i></button>
         </div>
-
+    
         <div id="tenantreportlist">
             <button class="button" onclick="window.location.href='tenant_report.html';"><i class="fas fa-clipboard-list"></i></button>
         </div>
@@ -51,8 +63,10 @@
     <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-functions.js"></script>
+    <script src="../js/tenant_directory_info.js"></script>
+
     <!--- do not remove this script line, it allows the service worker to function -->
-    <script src="../js/announcement_info.js"></script>
-    <script src="../js/app.js"></script> 
-  </body>
+    <script src="../js/app.js"></script>
+</body>
+
 </html>

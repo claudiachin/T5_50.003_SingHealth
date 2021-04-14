@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- do not remove anything in head, can add stuff if needed though -->
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://kit.fontawesome.com/215800797e.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="top-flap">
+        <p>Announcements</p>
+    </div>
+    <div class="main-content">
+        <div id="list"></div>
+        <!-- <script src="../js/announcement_list.js"></script> -->
+        
+        <!--- <button id="view-announcement-button" class="primary-button" onclick="window.location.href='announcement_view.html';">View Past Announcement</button> -->
+    </div>
+
+    <div class="navbar" id="navbarauditors" >
+        <div id="tenhome" class="nav-active">
+            <button class="button" onclick="window.location.href='home.html';"><i class="fas fa-home"></i></button>
+        </div>
+        <div id="tenannoucements">
+            <button class="button" onclick="window.location.href='tenant_announcements.html';"><i class="fas fa-bullhorn"></i></button>
+        </div>
+        <div id="list">
+            <button class="button" onclick="window.location.href='tenant_directory.html';"><i class="fas fa-th-list"></i></button>
+        </div>
+
+        <div id="tenantreportlist">
+            <button class="button" onclick="window.location.href='tenant_report.html';"><i class="fas fa-clipboard-list"></i></button>
+        </div>
+        
+    </div>
+    
+    <!-- tenant navbar 
+    <div class="navbar navbar-tenant">
+        <div id="home" class="nav-active"><i class="fas fa-home"></i></div>
+        <div id="annoucements"><i class="fas fa-bullhorn"></i></div>
+        <div id="directory"><i class="fas fa-th-list"></i></div>
+        <div id="past-report"><i class="fas fa-file-alt"></i></div>
+    </div>
+    -->
+
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-functions.js"></script>
+
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+          apiKey: "AIzaSyBl1hU_vW6IbzkF0XTqvnBlWyLrTmgybns",
+          authDomain: "singhealth-221e6.firebaseapp.com",
+          projectId: "singhealth-221e6",
+          appId: "1:684333425325:web:59bbff097942477f599c24",
+          measurementId: "G-SYJWNBX65P"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        const functions = firebase.functions();
+
+        db.settings({timestampsInSnapshots: true});
+  
+    </script> 
+    <!--- do not remove this script line, it allows the service worker to function -->
+    <script src="../js/Database_inprog.js"></script>
+    <script src="../js/viewannouncement.js"></script>  
+    <script src="../js/app.js"></script> 
+  </body>
+</html>

@@ -142,7 +142,10 @@ if (login){
                 actualRole = "tenants";
             }
             localStorage.setItem("role", actualRole);
-            window.location.href = "src/html/home.html";
+
+            if(localStorage.getItem("role")==="tenants"){
+            window.location.href = "src/html/tenant_home.html";}
+            else{window.location.href ="src/html/home.html";}
             login.reset();
             error.innerHTML= "";
         }).catch(err =>{
@@ -245,3 +248,4 @@ function closeSignUpForm(){
     console.log("Closed signup form");
     signupF.style.display = "none";
 }
+

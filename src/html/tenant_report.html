@@ -1,5 +1,79 @@
+<!DOCTYPE html>
 <html>
- 
-    <p>Tenant report</p>
-    </html>
-   
+
+<head>
+    <!-- do not remove anything in head, can add stuff if needed though -->
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/tenant_info.css">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://kit.fontawesome.com/215800797e.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="top-flap">
+        <p>Past Reports</p>
+      </div>
+    
+    <div class="main-content-tenant-info">
+
+
+        <div class="info">
+            <div>
+                <br>
+                <br>
+                <p style="font-weight: bold;">Type</p>
+                <p id="type">placeholder</p>
+            </div>
+            <div>
+                <p style="font-weight: bold;">Hospital, Location</p>
+                <p id="location">placeholder</p>
+            </div>
+            <div>
+                <p style="font-weight: bold;">Owner(s)</p>
+                <p id="owners">placeholder</p>
+            </div>
+            <div>
+                <p style="font-weight: bold;">Tenancy Expiry Date</p>
+                <p id="expiry">placeholder</p>
+            </div>
+        </div>
+
+        <div class="past-reports">
+            <h2>Past Reports</h2>
+            <div id="list"></div>
+        </div>
+
+    </div>
+
+    
+  <div class="navbar" id="navbarauditors" >
+    <div id="tenhome" class="nav-active">
+        <button class="button" onclick="window.location.href='tenant_home.html';"><i class="fas fa-bell"></i></button>
+    </div>
+    <div id="tenannoucements">
+        <button class="button" onclick="window.location.href='tenant_announcements.html';"><i class="fas fa-bullhorn"></i></button>
+    </div>
+    <div id="list">
+        <button class="button" onclick="window.location.href='tenant_directory.html';"><i class="fas fa-th-list"></i></button>
+    </div>
+
+    <div id="tenantreportlist">
+        <button class="button" onclick="window.location.href='tenant_report.html';"><i class="fas fa-clipboard-list"></i></button>
+    </div>
+    
+</div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-functions.js"></script>
+    <script src="../js/singletenant.js"></script>
+
+    <!--- do not remove this script line, it allows the service worker to function -->
+    <script src="../js/app.js"></script>
+</body>
+
+</html>

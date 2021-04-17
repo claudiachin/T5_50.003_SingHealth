@@ -1,172 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
 
-    <!-- do not remove anything in head, can add stuff if needed though -->
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <link rel="stylesheet" type="text/css" href="../css/trends.css">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    
-    <script src="https://kit.fontawesome.com/215800797e.js" crossorigin="anonymous"></script>
+<head>
 
-    <meta charset="UTF-8">
-    
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-    <script src="https://unpkg.com/select-pure@latest/dist/bundle.min.js"></script>
-  </head>
+  <!-- do not remove anything in head, can add stuff if needed though -->
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+  <link rel="stylesheet" type="text/css" href="../css/trends.css">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
-  <body>
-    <div class="top-flap">
-        <p>Trends</p>
+  <script src="https://kit.fontawesome.com/215800797e.js" crossorigin="anonymous"></script>
+
+  <meta charset="UTF-8">
+
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+  <script src="https://unpkg.com/select-pure@latest/dist/bundle.min.js"></script>
+</head>
+
+<body>
+  <div class="top-flap">
+    <p>Trends</p>
+  </div>
+
+  <div class="main-content">
+
+    <div>
+      <p style="font-weight: bold;">Compare:</p>
     </div>
 
-    <div class="main-content">
-
-      <div><p style="font-weight: bold;">Compare:</p></div>
-
-      <div id="radiobuttons">
-          <form>
-            <input id="institution" type="radio" name="choice" value="Institution"> Institution
-            <input id="tenants" type="radio" name="choice" value="Tenants"> Tenants
-          <!-- <input type="button" id="btn" value="Show Selected Value">-->
-          </form></div>
-
-
-          <br>
-
-          <div><p id="toggle" style="font-weight: bold;"></p></div>
-          <div style="float:right;"><a id="download"
-            download="ChartImage.jpg" 
-            href=""
-            class="btn btn-primary float-right bg-flat-color-1"
-            title="Descargar Gráfico">
-    
-            <!-- Download Icon -->
-     <i class="fa fa-download"></i>
-     <button id="csv" onclick="download(csvContent, 'statistic.csv', 'text/csv;encoding:utf-8');">Download</button>
-     </a></div>
-          <div>
-            <span id="multi" class="allmulti-select-custom" style="display:none;"></span>
-            <span id="inst" class="multi-select-custom" style="display:none;"></span></div>
-          
-          <div>  <span> 
-            <button id="reset-button" onclick="resetCustomMulti(customIconMulti)"style="display:none;">Reset</button>
-            <button id="instreset-button" onclick="resetCustomMulti(institutionsonly)"style="display:none;">Reset</button>
-          </span></div>
-            <div><span>
-            <button  id="generate" onclick="generate(customIconMulti)"style="display:none;">Generate</button> 
-            <button  id="instgenerate" onclick="generate(institutionsonly)"style="display:none;">Generate</button> </span> 
-      </div>
-
-
-      <script> 
-        const btn = document.querySelector('#radiobuttons');
-        // handle click button
-        btn.onchange = function () {
-            const rbs = document.querySelectorAll('input[name="choice"]');
-            let selectedValue;
-            for (const rb of rbs) {
-                if (rb.checked) {
-                    selectedValue = rb.value;
-                    break;
-                }
-            }
-            document.getElementById("toggle").innerHTML = "Choose "+selectedValue;
-            //generate();
-           if(selectedValue==="Institution"){
-             document.querySelector('#inst').style.display="block";
-             document.querySelector('#multi').style.display="none";
-             document.querySelector('#instreset-button').style.display="block";
-             document.querySelector('#reset-button').style.display="none";
-             document.querySelector('#instgenerate').style.display="block";
-             document.querySelector('#generate').style.display="none";}
-           if(selectedValue==="Tenants"){
-             document.querySelector('#multi').style.display="block";
-             document.querySelector('#inst').style.display="none";
-             document.querySelector('#reset-button').style.display="block";
-             document.querySelector('#instreset-button').style.display="none"
-             document.querySelector('#generate').style.display="block";
-             document.querySelector('#instgenerate').style.display="none";}
-        };
-
-        /*function anotherFunction(item, index) {
-          if(item.value==="CGH branch- Kopitiam"){item.disabled=true;}}*/
-
-         // customIconMulti.option().value("CGH branch- Kopitiam")["CGH branch- Kopitiam"].disabled=true;
-          //$('#multiSelect option[value="CGH branch- Kopitiam"]').prop('selected',true);
-          //$('#multiSelect').prop('disabled',true);      
-
-        </script>
-
-      <div class="container">
-        <canvas  id="myChart"></canvas>
-      </div>
-
+    <div id="radiobuttons">
+      <form>
+        <input id="institution" type="radio" name="choice" value="Institution"> Institution
+        <input id="tenants" type="radio" name="choice" value="Tenants"> Tenants
+      </form>
     </div>
 
-    <!-- <div class="navbar">
-        <div id="home" class="nav-active">
-            <button class="button" onclick="window.location.href='home.html';"><i class="fas fa-home"></i></button>
-        </div>
-        <div id="annoucements">
-            <button class="button" onclick="window.location.href='announcements.html';"><i class="fas fa-bullhorn"></i></button>
-        </div>
-        <div id="new-report">
-            <i class="fas fa-plus-circle" onclick="window.location.href='create_report/start.html';"></i></div>
-        <div id="trends">
-            <i class="fas fa-chart-line button"></i>
-        <div id="directory">
-            <button class="button" onclick="window.location.href='directory.html';"><i class="fas fa-th-list"></i></button>
-        </div>
-    </div> -->
+    <br>
 
-    <div class="navbar">
-      <div id="home" class="nav-active">
-        <button class="button" onclick="window.location.href='home.html';"><i class="fas fa-home"></i></button>
+    <div>
+      <p id="toggle" style="font-weight: bold;"></p>
+    </div>
+    <div>
+      <span id="multi" class="allmulti-select-custom" style="display:none;"></span>
+      <span id="inst" class="multi-select-custom" style="display:none;"></span>
+    </div>
+
+    <div class="reset-gen-btns">
+      <div style="padding: 8px;">
+        <button id="reset-button" onclick="resetCustomMulti(customIconMulti)" style="display:none;">Reset</button>
+        <button id="instreset-button" onclick="resetCustomMulti(institutionsonly)" style="display:none;">Reset</button>
       </div>
-      <div id="annoucements">
-        <button class="button" onclick="window.location.href='announcements.html';"><i class="fas fa-bullhorn"></i></button>
-      </div>
-      <div id="new-report">
-        <i class="fas fa-plus-circle" onclick="window.location.href='create_report/start.html';"></i>
-      </div>
-      <div id="trends">
-        <i class="fas fa-chart-line button"></i>
-      </div>
-      <div id="directory">
-        <button class="button" onclick="window.location.href='directory.html';"><i class="fas fa-th-list button"></i></button>
+      <div>
+        <button id="generate" onclick="generate(customIconMulti)" style="display:none;">Generate</button>
+        <button id="instgenerate" onclick="generate(institutionsonly)" style="display:none;">Generate</button>
       </div>
     </div>
 
-    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-functions.js"></script>
+    <div class="container">
+      <canvas id="myChart"></canvas>
+    </div>
 
-    <script>
-      // Your web app's Firebase configuration
-      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-      var firebaseConfig = {
-        apiKey: "AIzaSyBl1hU_vW6IbzkF0XTqvnBlWyLrTmgybns",
-        authDomain: "singhealth-221e6.firebaseapp.com",
-        projectId: "singhealth-221e6",
-        appId: "1:684333425325:web:59bbff097942477f599c24",
-        measurementId: "G-SYJWNBX65P"
-      };
-      // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
-      const auth = firebase.auth();
-      const db = firebase.firestore();
-      const functions = firebase.functions();
+    <div class="download-csv-jpeg">
+      <p style="padding: 8px;">Download CSV and JPEG</p>
+      <a id="download" download="ChartImage.jpg" href="" class="btn btn-primary float-right bg-flat-color-1"
+        title="Descargar Gráfico">
+        <i class="fa fa-download icon-bg" onclick="download(csvContent, 'statistic.csv', 'text/csv;encoding:utf-8');"></i>
+      </a>
+    </div>
 
-      db.settings({timestampsInSnapshots: true});
+  </div>
 
-    </script>
-    <script src="../js/app.js"></script> 
-    <script src="../js/multiselect.js"></script> 
-    <script src="../js/makechart.js"></script>
+  <div class="navbar">
+    <div id="home" class="nav-active">
+      <button class="button" onclick="window.location.href='home.html';"><i class="fas fa-home"></i></button>
+    </div>
+    <div id="annoucements">
+      <button class="button" onclick="window.location.href='announcements.html';"><i
+          class="fas fa-bullhorn"></i></button>
+    </div>
+    <div id="new-report">
+      <i class="fas fa-plus-circle" onclick="window.location.href='create_report/start.html';"></i>
+    </div>
+    <div id="trends">
+      <i class="fas fa-chart-line button"></i>
+    </div>
+    <div id="directory">
+      <button class="button" onclick="window.location.href='directory.html';"><i
+          class="fas fa-th-list button"></i></button>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-functions.js"></script>
+
+  <script>
     
-  </body>
+
+  </script>
+  <script src="../js/app.js"></script>
+  <script src="../js/multiselect.js"></script>
+  <script src="../js/makechart.js"></script>
+
+</body>
+
 </html>

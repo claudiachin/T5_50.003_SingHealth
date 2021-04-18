@@ -30,8 +30,7 @@ btn.onchange = function () {
   if (selectedValue === "Institution") {
     document.querySelector('#inst').style.display = "block";
     document.querySelector('#multi').style.display = "none";
-    document.querySelector('#instreset-button').style.display = "block";
-    document.querySelector('#reset-button').style.display = "none";
+    document.querySelector('#reset-button').style.display = "block";
     document.querySelector('#instgenerate').style.display = "block";
     document.querySelector('#generate').style.display = "none";
   }
@@ -39,15 +38,13 @@ btn.onchange = function () {
     document.querySelector('#multi').style.display = "block";
     document.querySelector('#inst').style.display = "none";
     document.querySelector('#reset-button').style.display = "block";
-    document.querySelector('#instreset-button').style.display = "none"
     document.querySelector('#generate').style.display = "block";
     document.querySelector('#instgenerate').style.display = "none";
   }
 };
 
 var lineChart;
-let monthData = []
-let tempScores = [];
+var monthData = [];
 
 const myChart = document.querySelector("#myChart");
 
@@ -80,7 +77,39 @@ function displayTrends() {
   });
 }
 
-function generate(selector) {
+function tenantGenerate(selector) {
+  var selected = selector.value();
+  if (selected.length != 0) {
+
+    displayTrends();
+    myChart.parentNode.style.display = "";
+    document.querySelector(".download-csv-jpeg").style.display = "";
+
+    var count = 0;
+    selected.forEach(item => {
+      console.log(item);
+
+      var newDataset = {
+        label: item,
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        borderColor: generateRandomColor(),
+        fill: false,
+      }
+      lineChart.data.datasets.push(newDataset);
+      lineChart.update();
+
+      monthData.push([[], [], [], [], [], [], [], [], [], [], [], []]);
+
+      getTenantScore(item, count);
+      count += 1;
+
+    });
+  } else {
+    console.log("None chosen. Please make a selection.");
+  }
+}
+
+function instGenerate(selector) {
   var selected = selector.value();
   if (selected.length != 0) {
 
@@ -91,7 +120,6 @@ function generate(selector) {
     var count = 0;
     selected.forEach(item => {
       var itemName;
-      console.log(item);
       if (item == "CGH") {
         itemName = "Changi General Hospital";
       } else if (item == "KKH") {
@@ -114,35 +142,51 @@ function generate(selector) {
 
       var newDataset = {
         label: item,
-        data: [0,0,0,0,0,0,0,0,0,0,0,0],
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         borderColor: generateRandomColor(),
         fill: false,
       }
       lineChart.data.datasets.push(newDataset);
       lineChart.update();
 
-      monthData.push([[],[],[],[],[],[],[],[],[],[],[],[]]);
+      monthData.push([[], [], [], [], [], [], [], [], [], [], [], []]);
 
-      getScore(itemName, count);
+      getInstScore(itemName, count);
       count += 1;
 
     });
-  }
-  else {
+  } else {
     console.log("None chosen. Please make a selection.");
   }
 }
 
-function getScore(itemName, count) {
+function getInstScore(itemName, count) {
   db.collection("tenants").get().then(snapshot => {
     snapshot.docs.forEach(doc => {
       if (itemName == doc.data().hospital) {
         let refs = doc.data().reports;
         for (i = 0; i < refs.length; i++) {
           refs[i].get().then(ref => {
-            console.log(itemName + " " + ref.id + " " + ref.data().overallScore);
             dateData = new Date(ref.data().dateCreated.seconds * 1000);
-            
+            lineChart.data.datasets[count].data[dateData.getMonth()] = average(ref.data().overallScore, count, dateData.getMonth())
+            lineChart.update();
+          });
+        }
+      }
+    });
+  }).catch(err => {
+    console.log(err.message);
+  });
+}
+
+function getTenantScore(itemName, count) {
+  db.collection("tenants").get().then(snapshot => {
+    snapshot.docs.forEach(doc => {
+      if (itemName == doc.data().branch) {
+        let refs = doc.data().reports;
+        for (i = 0; i < refs.length; i++) {
+          refs[i].get().then(ref => {
+            dateData = new Date(ref.data().dateCreated.seconds * 1000);
             lineChart.data.datasets[count].data[dateData.getMonth()] = average(ref.data().overallScore, count, dateData.getMonth())
             lineChart.update();
           });
@@ -156,8 +200,8 @@ function getScore(itemName, count) {
 
 function average(refScore, count, month) {
   monthData[count][month].push(refScore);
-  sum = monthData[count][month].reduce((a,b) => a + b, 0);
-  return sum/monthData[count][month].length;
+  sum = monthData[count][month].reduce((a, b) => a + b, 0);
+  return sum / monthData[count][month].length;
 }
 
 function generateRandomColor() {
@@ -172,41 +216,30 @@ document.getElementById("download").addEventListener('click', function () {
   var a = document.getElementById("download");
   /*insert chart image url to download button (tag: <a></a>) */
   a.href = url_base64jp;
-  download(csvContent, 'statistic.csv', 'text/csv;encoding:utf-8');
-});
-
-
-// Example data given in question text
-var data = [
-  ['CGH', 'Average Score: 98'],
-  ['KKH', 'Average Score: 56'],
-  ['SGH', 'Average Score: 88'],
-  ['SKH', 'Average Score: 98'], ,
-  ['NCCS', 'Average Score: 55'],
-  ['NHCS', 'Average Score: 97.5'],
-  ['BVH', 'Average Score: 78'],
-  ['OCH', 'Average Score: 75'],
-  ['Acadmia', 'Average Score: 86'],
-];
-
-// // Build data to enter into CSV
-// var data = [];
-// for (i=0; i<lineChart.data.datasets.length; i++) {
-//   d = [];
-//   d.push(lineChart.data.datasets[i].label);
-//   lineChart.data.datasets[i].data
-// }
-
-// Building the CSV from the Data two-dimensional array
-// Each column is separated by ";" and new line "\n" for next row
-var csvContent = '';
-data.forEach(function (infoArray, index) {
-  dataString = infoArray.join(' ');
-  csvContent += index < data.length ? dataString + '\n' : dataString;
+  download('statistic.csv', 'text/csv;encoding:utf-8');
 });
 
 // The download function takes a CSV string, the filename and mimeType as parameters
-function download(content, fileName, mimeType) {
+function download(fileName, mimeType) {
+  // Build data to enter into CSV
+  var data = [];
+  for (i = 0; i < lineChart.data.datasets.length; i++) {
+    d = [];
+    d.push(lineChart.data.datasets[i].label);
+    lineChart.data.datasets[i].data.forEach(num => {
+      d.push(num);
+    })
+    data.push(d);
+  }
+
+  // Building the CSV from the Data two-dimensional array
+  // Each column is separated by ";" and new line "\n" for next row
+  content = '';
+  data.forEach(function (infoArray, index) {
+    dataString = infoArray.join(',');
+    content += index < data.length ? dataString + '\n' : dataString;
+  });
+
   var a = document.createElement('a');
   mimeType = mimeType || 'application/octet-stream';
 
@@ -227,4 +260,11 @@ function download(content, fileName, mimeType) {
   }
 }
 
-
+function resetChart() {
+  if (lineChart != undefined) {
+    lineChart.destroy();
+  }
+  myChart.parentNode.style.display = "none";
+  document.querySelector(".download-csv-jpeg").style.display = "none";
+  monthData = [];
+}

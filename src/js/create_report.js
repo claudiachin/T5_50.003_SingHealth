@@ -18,7 +18,7 @@ const functions = firebase.functions();
 db.settings({ timestampsInSnapshots: true });
 
 var category = window.location.href.split("/").pop().slice(0, -5);
-var reportID = localStorage.getItem("reportID");
+var reportID = sessionStorage.getItem("reportID");
 
 function change(qn) {
     if (qn.classList.contains("fa-window-minimize")) {

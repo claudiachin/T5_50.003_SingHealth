@@ -9,7 +9,7 @@
 //     console.log(userUID);
 //     firebase.firestore().collection(actualRole).onSnapshot(snapshot => {
 //         snapshot.docs.forEach(doc => {
-//             localStorage.setItem("auditorID", doc.id);
+//             sessionStorage.setItem("auditorID", doc.id);
 //             if (doc.id == userUID){
 //                 const data = {
 //                     email: doc.data().email,

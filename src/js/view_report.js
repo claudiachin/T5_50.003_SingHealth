@@ -20,10 +20,10 @@ db.settings({ timestampsInSnapshots: true });
 //get data from firebase
 var checkboxes = document.getElementsByClassName("main-content-view-report")[0].getElementsByTagName("i");
 
-var reportID = localStorage.getItem("reportID");
-var role = localStorage.getItem("role");
-var auditorID = localStorage.getItem("auditorID");
-var tenantID = localStorage.getItem("tenantID");
+var reportID = sessionStorage.getItem("reportID");
+var role = sessionStorage.getItem("role");
+var auditorID = sessionStorage.getItem("auditorID");
+var tenantID = sessionStorage.getItem("tenantID");
 var category = window.location.href.split("/").pop().slice(0, -5);
 
 db.collection("reports").doc(reportID).get().then((doc) => {

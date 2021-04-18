@@ -38,9 +38,9 @@
 
     <script>
         //fill page with local variables
-        document.getElementsByClassName("back-button")[0].onclick = function () { window.location.href = localStorage.getItem("prevUrl"); };
-        document.getElementById("title").innerHTML = localStorage.getItem("reportName");
-        document.getElementById("date").innerHTML = localStorage.getItem("reportDate");
+        document.getElementsByClassName("back-button")[0].onclick = function () { window.location.href = sessionStorage.getItem("prevUrl"); };
+        document.getElementById("title").innerHTML = sessionStorage.getItem("reportName");
+        document.getElementById("date").innerHTML = sessionStorage.getItem("reportDate");
 
         // Your web app's Firebase configuration
         // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -61,14 +61,14 @@
 
         db.settings({ timestampsInSnapshots: true });
 
-        var reportID = localStorage.getItem("reportID");
+        var reportID = sessionStorage.getItem("reportID");
         console.log(reportID);
         db.collection("reports").doc(reportID).get().then((doc) => {
             document.getElementById("overall").innerHTML = doc.data().overallScore + "%";
         })
 
         function goNext() {
-            type = localStorage.getItem("type");
+            type = sessionStorage.getItem("type");
             if (type == "F&B") {
                 window.location.href = "fnb/professionalism_staff_hygiene.html";
             } else if (type == "Non-F&B") {

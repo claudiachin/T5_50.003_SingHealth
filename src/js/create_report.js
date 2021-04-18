@@ -50,7 +50,7 @@ function checkFilled() {
     var i = 0;
     var allFilled = true;
     while (i < checkboxes.length && allFilled) {
-        if (checkboxes[i].classList.length < 3) {
+        if (checkboxes[i].classList.contains("checkbox") && checkboxes[i].classList.length < 3) {
             allFilled = false;
         }
         i += 1

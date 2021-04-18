@@ -58,15 +58,15 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="chart-container" style="display:none;">
       <canvas id="myChart"></canvas>
     </div>
 
-    <div class="download-csv-jpeg">
-      <p style="padding: 8px;">Download CSV and JPEG</p>
+    <div class="download-csv-jpeg" style="display:none;">
+      <p style="padding: 8px; text-align: end;">Download CSV and JPEG</p>
       <a id="download" download="ChartImage.jpg" href="" class="btn btn-primary float-right bg-flat-color-1"
         title="Descargar Gráfico">
-        <i class="fa fa-download icon-bg" onclick="download(csvContent, 'statistic.csv', 'text/csv;encoding:utf-8');"></i>
+        <i class="fa fa-download icon-bg"></i>
       </a>
     </div>
 

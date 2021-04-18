@@ -171,6 +171,7 @@ function bypass(){
 // logout
 function logout(){
     auth.signOut();
+    localStorage.clear();
     window.location.href = "../../index.html";
 };
 

@@ -27,7 +27,6 @@ btn.onchange = function () {
     }
   }
   document.getElementById("toggle").innerHTML = "Choose " + selectedValue;
-  //generate();
   if (selectedValue === "Institution") {
     document.querySelector('#inst').style.display = "block";
     document.querySelector('#multi').style.display = "none";
@@ -47,25 +46,16 @@ btn.onchange = function () {
 };
 
 var lineChart;
-let DATA = {
-  January: [],
-  February: [],
-  March: [],
-  April: [],
-  May: [],
-  June: [],
-  July: [],
-  August: [],
-  September: [],
-  October: [],
-  November: [],
-  December: []
-};
+let monthData = []
 let tempScores = [];
 
 const myChart = document.querySelector("#myChart");
 
 function displayTrends() {
+  if (lineChart != undefined) {
+    lineChart.destroy();
+  }
+
   let myChart = document.getElementById('myChart').getContext('2d');
 
   // Global Options
@@ -77,95 +67,102 @@ function displayTrends() {
     type: 'line',
     data: {
       labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-      datasets: [
-      ]
+      datasets: []
     },
     options: {
-
       title: {
         display: true,
-        text: 'Audit Scores'
-      }
+        text: 'Audit Scores',
+      },
+      responsive: true,
+      maintainAspectRatio: false,
     }
   });
 }
 
-// function myFunction(item) {
-//   addData(item, [88,88,88,90,92,96,97,95,95,95],generateRandomColor());
-// }
-function myFunction(item, listOfScores) {
-  addData(item, listOfScores, generateRandomColor());
-}
-
-function getScoreData(item) {
-  db.collection("tenants").get().then(snapshot => {
-    snapshot.docs.forEach(doc => {
-      if (item == doc.data().hospital) {
-        let refs = doc.data().reports;
-        for (i = 0; i < refs.length; i++) {
-          refs[i].get().then(ref => {
-            getScores(ref.id);
-          });
-        }
-      }
-    });
-  }).then(() => {
-    console.log(tempScores);
-    myFunction(item, tempScores);
-  }).catch(err => {
-    console.log(err.message);
-  });
-};
-
-function getScores(id) {
-  db.collection("reports").doc(id).onSnapshot(doc => {
-    // console.log(doc.data().overallScore);
-    let score = doc.data().overallScore;
-    // let reportDate = doc.data().dateCreated;
-    // console.log(reportDate);
-    tempScores.push(score);
-    // console.log(tempScores);
-  }), err => {
-    console.log(err.message);
-  };
-}
-
 function generate(selector) {
-  console.log("customiconmulti: " + selector.value());
   var selected = selector.value();
   if (selected.length != 0) {
+
     displayTrends();
-    myChart.style.display = "block";
+    myChart.parentNode.style.display = "";
+    document.querySelector(".download-csv-jpeg").style.display = "";
+
+    var count = 0;
     selected.forEach(item => {
+      var itemName;
       console.log(item);
       if (item == "CGH") {
-        getScoreData("Changi General Hospital");
+        itemName = "Changi General Hospital";
       } else if (item == "KKH") {
-        getScoreData("KK Women's and Children's Hospital");
+        itemName = "KK Women's and Children's Hospital";
       } else if (item == "SGH") {
-        getScoreData("Singapore General Hospital");
+        itemName = "Singapore General Hospital";
       } else if (item == "SKH") {
-        getScoreData("SengKang General Hospital");
+        itemName = "SengKang General Hospital";
       } else if (item == "NCCS") {
-        getScoreData("National Cancer Centre Singapore");
+        itemName = "National Cancer Centre Singapore";
       } else if (item == "NHCS") {
-        getScoreData("National Heart Centre Hospital");
+        itemName = "National Heart Centre Hospital";
       } else if (item == "BVH") {
-        getScoreData("Bright Vision Hospital");
+        itemName = "Bright Vision Hospital";
       } else if (item == "OCH") {
-        getScoreData("Outram Community Hospital");
+        itemName = "Outram Community Hospital";
       } else {
-        getScoreData("Academia");
+        itemName = "Academia";
       }
+
+      var newDataset = {
+        label: item,
+        data: [0,0,0,0,0,0,0,0,0,0,0,0],
+        borderColor: generateRandomColor(),
+        fill: false,
+      }
+      lineChart.data.datasets.push(newDataset);
+      lineChart.update();
+
+      monthData.push([[],[],[],[],[],[],[],[],[],[],[],[]]);
+
+      getScore(itemName, count);
+      count += 1;
+
     });
   }
   else {
     console.log("None chosen. Please make a selection.");
   }
-  /*var apples = customIconMulti.option;
-  apples.forEach(anotherFunction);
+}
 
-  document.getElementById("hi").innerText=(customIconMulti.options);*/
+function getScore(itemName, count) {
+  db.collection("tenants").get().then(snapshot => {
+    snapshot.docs.forEach(doc => {
+      if (itemName == doc.data().hospital) {
+        let refs = doc.data().reports;
+        for (i = 0; i < refs.length; i++) {
+          refs[i].get().then(ref => {
+            console.log(itemName + " " + ref.id + " " + ref.data().overallScore);
+            dateData = new Date(ref.data().dateCreated.seconds * 1000);
+            
+            lineChart.data.datasets[count].data[dateData.getMonth()] = average(ref.data().overallScore, count, dateData.getMonth())
+            lineChart.update();
+          });
+        }
+      }
+    });
+  }).catch(err => {
+    console.log(err.message);
+  });
+}
+
+function average(refScore, count, month) {
+  monthData[count][month].push(refScore);
+  sum = monthData[count][month].reduce((a,b) => a + b, 0);
+  return sum/monthData[count][month].length;
+}
+
+function generateRandomColor() {
+  var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+  return randomColor;
 }
 
 document.getElementById("download").addEventListener('click', function () {
@@ -175,62 +172,8 @@ document.getElementById("download").addEventListener('click', function () {
   var a = document.getElementById("download");
   /*insert chart image url to download button (tag: <a></a>) */
   a.href = url_base64jp;
+  download(csvContent, 'statistic.csv', 'text/csv;encoding:utf-8');
 });
-
-
-//To add DataSet
-function addData(label, data, color) {
-  //lineChart.data.labels.push(label);
-  lineChart.data.datasets.push(data);
-  data.label = label;
-  data.borderColor = color;
-  //data.borderColor="#3cba9f";
-  data.fill = false;
-  data.data = data;
-  console.log("updating chart...");
-  lineChart.update();
-
-}
-
-//To edit-> but should remove all
-function removeData() {
-  lineChart.data.datasets.length = 0;
-  lineChart.update();
-}
-
-function resetCustomMulti(selecting) {
-  removeData();
-  //lineChart.clear();
-  //lineChart.reset();
-  myChart.style.display = "none";
-  selecting.reset();
-};
-
-function generateRandomColor() {
-  var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
-  return randomColor;
-  //random color will be freshly served
-}
-
-function toTimestamp(strDate) {
-  var datum = Date.parse(strDate);
-  return datum / 1000;
-}
-
-
-
-/*
-// Filter out and set back into chart.data.datasets
-chart.data.datasets = chart.data.datasets.filter(function(obj) {
-  return (obj.label != targetLabel); 
-});
-// Repaint
-chart.update();*/
-
-
-/*var refs = doc.data().reports
-for (i=0;i<refs.length;i++) 
-    refs[i].get().....*/
 
 
 // Example data given in question text
@@ -246,6 +189,14 @@ var data = [
   ['Acadmia', 'Average Score: 86'],
 ];
 
+// // Build data to enter into CSV
+// var data = [];
+// for (i=0; i<lineChart.data.datasets.length; i++) {
+//   d = [];
+//   d.push(lineChart.data.datasets[i].label);
+//   lineChart.data.datasets[i].data
+// }
+
 // Building the CSV from the Data two-dimensional array
 // Each column is separated by ";" and new line "\n" for next row
 var csvContent = '';
@@ -255,8 +206,7 @@ data.forEach(function (infoArray, index) {
 });
 
 // The download function takes a CSV string, the filename and mimeType as parameters
-// Scroll/look down at the bottom of this snippet to see how download is called
-var download = function (content, fileName, mimeType) {
+function download(content, fileName, mimeType) {
   var a = document.createElement('a');
   mimeType = mimeType || 'application/octet-stream';
 
@@ -277,64 +227,4 @@ var download = function (content, fileName, mimeType) {
   }
 }
 
-
-
-var arrayofScores = {};
-
-
-
-function getid(selected) {
-  db.collection('tenants').onSnapshot((snapshot) => {
-    snapshot.docs.forEach(doc => {
-      if (selected == doc.data().branch)
-        localStorage.setItem("tenantID", doc.id);
-    })
-  })
-}
-
-
-//get array of scores (unfiltered by time period)
-function getlist(selected) {
-  getid(selected);
-  console.log(localStorage.getItem("tenantID"));
-
-  db.collection("reports").orderBy("dateCreated").get().then((querySnapshot) => {
-    var count = 0;
-    querySnapshot.forEach((doc) => {
-      if (doc.data().associatedTenant == localStorage.getItem("tenantID")) {
-        console.log(doc.data().overallScore);
-        arrayofScores[count] = doc.data().overallScore;
-        count += 1;
-        console.log(count);
-      }
-    }); console.log(arrayofScores);
-  });
-  console.log(arrayofScores);
-}
-
-
-function average(array) {
-  let a = new Array(12);
-  if (array.length == 0) {
-    for (let i = 0; i < 12; ++i) { a[i] = 0; }
-    return a;
-  }
-
-
-  for (i = 0; i < 12; i++) {
-    var ans = 0;
-    for (j = 0; j < array.length; j++) {
-
-      if (typeof array[j][i] === 'undefined') {
-        ans += 0;
-      }
-      ans += array[j][i];
-    }
-
-    a[i] = ans / array.length;
-  }
-
-
-  return a;
-}
 

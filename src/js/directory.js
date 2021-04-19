@@ -79,6 +79,7 @@ function selectTenant(ele) {
     console.log(ele.id);
     url = 'tenant_info.html?name=' + encodeURIComponent(ele.firstChild.firstChild.innerHTML);
     sessionStorage.setItem("tenantID", ele.id);
+    console.log(`>>> ` + ele.firstChild.childNodes[1].innerText);
     if (ele.firstChild.childNodes[1].innerText.includes("Non-F&B")) {
         sessionStorage.setItem("type", "Non-F&B"); 
     } else {

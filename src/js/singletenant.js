@@ -22,6 +22,8 @@ var tenantID = sessionStorage.getItem("tenantID");
 console.log(tenantID);
 
 db.collection("tenants").doc(tenantID).get().then((doc) => {
+    let type = doc.data().type;
+    sessionStorage.setItem('type', type);
     document.getElementById("location").innerHTML = doc.data().hospital + ", " + doc.data().location;
     document.getElementById("type").innerHTML = doc.data().type;
     document.getElementById("branch").innerHTML = doc.data().branch;

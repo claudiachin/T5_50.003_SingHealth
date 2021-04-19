@@ -14,6 +14,7 @@ const loading = document.querySelector("#wrapper");
 const tabBar = document.querySelector(".tab-bar");
 const role = document.querySelector(".tab-active");
 const announcementNoti = document.querySelector("#announcementNoti");
+const replyNoti = document.querySelector("#replyNoti");
 
 // loading
 // window.addEventListener("load", function() {
@@ -33,7 +34,8 @@ auth.onAuthStateChanged(user =>{
         // get data
         let role = sessionStorage.getItem("role");
         getRoleDetails(role,user.uid);
-        getNumOfAnnouncements(user.uid);
+        getNumOfAnnouncements(user.uid, role);
+        displayrepliesNoti(role);
     }  
     else{
         console.log("User is logged out");
@@ -65,7 +67,7 @@ function getRoleDetails(role, userUID){
     }
 };
 
-function getNumOfAnnouncements(uid){
+function getNumOfAnnouncements(uid, role){
     db.collection("announcements").onSnapshot(snapshot => {
         console.log(`Total Number of announcements: ${snapshot.size}`);
         let count = 0;
@@ -75,14 +77,14 @@ function getNumOfAnnouncements(uid){
             }
         })
         console.log(`Total read announcements: ${count}`);
-        displayAnnouncementNoti(snapshot.size - count);
+        displayAnnouncementNoti(snapshot.size - count, role);
         
     }), err => {
     console.log(err.message);
     }
 };
 
-function displayAnnouncementNoti(count){
+function displayAnnouncementNoti(count, role){
     let display;
     if (count == 1){
         display = `<i class="fa gg-bell"></i>${count} New announcement<br>`;
@@ -92,6 +94,24 @@ function displayAnnouncementNoti(count){
         display = `<i class="fa gg-bell"></i>${count} New announcements<br>`;
     }
     announcementNoti.innerHTML = display;
+    
+    if (role == "tenants"){
+        announcementNoti.onclick = function() { window.location.href = "../html/tenant_announcements.html" };
+    }else{
+        announcementNoti.onclick = function() { window.location.href = "../html/announcements.html" };
+    }
+    
+}
+
+function displayrepliesNoti(role){
+    let display;
+    if (role == "tenants"){
+        display = `<i class="fa gg-file-document"></i>No replies from auditors<br>`;
+    }else{
+        display = `<i class="fa gg-file-document"></i>No replies from tenants<br>`;
+    }
+    
+    replyNoti.innerHTML = display;
 }
 
 

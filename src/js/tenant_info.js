@@ -34,7 +34,8 @@ db.collection("tenants").doc(tenantID).get().then((doc) => {
     var owners = doc.data().owners;
     var ownersString = '';
     for (i = 0; i < owners.length; i++) {
-        ownersString += owners[i] + "\n"
+        ownersString += owners[i];
+        ownersString += (i == owners.length-1) ? " " : ", ";
     }
     document.getElementById("owners").innerHTML = ownersString;
     var expiry = new Date(doc.data().expiry.seconds * 1000);

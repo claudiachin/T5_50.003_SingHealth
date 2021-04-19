@@ -53,6 +53,8 @@ function displayTrends() {
     lineChart.destroy();
   }
 
+  monthData = [];
+
   let myChart = document.getElementById('myChart').getContext('2d');
 
   // Global Options
@@ -87,7 +89,6 @@ function tenantGenerate(selector) {
 
     var count = 0;
     selected.forEach(item => {
-      console.log(item);
 
       var newDataset = {
         label: item,

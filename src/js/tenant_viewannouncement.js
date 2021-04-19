@@ -65,7 +65,7 @@ function renderAnnouncementList(docID, doc){
 }
 
 function selectAnnouncement(ele, tenantID) {
-    url = 'announcement_info.html?name=' + encodeURIComponent(ele.firstChild.firstChild.innerHTML);
+    url = 'tenant_announcement_info.html?name=' + encodeURIComponent(ele.firstChild.firstChild.innerHTML);
     sessionStorage.setItem('announcementId', ele.id);
 
     db.collection('announcements').doc(ele.id).update({

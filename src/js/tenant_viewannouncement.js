@@ -12,10 +12,17 @@ db.collection('announcements').orderBy('timestamp').onSnapshot((snapshot) =>{
 function renderAnnouncementList(docID, doc){
     let tenantID = sessionStorage.getItem("tenantID");
     console.log(`tenantID: ${tenantID}`);
+    doc.readby.includes(tenantID) ? readState=true:readState=false;
+    console.log(readState);
+
+    var unreadDot = document.createElement("span");
+    unreadDot.classList.add("blue-dot");
 
     var announcement = document.createElement("p");
     var announcementText = document.createTextNode(doc.title);
+
     announcement.appendChild(announcementText);
+    if (!readState) announcement.appendChild(unreadDot);
     announcement.classList.add("announcement-text");
 
     var inst = document.createElement("p");

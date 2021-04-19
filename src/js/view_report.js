@@ -20,10 +20,10 @@ db.settings({ timestampsInSnapshots: true });
 //get data from firebase
 var checkboxes = document.getElementsByClassName("main-content-view-report")[0].getElementsByTagName("i");
 
-var reportID = localStorage.getItem("reportID");
-var role = localStorage.getItem("role");
-var auditorID = localStorage.getItem("auditorID");
-var tenantID = localStorage.getItem("tenantID");
+var reportID = sessionStorage.getItem("reportID");
+var role = sessionStorage.getItem("role");
+var auditorID = sessionStorage.getItem("auditorID");
+var tenantID = sessionStorage.getItem("tenantID");
 var category = window.location.href.split("/").pop().slice(0, -5);
 
 db.collection("reports").doc(reportID).get().then((doc) => {
@@ -40,6 +40,28 @@ db.collection("reports").doc(reportID).get().then((doc) => {
             checkboxes[i].classList.add("fa-window-minimize");
         } else { // no
             checkboxes[i].classList.add("fa-times");
+        }
+    }
+    document.getElementById("score").innerHTML = score;
+    document.getElementById("out-of").innerHTML = outOf;
+
+    // rectified button
+    var resolved = doc.data()[category + "_resolved"];
+    for (i = 0; i < resolved.length; i++) {
+        if (resolved[i] == false) { //add rectified button after the question
+            rectBtnLocation = checkboxes[i].parentNode.parentNode.nextSibling;
+
+            rectBtn = document.createElement("button");
+            rectBtn.classList.add("rect-btn");
+            rectBtn.innerHTML = "Rectified?";
+            rectBtn.onclick = function () { rectified(this) };
+            console.log(rectBtn.classList);
+
+            rectBtnDiv = document.createElement("div");
+            rectBtnDiv.classList.add("rect-btn-div");
+            rectBtnDiv.appendChild(rectBtn);
+
+            rectBtnLocation.parentNode.insertBefore(rectBtnDiv, rectBtnLocation)
         }
     }
     document.getElementById("score").innerHTML = score;
@@ -82,11 +104,11 @@ db.collection("reports").doc(reportID).get().then((doc) => {
 // chat
 let hygieneChat = db.collection("reports").doc(reportID).collection("hygieneChat");
 
-hygieneChat.orderBy("timestamp").onSnapshot(snapshot =>{
+hygieneChat.orderBy("timestamp").onSnapshot(snapshot => {
     console.log(snapshot.size);
-    snapshot.docChanges().forEach((change,ind) =>{
+    snapshot.docChanges().forEach((change, ind) => {
         let data = change.doc.data();
-        
+
         if (change.type === "added") {
             console.log("New added");
             getMsgFromFirebase(data, change.doc.id);
@@ -96,7 +118,7 @@ hygieneChat.orderBy("timestamp").onSnapshot(snapshot =>{
         }
         if (change.type === "modified") {
             console.log("Modified");
-            
+
         }
         if (change.type === "removed") {
             let msgRemoved = document.getElementById(`${change.doc.id}-msg`);
@@ -104,7 +126,7 @@ hygieneChat.orderBy("timestamp").onSnapshot(snapshot =>{
             console.log("Removed");
         }
     });
-    
+
 });
 
 function togglePhotos(icon) {
@@ -129,7 +151,7 @@ function toggleChat(icon) {
     }
     toggleArrow(icon);
     chatArea.scrollTop = chatArea.scrollHeight;
-    
+
 }
 
 function toggleArrow(icon) {
@@ -190,7 +212,7 @@ function showSlides(n) {
     }
 }
 
-function getMsgFromFirebase(data, msgID){
+function getMsgFromFirebase(data, msgID) {
     //get msgs from firebase
     chatBubblesArea = document.getElementById("bubbles");
     var message = document.createElement("p");
@@ -228,12 +250,12 @@ function getMsgFromFirebase(data, msgID){
 }
 
 
-function sendMessage(object){
+function sendMessage(object) {
     // console.log(object)
     hygieneChat.add(object).then(added => {
-        console.log("message sent ",added)
+        console.log("message sent ", added)
     }).catch(err => {
-        console.err("Error occured",err)
+        console.err("Error occured", err)
     })
 
 }
@@ -250,25 +272,25 @@ function sendMessage(object){
 // }
 
 // on click function
-function sendMsg(){
+function sendMsg() {
 
     var message = document.getElementById("textMsg").value;
     console.log(message);
-    if(message){
-        if (role == "tenants"){
+    if (message) {
+        if (role == "tenants") {
             // insert message 
             sendMessage({
-                from : tenantID,
-                content : message,
+                from: tenantID,
+                content: message,
                 timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                 to: auditorID
             })
         }
-        else{
+        else {
             // insert message 
             sendMessage({
-                from : auditorID,
-                content : message,
+                from: auditorID,
+                content: message,
                 timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                 to: tenantID
             })
@@ -279,11 +301,36 @@ function sendMsg(){
 }
 
 // Send message when user enter key
-document.getElementById("textMsg").addEventListener("keyup", function(event) {
+document.getElementById("textMsg").addEventListener("keyup", function (event) {
 
     // get key code of enter
-    if(event.keyCode == 13){ // enter
-       sendMsg();
+    if (event.keyCode == 13) { // enter
+        sendMsg();
     }
 
 })
+
+function rectified(rectBtn) {
+    console.log(rectBtn.parentNode.previousSibling);
+    var questions = document.getElementsByClassName("question");
+    for (i = 0; i < questions.length; i++) {
+        if (questions[i] == rectBtn.parentNode.previousSibling) {
+            changeResolvedDB(i);
+            
+            rectBtn.innerHTML = "Rectified";
+            rectBtn.classList.remove("rect-btn");
+            rectBtn.classList.add("rect-btn-resolved");
+            rectBtn.onclick = '';
+        }
+    }
+}
+
+function changeResolvedDB(index) {
+    db.collection("reports").doc(reportID).get().then((doc) => {
+        var resolved = doc.data()[category + "_resolved"];
+        resolved[index] = true;
+        db.collection("reports").doc(reportID).update({
+            [category + "_resolved"] : resolved,
+        })
+    })
+}

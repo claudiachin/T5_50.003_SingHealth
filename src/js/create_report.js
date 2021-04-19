@@ -18,7 +18,7 @@ const functions = firebase.functions();
 db.settings({ timestampsInSnapshots: true });
 
 var category = window.location.href.split("/").pop().slice(0, -5);
-var reportID = localStorage.getItem("reportID");
+var reportID = sessionStorage.getItem("reportID");
 
 function change(qn) {
     if (qn.classList.contains("fa-window-minimize")) {
@@ -50,7 +50,7 @@ function checkFilled() {
     var i = 0;
     var allFilled = true;
     while (i < checkboxes.length && allFilled) {
-        if (checkboxes[i].classList.length < 3) {
+        if (checkboxes[i].classList.contains("checkbox") && checkboxes[i].classList.length < 3) {
             allFilled = false;
         }
         i += 1

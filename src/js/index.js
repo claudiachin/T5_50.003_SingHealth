@@ -31,7 +31,7 @@ auth.onAuthStateChanged(user =>{
         // });
         console.log("User logged in");
         // get data
-        let role = localStorage.getItem("role");
+        let role = sessionStorage.getItem("role");
         getRoleDetails(role,user.uid);
         getNumOfAnnouncements();
     }  
@@ -45,16 +45,19 @@ function getRoleDetails(role, userUID){
     console.log(role);
     db.collection(role).onSnapshot(snapshot => {
         snapshot.docs.forEach(doc => {
-            if (role == "auditors") localStorage.setItem("auditorID", userUID);
-            else localStorage.setItem("tenantID", userUID);
+            if (role == "auditors") sessionStorage.setItem("auditorID", userUID);
+            else sessionStorage.setItem("tenantID", userUID);
             
             if (doc.id == userUID){
                 const data = {
                     email: doc.data().email,
                     hospital: doc.data().hospital,
-                    name: doc.data().name
+                    name: doc.data().name,
+                    branch: doc.data().branch
                 };
-                displayDetails(data.email, data.hospital, data.name);
+                if(role=="tenants"){
+                displayDetails(data.email, data.branch, data.name);}
+                else{displayDetails(data.email, data.hospital, data.name);}
             }
         });
     }), err => {
@@ -141,9 +144,9 @@ if (login){
             else{
                 actualRole = "tenants";
             }
-            localStorage.setItem("role", actualRole);
+            sessionStorage.setItem("role", actualRole);
 
-            if(localStorage.getItem("role")==="tenants"){
+            if(sessionStorage.getItem("role")==="tenants"){
             window.location.href = "src/html/tenant_home.html";}
             else{window.location.href ="src/html/home.html";}
             login.reset();
@@ -171,6 +174,7 @@ function bypass(){
 // logout
 function logout(){
     auth.signOut();
+    sessionStorage.clear();
     window.location.href = "../../index.html";
 };
 

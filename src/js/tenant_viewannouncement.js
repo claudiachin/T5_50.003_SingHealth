@@ -57,6 +57,6 @@ function renderAnnouncementList(docID, doc){
 function selectAnnouncement(ele) {
     console.log(ele.id);
     url = 'tenant_announcement_info.html?name=' + encodeURIComponent(ele.firstChild.firstChild.innerHTML);
-    localStorage.setItem('announcementId', ele.id);
+    sessionStorage.setItem('announcementId', ele.id);
     window.location.href = url;
 }

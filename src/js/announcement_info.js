@@ -38,7 +38,7 @@ document.getElementById('announcement_image').src = "../resources/AddPictureOran
 const setupDetailsAnnouncement = (data) => {
     data.forEach(doc => {
         // console.log(doc.data().announcementId);
-        if(doc.id==localStorage.getItem('announcementId')){
+        if(doc.id==sessionStorage.getItem('announcementId')){
             displayDetailsAnnouncement(doc.data());
         }
         })

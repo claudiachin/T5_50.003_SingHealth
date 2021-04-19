@@ -18,7 +18,7 @@ db.settings({ timestampsInSnapshots: true });
 db.collection("tenants").get().then((querySnapshot) => {
   querySnapshot.forEach((doc) => {
     var tenant = document.createElement("p");
-    var tenantText = document.createTextNode(doc.data().tenantName);
+    var tenantText = document.createTextNode(doc.data().branch);
     tenant.appendChild(tenantText);
     tenant.classList.add("tenant-text");
 
@@ -79,20 +79,20 @@ function select(ele) {
 function goNext() {
   db.collection("reports").add({
     associatedTenant: prev.id,
-    associatedAuditor: localStorage.getItem("auditorID"),
+    associatedAuditor: sessionStorage.getItem("auditorID"),
     dateCreated: firebase.firestore.FieldValue.serverTimestamp(),
   })
     .then((docRef) => {
       console.log("Document written with ID: ", docRef.id);
-      localStorage.setItem("reportID", docRef.id);
-      localStorage.setItem("tenantID", prev.id);
+      sessionStorage.setItem("reportID", docRef.id);
+      sessionStorage.setItem("tenantID", prev.id);
       if (prev != '') {
         console.log(prev.childNodes[1].innerText);
         if (prev.childNodes[1].innerText.includes("Non-F&B")) {
-          localStorage.setItem("type", "Non-F&B");
+          sessionStorage.setItem("type", "Non-F&B");
           window.location.href = 'non-fnb/professionalism_staff_hygiene.html';
         } else {
-          localStorage.setItem("type", "F&B");
+          sessionStorage.setItem("type", "F&B");
           window.location.href = 'fnb/professionalism_staff_hygiene.html';
         }
       }
@@ -102,9 +102,9 @@ function goNext() {
     });
 }
 
-if (localStorage.getItem("reportID") != null) {
-  reportID = localStorage.getItem("reportID");
-  localStorage.removeItem("reportID");
+if (sessionStorage.getItem("reportID") != null) {
+  reportID = sessionStorage.getItem("reportID");
+  sessionStorage.removeItem("reportID");
   db.collection("reports").doc(reportID).delete().then(() => {
     console.log("Document successfully deleted!");
   }).catch((error) => {

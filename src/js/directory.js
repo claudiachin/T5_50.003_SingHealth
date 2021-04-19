@@ -20,7 +20,7 @@ db.collection("tenants").get().then((querySnapshot) => {
         console.log(doc.id);
 
         var tenant = document.createElement("p");
-        var tenantText = document.createTextNode(doc.data().tenantName);
+        var tenantText = document.createTextNode(doc.data().branch);
         tenant.appendChild(tenantText);
         tenant.classList.add("tenant-text");
 
@@ -78,11 +78,11 @@ function filter() {
 function selectTenant(ele) {
     console.log(ele.id);
     url = 'tenant_info.html?name=' + encodeURIComponent(ele.firstChild.firstChild.innerHTML);
-    localStorage.setItem("tenantID", ele.id);
+    sessionStorage.setItem("tenantID", ele.id);
     if (ele.firstChild.childNodes[1].innerText.includes("Non-F&B")) {
-        localStorage.setItem("type", "Non-F&B"); 
+        sessionStorage.setItem("type", "Non-F&B"); 
     } else {
-        localStorage.setItem("type", "F&B"); 
+        sessionStorage.setItem("type", "F&B"); 
     }
     window.location.href = url;
 }

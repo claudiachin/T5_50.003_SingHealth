@@ -24,11 +24,13 @@ const functions = firebase.functions();
 
 db.settings({ timestampsInSnapshots: true });
 
-var tenantID = localStorage.getItem("tenantID");
+var tenantID = sessionStorage.getItem("tenantID");
 
 db.collection("tenants").doc(tenantID).get().then((doc) => {
     document.getElementById("location").innerHTML = doc.data().hospital + ", " + doc.data().location;
     document.getElementById("type").innerHTML = doc.data().type;
+    document.getElementById("store").innerHTML = doc.data().branch;
+
     var owners = doc.data().owners;
     var ownersString = '';
     for (i = 0; i < owners.length; i++) {
@@ -67,10 +69,10 @@ db.collection("reports").orderBy("dateCreated").get().then((querySnapshot) => {
             card.classList.add("card");
             card.id = doc.id;
             card.onclick = function () { selectReport(this)};
-            if (localStorage.getItem("role") == "tenants"){
-                localStorage.setItem("auditorID", doc.data().associatedAuditor);
+            if (sessionStorage.getItem("role") == "tenants"){
+                sessionStorage.setItem("auditorID", doc.data().associatedAuditor);
             }else{
-                localStorage.setItem("tenantID", doc.data().associatedTenant);
+                sessionStorage.setItem("tenantID", doc.data().associatedTenant);
             }
             
             var split = document.createElement("hr");
@@ -89,9 +91,9 @@ function openContract() {
 }
 
 function selectReport(report) {
-    localStorage.setItem("reportID", report.id);
-    localStorage.setItem("prevUrl", window.location.href);
-    localStorage.setItem("reportName", report.firstChild.firstChild.innerHTML);
-    localStorage.setItem("reportDate", report.firstChild.lastChild.innerHTML);
+    sessionStorage.setItem("reportID", report.id);
+    sessionStorage.setItem("prevUrl", window.location.href);
+    sessionStorage.setItem("reportName", report.firstChild.firstChild.innerHTML);
+    sessionStorage.setItem("reportDate", report.firstChild.lastChild.innerHTML);
     window.location.href = 'view_report/start.html';
 }

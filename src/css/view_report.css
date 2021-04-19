@@ -249,3 +249,21 @@ div.hover-shadow {
     background-color: #ecab93;
     border-radius: 8px;
 }
+
+.rect-btn-div {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+}
+
+.rect-btn {
+    border: none;
+    background: #F15A22;
+    padding: 8px;
+}
+
+.rect-btn-resolved {
+    border: none;
+    background: #4bf122;
+    padding: 8px;
+}

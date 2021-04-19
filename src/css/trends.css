@@ -125,8 +125,29 @@ width: 100%;
 display: none;
 }
 
-#reset-button {
+#reset-button, #instreset-button, #generate, #instgenerate {
     border: none;
     padding: 4px 8px;
     margin: 4px 0 0;
+}
+
+.reset-gen-btns, .download-csv-jpeg {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.icon-bg {
+    border: none;
+    border-radius: 32px;
+    padding: 16px;
+    background: #F15A22;
+    color: #fff;
+}
+
+.chart-container {
+    position: relative;
+    margin: auto;
+    height: 40vh;
+    width: 80vw;
 }

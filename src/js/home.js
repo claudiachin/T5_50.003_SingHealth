@@ -12,7 +12,7 @@
     
     
     
-    if(localStorage.getItem("role")==="tenants"){
+    if(sessionStorage.getItem("role")==="tenants"){
     trend.style.display="none";
     report.style.display="none";
     list.style.display="block";

@@ -197,14 +197,15 @@ function getMsgFromFirebase(data, msgID){
     messageText = document.createTextNode(data.content);
     message.appendChild(messageText);
 
-    let timeHeader = document.createElement("h5");
-    let time = data.timestamp.toDate().toString().split(" ")[4].slice(0,5);
-    let timeText = document.createTextNode(time);
-    timeHeader.appendChild(timeText);
+    // let timeHeader = document.createElement("h5");
+    // let time = data.timestamp.toDate().toString().split(" ")[4].slice(0,5);
+    // console.log(time);
+    // let timeText = document.createTextNode(time);
+    // timeHeader.appendChild(timeText);
 
     var messageBox = document.createElement("div");
     messageBox.appendChild(message);
-    messageBox.appendChild(timeHeader);
+    // messageBox.appendChild(timeHeader);
     messageBox.classList.add("message-box");
 
     var profile = document.createElement("img");

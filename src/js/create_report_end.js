@@ -97,20 +97,20 @@ db.collection("reports").doc(reportID).get().then((doc) => {
     console.log("Error getting document:", error);
 });
 
-// function percentage(data, weight) {
-//     var score = 0;
-//     var outOf = data.length;
+function percentage(data, weight) {
+    var score = 0;
+    var outOf = data.length;
 
-//     for (i = 0; i < data.length; i++) {
-//         if (data[i] == -1) { //invalid
-//             outOf -= 1;
-//         } else if (data[i] == 1) { //yes
-//             score += 1;
-//         }
-//     }
+    for (i = 0; i < data.length; i++) {
+        if (data[i] == -1) { //invalid
+            outOf -= 1;
+        } else if (data[i] == 1) { //yes
+            score += 1;
+        }
+    }
 
-//     result = Number.parseFloat((score / outOf * weight).toFixed(1));
-//     return [score, outOf, result];
-// }
+    result = Number.parseFloat((score / outOf * weight).toFixed(1));
+    return [score, outOf, result];
+}
 
 // module.exports = percentage;

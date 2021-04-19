@@ -20,7 +20,7 @@ db.collection("tenants").get().then((querySnapshot) => {
         console.log(doc.id);
 
         var tenant = document.createElement("p");
-        var tenantText = document.createTextNode(doc.data().tenantName);
+        var tenantText = document.createTextNode(doc.data().branch);
         tenant.appendChild(tenantText);
         tenant.classList.add("tenant-text");
 

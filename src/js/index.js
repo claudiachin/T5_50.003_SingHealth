@@ -33,7 +33,7 @@ auth.onAuthStateChanged(user =>{
         // get data
         let role = sessionStorage.getItem("role");
         getRoleDetails(role,user.uid);
-        getNumOfAnnouncements();
+        getNumOfAnnouncements(user.uid);
     }  
     else{
         console.log("User is logged out");
@@ -65,10 +65,17 @@ function getRoleDetails(role, userUID){
     }
 };
 
-function getNumOfAnnouncements(){
+function getNumOfAnnouncements(uid){
     db.collection("announcements").onSnapshot(snapshot => {
-        console.log(snapshot.size);
-        displayAnnouncementNoti(snapshot.size);
+        console.log(`Total Number of announcements: ${snapshot.size}`);
+        let count = 0;
+        snapshot.forEach(doc =>{
+            if (doc.data().readby.includes(uid)){
+                count++;
+            }
+        })
+        console.log(`Total read announcements: ${count}`);
+        displayAnnouncementNoti(snapshot.size - count);
         
     }), err => {
     console.log(err.message);
@@ -87,16 +94,6 @@ function displayAnnouncementNoti(count){
     announcementNoti.innerHTML = display;
 }
 
-// setup UI
-// const setupUI = (user) =>{
-//     if (user){
-//         if (user.admin){
-//             adminItems.forEach(item => item.style.display = "block");
-//         }
-//     }else{
-//         adminItems.forEach(item => item.style.display = "none");
-//     }
-// }
 
 function displayDetails(fetchedEmail, fetchedHospital, fetchedName){
     const name = `
@@ -117,12 +114,6 @@ function displayDetails(fetchedEmail, fetchedHospital, fetchedName){
     }
     
 }
-
-// tabBar.addEventListener("click", (e) =>{
-//     e.preventDefault();
-//     actor = tabBar.firstElementChild.getAttribute("class");
-//     console.log(actor);
-// });
 
 // login
 if (login){
@@ -147,8 +138,8 @@ if (login){
             sessionStorage.setItem("role", actualRole);
 
             if(sessionStorage.getItem("role")==="tenants"){
-            window.location.href = "src/html/tenant_home.html";}
-            else{window.location.href ="src/html/home.html";}
+                window.location.href = "src/html/tenant_home.html";}
+            else {window.location.href ="src/html/home.html";}
             login.reset();
             error.innerHTML= "";
         }).catch(err =>{
@@ -159,80 +150,12 @@ if (login){
     });
 }
 
-// Bypass login user an authenticated account
-function bypass(){
-    // get user info
-    const email = "test@mymail.sutd.edu.sg";
-    const password = "123456789";
-
-    auth.signInWithEmailAndPassword(email, password).then(cred =>{
-        // console.log(cred.user);
-        window.location.href = "src/html/home.html";
-    });
-};
-
 // logout
 function logout(){
     auth.signOut();
     sessionStorage.clear();
     window.location.href = "../../index.html";
 };
-
-// signup
-signUpForm.addEventListener("input", ()=>{
-    const email = signupForm[`email`].value;
-    const password = signupForm[`pword`].value;
-    const name = signUpForm['name'].value;
-    const hospital = signUpForm['hospital'].value;
-    signUpError.innerHTML="";
-    if (email == "" || password == "" || name == "" || hospital == "") {
-        submitSignUp.setAttribute("disabled", "disabled");
-        submitSignUp.style.backgroundColor = "rgb(146, 146, 146)";
-    }
-    else{
-        console.log("here");
-        submitSignUp.removeAttribute("disabled");
-        submitSignUp.style.backgroundColor = "#F15A22";
-    }
-});
-
-
-function signup(){
-    const email = signupForm[`email`].value;
-    const password = signupForm[`pword`].value;
-    const name = signUpForm['name'].value;
-    const hospital = signUpForm['hospital'].value;
-
-    console.log(email, name, hospital);
-    auth.createUserWithEmailAndPassword(email,password).then(cred => {
-        return db.collection("auditors").doc(cred.user.uid).set({
-            email: email,
-            name: name,
-            hospital: hospital
-        });
-    }).then(()=>{
-        signupForm.reset();
-        window.location.href = "src/html/home.html";
-        signUpError.innerHTML="";
-    }).catch(err =>{
-        console.log(err);
-        signupForm.reset();
-        signUpError.innerHTML= err.message;
-        submitSignUp.style.backgroundColor = "rgb(146, 146, 146)";
-    });
-};
-
-// Add admin cloud function
-if (adminForm){
-    adminForm.addEventListener('submit', (e) =>{
-        e.preventDefault();
-        const adminEmail = document.querySelector("#admin-email").value;
-        const addAdminRole = functions.httpsCallable("addAdminRole"); // Makes reference to function
-        addAdminRole({email: adminEmail}).then(result =>{
-            console.log(result);
-        });
-    });
-}
 
 function tenantTab(){
     tenantSelect.setAttribute("class","tab-active");
@@ -244,12 +167,93 @@ function auditorTab(){
     auditorSelect.setAttribute("class","tab-active");
 }
 
-function signUpLink(){
-    signupF.style.display = "flex";
-}
+// // Bypass login user an authenticated account
+// function bypass(){
+//     // get user info
+//     const email = "test@mymail.sutd.edu.sg";
+//     const password = "123456789";
 
-function closeSignUpForm(){
-    console.log("Closed signup form");
-    signupF.style.display = "none";
-}
+//     auth.signInWithEmailAndPassword(email, password).then(cred =>{
+//         // console.log(cred.user);
+//         window.location.href = "src/html/home.html";
+//     });
+// };
+
+// setup UI
+// const setupUI = (user) =>{
+//     if (user){
+//         if (user.admin){
+//             adminItems.forEach(item => item.style.display = "block");
+//         }
+//     }else{
+//         adminItems.forEach(item => item.style.display = "none");
+//     }
+// }
+
+// function signUpLink(){
+//     signupF.style.display = "flex";
+// }
+
+// function closeSignUpForm(){
+//     console.log("Closed signup form");
+//     signupF.style.display = "none";
+// }
+
+// // signup
+// signUpForm.addEventListener("input", ()=>{
+//     const email = signupForm[`email`].value;
+//     const password = signupForm[`pword`].value;
+//     const name = signUpForm['name'].value;
+//     const hospital = signUpForm['hospital'].value;
+//     signUpError.innerHTML="";
+//     if (email == "" || password == "" || name == "" || hospital == "") {
+//         submitSignUp.setAttribute("disabled", "disabled");
+//         submitSignUp.style.backgroundColor = "rgb(146, 146, 146)";
+//     }
+//     else{
+//         console.log("here");
+//         submitSignUp.removeAttribute("disabled");
+//         submitSignUp.style.backgroundColor = "#F15A22";
+//     }
+// });
+
+
+// function signup(){
+//     const email = signupForm[`email`].value;
+//     const password = signupForm[`pword`].value;
+//     const name = signUpForm['name'].value;
+//     const hospital = signUpForm['hospital'].value;
+
+//     console.log(email, name, hospital);
+//     auth.createUserWithEmailAndPassword(email,password).then(cred => {
+//         return db.collection("auditors").doc(cred.user.uid).set({
+//             email: email,
+//             name: name,
+//             hospital: hospital
+//         });
+//     }).then(()=>{
+//         signupForm.reset();
+//         window.location.href = "src/html/home.html";
+//         signUpError.innerHTML="";
+//     }).catch(err =>{
+//         console.log(err);
+//         signupForm.reset();
+//         signUpError.innerHTML= err.message;
+//         submitSignUp.style.backgroundColor = "rgb(146, 146, 146)";
+//     });
+// };
+
+// // Add admin cloud function
+// if (adminForm){
+//     adminForm.addEventListener('submit', (e) =>{
+//         e.preventDefault();
+//         const adminEmail = document.querySelector("#admin-email").value;
+//         const addAdminRole = functions.httpsCallable("addAdminRole"); // Makes reference to function
+//         addAdminRole({email: adminEmail}).then(result =>{
+//             console.log(result);
+//         });
+//     });
+// }
+
+
 

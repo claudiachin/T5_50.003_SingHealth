@@ -11,7 +11,8 @@ function postannouncement() {
             timePosted: perfectTime(),
             image: imageURL,
             associatedAuditor: "tester",
-            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            readby: [sessionStorage.getItem("auditorID")]
         })
         .then(() => {
             console.log("Document successfully written!");

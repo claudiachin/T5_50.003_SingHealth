@@ -10,6 +10,11 @@ db.collection('announcements').orderBy('timestamp').onSnapshot((snapshot) =>{
 
 
 function renderAnnouncementList(docID, doc){
+    let auditorID = sessionStorage.getItem("auditorID");
+    console.log(`auditorID: ${auditorID}`);
+    // let 
+    // if (doc.data().readby.includes())
+
     var announcement = document.createElement("p");
     var announcementText = document.createTextNode(doc.title);
     announcement.appendChild(announcementText);
@@ -44,7 +49,7 @@ function renderAnnouncementList(docID, doc){
     card.classList.add("card");
     // card.id = "card-"+i;
     card.id = docID;
-    card.onclick = function() { selectAnnouncement(this) };
+    card.onclick = function() { selectAnnouncement(this, auditorID) };
 
     var split = document.createElement("hr");
 
@@ -54,9 +59,14 @@ function renderAnnouncementList(docID, doc){
 
 }
 
-function selectAnnouncement(ele) {
-    console.log(ele.id);
+function selectAnnouncement(ele, auditorID) {
     url = 'announcement_info.html?name=' + encodeURIComponent(ele.firstChild.firstChild.innerHTML);
     sessionStorage.setItem('announcementId', ele.id);
-    window.location.href = url;
+
+    db.collection('announcements').doc(ele.id).update({
+        "readby": firebase.firestore.FieldValue.arrayUnion(auditorID)
+    }).then(()=>{
+        window.location.href = url;
+    })  
+    
 }

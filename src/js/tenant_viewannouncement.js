@@ -10,6 +10,9 @@ db.collection('announcements').orderBy('timestamp').onSnapshot((snapshot) =>{
 
 
 function renderAnnouncementList(docID, doc){
+    let tenantID = sessionStorage.getItem("tenantID");
+    console.log(`tenantID: ${tenantID}`);
+
     var announcement = document.createElement("p");
     var announcementText = document.createTextNode(doc.title);
     announcement.appendChild(announcementText);
@@ -44,7 +47,7 @@ function renderAnnouncementList(docID, doc){
     card.classList.add("card");
     // card.id = "card-"+i;
     card.id = docID;
-    card.onclick = function() { selectAnnouncement(this) };
+    card.onclick = function() { selectAnnouncement(this, tenantID) };
 
     var split = document.createElement("hr");
 
@@ -54,9 +57,13 @@ function renderAnnouncementList(docID, doc){
 
 }
 
-function selectAnnouncement(ele) {
-    console.log(ele.id);
-    url = 'tenant_announcement_info.html?name=' + encodeURIComponent(ele.firstChild.firstChild.innerHTML);
+function selectAnnouncement(ele, tenantID) {
+    url = 'announcement_info.html?name=' + encodeURIComponent(ele.firstChild.firstChild.innerHTML);
     sessionStorage.setItem('announcementId', ele.id);
-    window.location.href = url;
+
+    db.collection('announcements').doc(ele.id).update({
+        "readby": firebase.firestore.FieldValue.arrayUnion(tenantID)
+    }).then(()=>{
+        window.location.href = url;
+    })  
 }

@@ -18,7 +18,7 @@ db.settings({ timestampsInSnapshots: true });
 db.collection("tenants").get().then((querySnapshot) => {
   querySnapshot.forEach((doc) => {
     var tenant = document.createElement("p");
-    var tenantText = document.createTextNode(doc.data().tenantName);
+    var tenantText = document.createTextNode(doc.data().branch);
     tenant.appendChild(tenantText);
     tenant.classList.add("tenant-text");
 

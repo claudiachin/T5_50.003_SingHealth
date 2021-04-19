@@ -52,9 +52,12 @@ function getRoleDetails(role, userUID){
                 const data = {
                     email: doc.data().email,
                     hospital: doc.data().hospital,
-                    name: doc.data().name
+                    name: doc.data().name,
+                    branch: doc.data().branch
                 };
-                displayDetails(data.email, data.hospital, data.name);
+                if(role=="tenants"){
+                displayDetails(data.email, data.branch, data.name);}
+                else{displayDetails(data.email, data.hospital, data.name);}
             }
         });
     }), err => {

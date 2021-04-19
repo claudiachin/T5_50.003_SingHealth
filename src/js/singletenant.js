@@ -24,6 +24,7 @@ console.log(tenantID);
 db.collection("tenants").doc(tenantID).get().then((doc) => {
     document.getElementById("location").innerHTML = doc.data().hospital + ", " + doc.data().location;
     document.getElementById("type").innerHTML = doc.data().type;
+    document.getElementById("branch").innerHTML = doc.data().branch;
     var owners = doc.data().owners;
     var ownersString = '';
     for (i = 0; i < owners.length; i++) {

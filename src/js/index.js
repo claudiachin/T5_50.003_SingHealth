@@ -168,6 +168,9 @@ function displayrepliesNoti(role, count, reportID){
     
     notibox.innerHTML = display;
     repliesList.appendChild(notibox);
+
+    repliesList.onclick = function() { window.location.href = "../html/view_report/fnb/professionalism_staff_hygiene.html" };
+    
     
 }
 

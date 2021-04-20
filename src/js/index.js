@@ -108,12 +108,12 @@ function getNumOfReplies(role){
     console.log(`getting documents of ${roleDoc}`);
     db.collection(role).doc(roleDoc).onSnapshot(snapshot =>{
         // console.log(snapshot.data().reports);
-        let tenantReports = snapshot.data().reports;
+        let roleReports = snapshot.data().reports;
     
-        tenantReports.forEach(reportRef=>{
+        roleReports.forEach(reportRef=>{
     
             reportRef.get().then(reportDoc =>{
-                // console.log(reportDoc.id);
+                console.log(reportDoc.id);
                 // console.log(reportDoc.data());
                 // console.log(reportDoc.ref);
                 let count = 0;
@@ -128,7 +128,11 @@ function getNumOfReplies(role){
                             chatRemoved.remove();
                             console.log("Removed");
                         }
-                        else if (chat.doc.data().readByTenant == 0){
+                        else if (role == "tenants" && chat.doc.data().readByTenant == 0){
+                            count++;
+                        }
+
+                        else if (role == "auditors" && chat.doc.data().readByAuditor == 0){
                             count++;
                         }
                         

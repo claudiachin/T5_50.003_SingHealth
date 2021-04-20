@@ -14,7 +14,6 @@ const loading = document.querySelector("#wrapper");
 const tabBar = document.querySelector(".tab-bar");
 const role = document.querySelector(".tab-active");
 const announcementNoti = document.querySelector("#announcementNoti");
-const replyNoti = document.querySelector("#replyNoti");
 
 // loading
 // window.addEventListener("load", function() {
@@ -35,7 +34,7 @@ auth.onAuthStateChanged(user =>{
         let role = sessionStorage.getItem("role");
         getRoleDetails(role,user.uid);
         getNumOfAnnouncements(user.uid, role);
-        displayrepliesNoti(role);
+        getNumOfReplies(role);
     }  
     else{
         console.log("User is logged out");
@@ -103,28 +102,68 @@ function displayAnnouncementNoti(count, role){
     
 }
 
-function displayrepliesNoti(role){
-    let display;
-    // let hygieneChat = db.collection("reports").doc(reportID).collection("hygieneChat");
-    // hygieneChat.onSnapshot(snapshot =>{
-    //     console.log("size of chat: " + snapshot.size);
-    //     let readcount = 0;
-    //     snapshot.forEach(doc =>{
-    //         if (role == "tenants"){
-    //             console.log(doc.readByAuditors);
-    //         }else{
-    //             console.log(doc.readByTenants);
-    //         }
-    //     })
-    // })
+function getNumOfReplies(role){
+    console.log(role);
+    role == "tenants" ? roleDoc = sessionStorage.getItem("tenantID"): roleDoc = sessionStorage.getItem("auditorID")
+    console.log(`getting documents of ${roleDoc}`);
+    db.collection(role).doc(roleDoc).onSnapshot(snapshot =>{
+        // console.log(snapshot.data().reports);
+        let tenantReports = snapshot.data().reports;
+    
+        tenantReports.forEach(reportRef=>{
+    
+            reportRef.get().then(reportDoc =>{
+                // console.log(reportDoc.id);
+                // console.log(reportDoc.data());
+                // console.log(reportDoc.ref);
+                let count = 0;
+                reportDoc.ref.collection("hygieneChat").onSnapshot(chats =>{
+                    // console.log(chats.docs);
 
+                    chats.docChanges().forEach(chat =>{
+                        // console.log(chat.data());
+                        let chatRemoved = document.getElementById(`${reportDoc.id}-chat`);
+                        if (chat.type === "removed") {
+                            count--;
+                            chatRemoved.remove();
+                            console.log("Removed");
+                        }
+                        else if (chat.doc.data().readByTenant == 0){
+                            count++;
+                        }
+                        
+                        if (chat.type === "added" && chatRemoved!=null) {
+                            console.log(chat.type);
+                            chatRemoved.remove();
+                        }
+                        
+                        
+                    })
+                    console.log(`There are ${count} unread messages`);
+                    if (count>0) displayrepliesNoti(role, count, reportDoc.id);
+                    
+                })
+            });
+        });
+    });
+}
+
+function displayrepliesNoti(role, count, reportID){
+    let display;
+    var repliesList = document.getElementById("repliesList");
+    let notibox = document.createElement("p");
+
+    notibox.classList.add("notification-box")
+    notibox.id = `${reportID}-chat`;
+    
     if (role == "tenants"){
-        display = `<i class="fa gg-file-document"></i>No replies from auditors<br>`;
+        display = `<i class="fa gg-file-document"></i>${count} replies from auditors<br>`;
     }else{
-        display = `<i class="fa gg-file-document"></i>No replies from tenants<br>`;
+        display = `<i class="fa gg-file-document"></i>${count} replies from tenants<br>`;
     }
     
-    replyNoti.innerHTML = display;
+    notibox.innerHTML = display;
+    repliesList.appendChild(notibox);
     
 }
 

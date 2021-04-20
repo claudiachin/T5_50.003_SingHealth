@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <!-- do not remove anything in head, can add stuff if needed though -->
     <link rel="stylesheet" type="text/css" href="../../../css/style.css">
     <link rel="stylesheet" type="text/css" href="../../../css/create_report.css">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://kit.fontawesome.com/215800797e.js" crossorigin="anonymous"></script>
-  </head>
-  <body>
+</head>
+
+<body>
     <div class="report-nav">
-        <button class="back-button" onclick="window.location.href='housekeeping_general_cleanliness.html';"><i class="fas fa-chevron-left"></i>   Back</button>
+        <button class="back-button" onclick="window.location.href='housekeeping_general_cleanliness.html';"><i
+                class="fas fa-chevron-left"></i> Back</button>
         <h2>Workplace Safety & Health</h2>
-        <button class="next-button hide" onclick="goNext()">Next   <i class="fas fa-chevron-right"></i></button>
+        <button class="next-button hide" onclick="goNext()">Next <i class="fas fa-chevron-right"></i></button>
     </div>
     <div class="main-content-report">
         <div class="question">
@@ -59,7 +63,8 @@
             </div>
         </div>
         <div class="question">
-            <p>Stacking of goods does not exceed 600mm from the ceiling and heavy items at the bottom, light items on top.</p>
+            <p>Stacking of goods does not exceed 600mm from the ceiling and heavy items at the bottom, light items on
+                top.</p>
             <div class="icon">
                 <i class="checkbox fas" onclick="change(this)"></i>
             </div>
@@ -71,7 +76,8 @@
             </div>
         </div>
         <div class="question">
-            <p>Fire extinguishers access is unobstructed; Fire extinguishers are not expired and employees know how to use them.</p>
+            <p>Fire extinguishers access is unobstructed; Fire extinguishers are not expired and employees know how to
+                use them.</p>
             <div class="icon">
                 <i class="checkbox fas" onclick="change(this)"></i>
             </div>
@@ -101,7 +107,8 @@
             </div>
         </div>
         <div class="question">
-            <p>Power points that are in close proximity to flammable and/or water sources are installed with a plastic cover.</p>
+            <p>Power points that are in close proximity to flammable and/or water sources are installed with a plastic
+                cover.</p>
             <div class="icon">
                 <i class="checkbox fas" onclick="change(this)"></i>
             </div>
@@ -131,9 +138,12 @@
 
     <script>
         function goNext() {
-            window.location.href='covid.html';
+            window.location.href = 'covid.html';
         }
     </script>
 
-  </body>
+    <script src="../../../js/app.js"></script>
+
+</body>
+
 </html>

@@ -129,6 +129,7 @@ hygieneChat.orderBy("timestamp").onSnapshot(snapshot => {
 
 });
 
+
 function togglePhotos(icon) {
     var photoArea = document.getElementById("photos");
     if (photoArea.style.display == "none") {
@@ -139,12 +140,28 @@ function togglePhotos(icon) {
     toggleArrow(icon);
 }
 
+var chatArea = document.getElementById("chat-bubbles");
+var sendMsgArea = document.getElementById("send-msg-area");
 function toggleChat(icon) {
-    var chatArea = document.getElementById("chat-bubbles");
-    var sendMsgArea = document.getElementById("send-msg-area");
     if (chatArea.style.display == "none") {
         chatArea.style.display = "";
         sendMsgArea.style.display = "";
+        var role = sessionStorage.getItem("role");
+        console.log(role);
+        hygieneChat.get().then(snapshot =>{
+            snapshot.forEach(doc =>{
+                if (role == "tenants"){
+                    doc.ref.update({
+                        readByTenant: 1
+                    })
+                }else{
+                    doc.ref.update({
+                        readByAuditor: 1
+                    })
+                } 
+            })
+        })
+        
     } else {
         chatArea.style.display = "none";
         sendMsgArea.style.display = "none";
@@ -153,6 +170,27 @@ function toggleChat(icon) {
     chatArea.scrollTop = chatArea.scrollHeight;
 
 }
+
+hygieneChat.onSnapshot(snapshot =>{
+    var role = sessionStorage.getItem("role");
+    console.log(role);
+    console.log(`Chat Area opened: ${chatArea.style.display}`);
+    if (chatArea.style.display == "") {
+        snapshot.forEach(doc =>{
+            if (role == "tenants"){
+                doc.ref.update({
+                    readByTenant: 1
+                })
+            }else{
+                doc.ref.update({
+                    readByAuditor: 1
+                })
+            }
+            
+        })
+    }
+    
+})
 
 function toggleArrow(icon) {
     if (icon.classList.contains("fa-chevron-down")) {
@@ -283,7 +321,9 @@ function sendMsg() {
                 from: tenantID,
                 content: message,
                 timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-                to: auditorID
+                to: auditorID,
+                readByTenant: 1,
+                readByAuditor: 0
             })
         }
         else {
@@ -292,7 +332,9 @@ function sendMsg() {
                 from: auditorID,
                 content: message,
                 timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-                to: tenantID
+                to: tenantID,
+                readByTenant: 0,
+                readByAuditor: 1
             })
         }
 

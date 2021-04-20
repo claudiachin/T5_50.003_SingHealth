@@ -94,7 +94,7 @@ function displayAnnouncementNoti(count, role){
         display = `<i class="fa gg-bell"></i>${count} New announcements<br>`;
     }
     announcementNoti.innerHTML = display;
-    
+
     if (role == "tenants"){
         announcementNoti.onclick = function() { window.location.href = "../html/tenant_announcements.html" };
     }else{
@@ -105,6 +105,19 @@ function displayAnnouncementNoti(count, role){
 
 function displayrepliesNoti(role){
     let display;
+    // let hygieneChat = db.collection("reports").doc(reportID).collection("hygieneChat");
+    // hygieneChat.onSnapshot(snapshot =>{
+    //     console.log("size of chat: " + snapshot.size);
+    //     let readcount = 0;
+    //     snapshot.forEach(doc =>{
+    //         if (role == "tenants"){
+    //             console.log(doc.readByAuditors);
+    //         }else{
+    //             console.log(doc.readByTenants);
+    //         }
+    //     })
+    // })
+
     if (role == "tenants"){
         display = `<i class="fa gg-file-document"></i>No replies from auditors<br>`;
     }else{
@@ -112,8 +125,8 @@ function displayrepliesNoti(role){
     }
     
     replyNoti.innerHTML = display;
+    
 }
-
 
 function displayDetails(fetchedEmail, fetchedHospital, fetchedName){
     const name = `

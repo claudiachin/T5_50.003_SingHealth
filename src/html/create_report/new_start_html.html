@@ -16,24 +16,40 @@
   <div class="report-nav">
     <button class="back-button" onclick="window.location.href='../home.html';"><i class="fas fa-times"></i>
       Back</button>
-      
-
     <h2>Start</h2>
-    <button class="next-button hide" onclick="goNext()">Next <i class="fas fa-chevron-right"></i></button>
+
+
+    <button id="nexxt" onclick="goNextnew()" >Next <i class="fas fa-chevron-right"></i></button>
   </div>
+
 
   <div class="main-content-report">
-    <input type="button" class="primary-button" onclick="location.href='new_start_html.html';" value="New Tenant" />
-    <input type="text" id="search" onkeyup="filter()" placeholder="Search..">
-    <div id="list"></div>
-  </div>
+<div>
+  <form id="newformtenant" method="post">
+    <label for="hospital">Hospital:</label><br>
+    <input type="text" id="hospital" name="hospital"><br>
+    <label for="branch">Branch:</label><br>
+    <input type="text" id="branch" name="branch"><br>
+    <label for="newtype">Type:</label><br>
+    <input type="text" id="newtype" name="newtype"><br>
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name"><br>
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email">
+    <!--<input type="submit" value="Submit" >-->
+  </form> 
+  </div>  </div>
+
+
+
+  
 
   <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-functions.js"></script>
 
-  <script src="../../js/create_report_start.js"></script>
+  <script src="../../js/new_create_report_start.js"></script>
 
 </body>
 

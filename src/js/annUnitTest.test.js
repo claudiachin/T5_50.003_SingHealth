@@ -2,6 +2,7 @@ const { generateText } = require('./makeannouncement');
 
 document.getElementById("announcement_title").innerHTML = "This is a test to see whether the title bar field value thing can impose the condition of the maximum text length of the 120 characters overtly long abused can";
 document.getElementById("announcement_desc").innerHTML = "Insert 2000+ char string";
+document.getElementById("announcement_image").src = "Image Link";
 
 testMaxTitle('Testing the No of Chars for the Title Field', ()=>{
     const textLength = document.getElementById("count_value_title").value;

@@ -110,3 +110,16 @@ function uploadImageAsPromise(imageFile) {
         );
     });
 }
+
+//For Testing Purposes
+function titleFieldLength(){
+    var titleTextfieldCount = document.getElementById("count_no_title").innerHTML;
+    console.log(titleTextfieldCount);
+    return titleTextfieldCount;
+}
+
+function descFieldLength(){
+    var descTextfieldCount = document.getElementById("count_no").innerHTML;
+    console.log(descTextfieldCount);
+    return descTextfieldCount;
+}

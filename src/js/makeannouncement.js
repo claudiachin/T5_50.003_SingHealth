@@ -123,3 +123,10 @@ function descFieldLength(){
     console.log(descTextfieldCount);
     return descTextfieldCount;
 }
+
+function imageType(){
+    var imageType = imageURL;
+    var imageExtension = imageType.split('.').pop();
+    console.log(imageExtension);
+    return imageExtension;
+}

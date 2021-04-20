@@ -8,7 +8,12 @@ testMaxTitle('Testing the No of Chars for the Title Field', ()=>{
     expect(len(textLength)).toBeLessThanOrEqual(120); //the number of characters in the textbox must not exceed the maximum allowed chars
 });
 
-testMaxDescription('Testing the No of Chars for the Title Field', ()=>{
-    const descLength = document.getElementById("count_value").value
+testMaxDescription('Testing the No of Chars for the Description Field', ()=>{
+    const descLength = document.getElementById("count_value").value;
     expect(len(descLength)).toBeLessThanOrEqual(2000); //the number of characters in the textbox must not exceed the maximum allowed chars
 });
+
+testImageExtension('Testing the Image Extension uploaded via Upload Image Function',()=>{
+    const imageType = document.getElementById("announcement_image").src
+    expect(imageType).toBe('.jpg'|'.png'|'.gif'|'.bmp');
+}

@@ -127,6 +127,7 @@ function descFieldLength(){
 function imageType(){
     var imageType = imageURL;
     var imageExtension = imageType.split('.').pop();
+    imageExtension = imageExtension.substring(0, imageExtension.indexOf('?'));
     console.log(imageExtension);
     return imageExtension;
 }

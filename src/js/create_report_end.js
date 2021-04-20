@@ -90,6 +90,10 @@ db.collection("reports").doc(reportID).get().then((doc) => {
             reports: firebase.firestore.FieldValue.arrayUnion(db.collection("reports").doc(reportID)),
         })
 
+        db.collection("auditors").doc(sessionStorage.getItem("auditorID")).update({
+            reports: firebase.firestore.FieldValue.arrayUnion(db.collection("reports").doc(reportID)),
+        })
+
     } else {
         console.log("No such document!");
     }

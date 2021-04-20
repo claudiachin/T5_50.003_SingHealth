@@ -281,8 +281,9 @@ function upload() {
 }
 
 //check if localhost or not
+var host = window.location.hostname;
 var isLocal = false;
-if (window.location.hostname.contains("github")) {
+if (window.location.hostname.includes("github")) {
     console.log(window.location.hostname);
     isLocal = false;
 } else {

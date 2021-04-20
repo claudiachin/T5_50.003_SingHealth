@@ -19,7 +19,7 @@ if (sessionStorage.getItem("role") === "tenants") {
 
 //check if localhost or not
 var isLocal = false;
-if (window.location.hostname.contains("github")) {
+if (window.location.hostname.includes("github")) {
     console.log(window.location.hostname);
     isLocal = false;
 } else {

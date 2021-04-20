@@ -26,7 +26,7 @@ function postannouncement() {
 function checkFieldsFilled() {
         //checks that all the relevant fields have been filled
         var titleTextfield = document.getElementById("count_value_title").value;
-        var descriptionTextfield = document.getElementById("count_value").value;
+        var descriptionTextfield = document.getElementById("count_value").value.replace(/\n/g, '<br>');
     
         var titleFilled = false;
         var descriptionFilled = false;

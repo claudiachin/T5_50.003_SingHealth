@@ -48,7 +48,7 @@ const setupDetailsAnnouncement = (data) => {
 function displayDetailsAnnouncement(details){
     const title =  details.title;
 
-    const description = details.content;
+    const description = details.content.replace(/\n/g, '<br>');
 
     const imageLink=details.image;
 

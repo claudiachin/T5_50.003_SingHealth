@@ -4,46 +4,49 @@ Same with the search button, input-type to find a way to retrieve the relevant l
 
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <!-- do not remove anything in head, can add stuff if needed though -->
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="stylesheet" href="../css/bell.css">
     <link rel="stylesheet" href="../css/file-document.css">
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://kit.fontawesome.com/215800797e.js" crossorigin="anonymous"></script>
-    
-  </head>
-  <body>
+
+</head>
+
+<body>
     <div class="top-flap">
         <p class="auditorName">Welcome,<br><span></span></p>
-        
-        <img src="../resources/profile.png" class="floatRight" >
+
+        <img src="../resources/profile.png" class="floatRight">
 
     </div>
 
     <div class="main-content">
-        <div class = "home">
-            <div class = "accountDetails">
-                <h2><b>Hospital</b><br></h3> 
-                <p><br></p>
-                <br>
-    
-                <h2><b>Email</b><br></h3> 
-                <p><br></p>
+        <div class="home">
+            <div class="accountDetails">
+                <h2><b>Hospital</b><br></h3>
+                    <p><br></p>
+                    <br>
+
+                    <h2><b>Email</b><br></h3>
+                        <p><br></p>
 
             </div>
-            
+
             <br>
-            
-            <div> 
+
+            <div>
                 <p class="noti">Notifications<br></p>
 
                 <p class="notification-box" id="announcementNoti"><i class="fa gg-bell"></i>No new announcements<br></p>
                 <div id="repliesList">
-                    
+
                 </div>
 
 
@@ -54,59 +57,67 @@ Same with the search button, input-type to find a way to retrieve the relevant l
                 <br>
                 <br>
                 <form class="admin-actions admin" style="display: none;">
-                    <input type="email" placeholder="User email" id="admin-email" style="border: none; border-bottom: 1px solid #444444;" required />
-                    <button class="primary-button" >Make Admin</button>
+                    <input type="email" placeholder="User email" id="admin-email"
+                        style="border: none; border-bottom: 1px solid #444444;" required />
+                    <button class="primary-button">Make Admin</button>
                 </form>
             </div>
             <button class="primary-button" id="logout" onclick=logout()>Logout</button>
-            
+
         </div>
     </div>
 
     <div>
-    <div class="navbar" id="navbarauditors" >
-        <div id="home" class="nav-active">
-            <i class="fas fa-home button"></i>
+        <div class="navbar" id="navbarauditors">
+            <div id="home" class="nav-active">
+                <i class="fas fa-home button"></i>
+            </div>
+            <div id="annoucements">
+                <button class="button" onclick="window.location.href='announcements.html';"><i
+                        class="fas fa-bullhorn"></i></button>
+            </div>
+            <div id="new-report">
+                <i class="fas fa-plus-circle" onclick="window.location.href='create_report/start.html';"></i>
+            </div>
+            <div id="trends">
+                <button class="button" onclick="window.location.href='trends.html';"><i
+                        class="fas fa-chart-line"></i></button>
+            </div>
+            <div id="directory">
+                <button id="directorybutton" class="button" onclick="window.location.href='directory.html';"><i
+                        class="fas fa-th-list"></i></button>
+            </div>
         </div>
-        <div id="annoucements">
-            <button class="button" onclick="window.location.href='announcements.html';"><i class="fas fa-bullhorn"></i></button>
-        </div>
-        <div id="new-report">
-            <i class="fas fa-plus-circle" onclick="window.location.href='create_report/start.html';"></i></div>
-        <div id="trends">
-            <button class="button" onclick="window.location.href='trends.html';"><i class="fas fa-chart-line"></i></button></div>
-        <div id="directory">
-            <button id="directorybutton" class="button" onclick="window.location.href='directory.html';"><i class="fas fa-th-list"></i></button>
-        </div>
-    </div>
 
 
-    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-functions.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-functions.js"></script>
 
-    <script>
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        var firebaseConfig = {
-          apiKey: "AIzaSyBl1hU_vW6IbzkF0XTqvnBlWyLrTmgybns",
-          authDomain: "singhealth-221e6.firebaseapp.com",
-          projectId: "singhealth-221e6",
-          appId: "1:684333425325:web:59bbff097942477f599c24",
-          measurementId: "G-SYJWNBX65P"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-        const functions = firebase.functions();
+        <script>
+            // Your web app's Firebase configuration
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            var firebaseConfig = {
+                apiKey: "AIzaSyBl1hU_vW6IbzkF0XTqvnBlWyLrTmgybns",
+                authDomain: "singhealth-221e6.firebaseapp.com",
+                projectId: "singhealth-221e6",
+                appId: "1:684333425325:web:59bbff097942477f599c24",
+                measurementId: "G-SYJWNBX65P"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            const auth = firebase.auth();
+            const db = firebase.firestore();
+            const functions = firebase.functions();
 
-        db.settings({timestampsInSnapshots: true});
-  
-    </script> 
-    <script src="../js/index.js"></script>
-    <script src="../js/app.js"></script> 
-    <script src="../js/home.js"></script> 
-  </body>
+            db.settings({ timestampsInSnapshots: true });
+
+        </script>
+        
+        <script src="../js/index.js"></script>
+        <script src="../js/app.js"></script>
+        <script src="../js/home.js"></script>
+</body>
+
 </html>

@@ -279,3 +279,10 @@ function upload() {
         });
 
 }
+
+if (sessionStorage.getItem("role") != null) {
+    console.log("User is signed in.");
+} else {
+    console.log("No user is signed in.");
+    window.location.href = "/index.html";
+}

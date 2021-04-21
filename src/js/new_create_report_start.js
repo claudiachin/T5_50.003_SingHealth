@@ -26,7 +26,6 @@ var firebaseConfig = {
      var nname = document.getElementById("name").value;
      var email = document.getElementById("email").value;
      var newtype = document.getElementById("newtype").value;
-     var id;
  // Add a new document with a generated id.
  db.collection("tenants").add({
      hospital: hospital,
@@ -38,7 +37,6 @@ var firebaseConfig = {
  .then((docRef) => {
    //var id=docRef.id;
      console.log("Tenant document written with ID: ", docRef.id);
-     id=docRef.id;
      sessionStorage.setItem("tenantID", docRef.id);
      //console.log(sessionStorage.getItem("tenantID"));
      sessionStorage.setItem("type", newtype);
@@ -47,9 +45,10 @@ var firebaseConfig = {
  .catch((error) => {
      console.error("Error adding document: ", error);
  });
+ document.getElementById("nexxt").style.display = 'none';
  
     db.collection("reports").add({
-      associatedTenant: id,
+      associatedTenant: sessionStorage.getItem("tenantID"),
       associatedAuditor: sessionStorage.getItem("auditorID"),
       dateCreated: firebase.firestore.FieldValue.serverTimestamp(),
     })
@@ -81,5 +80,5 @@ var firebaseConfig = {
       console.error("Error removing document: ", error);
     });
 
-    document.getElementById("nexxt").style.display = 'none';
+   
   }

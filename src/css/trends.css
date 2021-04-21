@@ -151,3 +151,11 @@ display: none;
     height: 40vh;
     width: 80vw;
 }
+
+#download {
+    background: none !important;
+    position: unset !important;
+    right: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}

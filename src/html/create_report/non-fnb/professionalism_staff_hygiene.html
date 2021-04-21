@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <!-- do not remove anything in head, can add stuff if needed though -->
     <link rel="stylesheet" type="text/css" href="../../../css/style.css">
     <link rel="stylesheet" type="text/css" href="../../../css/create_report.css">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://kit.fontawesome.com/215800797e.js" crossorigin="anonymous"></script>
-  </head>
-  <body>
+</head>
+
+<body>
     <div class="report-nav">
-        <button class="back-button" onclick="window.location.href='../start.html';"><i class="fas fa-chevron-left"></i>   Back</button>
+        <button class="back-button" onclick="window.location.href='../start.html';"><i class="fas fa-chevron-left"></i>
+            Back</button>
         <h2>PROFESSIONALISM & STAFF HYGIENE</h2>
-        <button class="next-button hide" onclick="goNext()">Next   <i class="fas fa-chevron-right"></i></button>
+        <button class="next-button hide" onclick="goNext()">Next <i class="fas fa-chevron-right"></i></button>
     </div>
     <div class="main-content-report">
         <div class="question">
@@ -47,7 +51,8 @@
             </div>
         </div>
         <div class="question">
-            <p>Staff who are fit for work but suffering from the lingering effects of a cough and/or cold should cover their mouths with a surgical mask.</p>
+            <p>Staff who are fit for work but suffering from the lingering effects of a cough and/or cold should cover
+                their mouths with a surgical mask.</p>
             <div class="icon">
                 <i class="checkbox fas" onclick="change(this)"></i>
             </div>
@@ -71,9 +76,12 @@
 
     <script>
         function goNext() {
-            window.location.href='housekeeping_general_cleanliness.html';
+            window.location.href = 'housekeeping_general_cleanliness.html';
         }
     </script>
 
-  </body>
+    <script src="../../../js/app.js"></script>
+
+</body>
+
 </html>

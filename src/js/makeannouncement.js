@@ -15,7 +15,13 @@ function postannouncement() {
             readby: [sessionStorage.getItem("auditorID")]
         })
         .then(() => {
-            console.log("Document successfully written!");
+            let role = sessionStorage.getItem("role");
+            if (role == "tenants"){
+                window.location.href = "../html/tenant_announcements.html";
+            }else{
+                window.location.href = "../html/announcements.html";
+            }
+            // console.log("Document successfully written!");
         })
         .catch((error) => {
             console.error("Error writing document: ", error);

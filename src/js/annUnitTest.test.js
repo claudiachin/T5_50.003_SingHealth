@@ -27,7 +27,7 @@ testMinDescription('Testing the Min No of Chars for the Description Field', ()=>
 });
 
 testImageExtension('Testing the Image Extension uploaded via Upload Image Function',()=>{
-    const imageType = imageType();
-    expect(imageType).toBe('jpg'|'png'|'gif'|'bmp');
+    const imageExtension = imageType();
+    expect(imageExtension).toBe('jpg'|'png'|'gif'|'bmp');
 });
 

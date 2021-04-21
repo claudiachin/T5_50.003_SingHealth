@@ -1,6 +1,6 @@
 const announcementlist = document.querySelector('#announcementList');
 
-db.collection('announcements').orderBy('timestamp').onSnapshot((snapshot) =>{
+db.collection('announcements').orderBy('timestamp', "desc").onSnapshot((snapshot) =>{
     snapshot.docs.forEach(doc =>{
         // console.log(doc.data());
         // console.log(doc.id);

@@ -451,9 +451,22 @@ body {
     font-weight: bold;
 }
 
-.announcement-text {
-    font-weight: bold;
+.sect > h6{
+    display: inline-block;
+    font-size: 0.8em;
 }
+
+.sect > p{
+    font-size: 0.94em;
+}
+
+.sect .announcement-text {
+    font-weight: bold;
+    font-size: 1.15em;
+    display: inline-block;
+}
+
+
 
 .blue-dot {
     width: 8px;
@@ -515,3 +528,4 @@ body {
 #make-announcement-button{
     margin-bottom: 20px;
 }
+

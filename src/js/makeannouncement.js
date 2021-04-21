@@ -67,7 +67,21 @@ function perfectTime(){
     const currentMinutes = currentTime.getMinutes();
     const currentSeconds = currentTime.getSeconds();
 
-    const timeString = `${currentHours}:${currentMinutes}:${currentSeconds} `;
+    let timeString;
+    console.log(`${currentHours} ${currentMinutes} ${currentSeconds}`);
+    console.log(currentHours < 10);
+    console.log(currentMinutes < 10);
+    console.log(currentSeconds < 10);
+    if (currentHours < 10){
+        timeString = `0${currentHours}:${currentMinutes}:${currentSeconds} `;
+    }
+    if (currentMinutes < 10){
+        timeString = `${currentHours}:0${currentMinutes}:${currentSeconds} `;
+    }
+    if (currentSeconds < 10){
+        timeString = `${currentHours}:${currentMinutes}:0${currentSeconds} `;
+    }
+    
 
     let ampm = "AM";
     if (currentHours >= 12){

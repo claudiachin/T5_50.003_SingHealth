@@ -113,7 +113,11 @@ function percentage(data, weight) {
         }
     }
 
-    result = Number.parseFloat((score / outOf * weight).toFixed(1));
+    if (score == 0 && outOf == 0) {
+        result = weight;
+    } else { 
+        result = Number.parseFloat((score / outOf * weight).toFixed(1));
+    }
     return [score, outOf, result];
 }
 

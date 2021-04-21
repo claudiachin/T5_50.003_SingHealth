@@ -32,6 +32,8 @@ auth.onAuthStateChanged(user =>{
         console.log("User logged in");
         // get data
         let role = sessionStorage.getItem("role");
+        if (role == "auditors") sessionStorage.setItem("auditorID", user.uid);
+        else sessionStorage.setItem("tenantID", user.uid);
         getRoleDetails(role,user.uid);
         getNumOfAnnouncements(user.uid, role);
         getNumOfReplies(role);
@@ -46,8 +48,6 @@ function getRoleDetails(role, userUID){
     console.log(role);
     db.collection(role).onSnapshot(snapshot => {
         snapshot.docs.forEach(doc => {
-            if (role == "auditors") sessionStorage.setItem("auditorID", userUID);
-            else sessionStorage.setItem("tenantID", userUID);
             
             if (doc.id == userUID){
                 const data = {
@@ -104,6 +104,8 @@ function displayAnnouncementNoti(count, role){
 
 function getNumOfReplies(role){
     console.log(role);
+    console.log(">>> " + sessionStorage.getItem("tenantID"));
+    console.log(">>> " + sessionStorage.getItem("auditorID"));
     role == "tenants" ? roleDoc = sessionStorage.getItem("tenantID"): roleDoc = sessionStorage.getItem("auditorID")
     console.log(`getting documents of ${roleDoc}`);
     db.collection(role).doc(roleDoc).onSnapshot(snapshot =>{
@@ -161,9 +163,18 @@ function displayrepliesNoti(role, count, reportID){
     notibox.id = `${reportID}-chat`;
     
     if (role == "tenants"){
-        display = `<i class="fa gg-file-document"></i>${count} replies from auditors<br>`;
+        if (count == 1){
+            display = `<i class="fa gg-file-document"></i>${count} reply from an auditor<br>`;
+        }else{
+            display = `<i class="fa gg-file-document"></i>${count} replies from auditors<br>`;
+        }
+        
     }else{
-        display = `<i class="fa gg-file-document"></i>${count} replies from tenants<br>`;
+        if (count == 1){
+            display = `<i class="fa gg-file-document"></i>${count} reply from a tenant<br>`;
+        }else{
+            display = `<i class="fa gg-file-document"></i>${count} replies from tenants<br>`;
+        }
     }
     
     notibox.innerHTML = display;

@@ -305,7 +305,7 @@ body {
 
 .notification-box{
     border: 40px;
-    margin: 12px 0px;
+    margin: 18px 0px;
     padding: 8px;
     padding-bottom: 12px;
     font-size: 18px;
@@ -319,6 +319,7 @@ body {
 .notification-box > i{
     margin-right: 16px;
     margin-left: 5px;
+    padding-top: 13px;
     display: inline-block;
 
 }

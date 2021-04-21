@@ -26,6 +26,7 @@ var firebaseConfig = {
      var nname = document.getElementById("name").value;
      var email = document.getElementById("email").value;
      var newtype = document.getElementById("newtype").value;
+     var id;
  // Add a new document with a generated id.
  db.collection("tenants").add({
      hospital: hospital,
@@ -37,6 +38,7 @@ var firebaseConfig = {
  .then((docRef) => {
    //var id=docRef.id;
      console.log("Tenant document written with ID: ", docRef.id);
+     id=docRef.id;
      sessionStorage.setItem("tenantID", docRef.id);
      //console.log(sessionStorage.getItem("tenantID"));
      sessionStorage.setItem("type", newtype);
@@ -47,7 +49,7 @@ var firebaseConfig = {
  });
  
     db.collection("reports").add({
-      associatedTenant: sessionStorage.getItem("tenantID"),
+      associatedTenant: id,
       associatedAuditor: sessionStorage.getItem("auditorID"),
       dateCreated: firebase.firestore.FieldValue.serverTimestamp(),
     })

@@ -8,7 +8,7 @@ function postannouncement() {
             title: document.getElementById("count_value_title").value,
             content: document.getElementById("count_value").value,
             datePosted: perfectDate(),
-            timePosted: perfectTime(),
+            timePosted: perfectTime(), 
             image: imageURL,
             associatedAuditor: "tester",
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
@@ -74,6 +74,7 @@ function perfectTime(){
     const currentSeconds = currentTime.getSeconds();
 
     let timeString;
+    timeString = `${currentHours}:${currentMinutes}:${currentSeconds}`;
     console.log(`${currentHours} ${currentMinutes} ${currentSeconds}`);
     console.log(currentHours < 10);
     console.log(currentMinutes < 10);
@@ -87,7 +88,6 @@ function perfectTime(){
     if (currentSeconds < 10){
         timeString = `${currentHours}:${currentMinutes}:0${currentSeconds} `;
     }
-    
 
     let ampm = "AM";
     if (currentHours >= 12){

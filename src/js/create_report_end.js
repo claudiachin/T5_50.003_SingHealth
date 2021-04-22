@@ -121,4 +121,7 @@ function percentage(data, weight) {
     return [score, outOf, result];
 }
 
-// module.exports = percentage;
+function finishReport() {
+    reportID = sessionStorage.removeItem("reportID");
+    window.location.href='../../home.html';
+}

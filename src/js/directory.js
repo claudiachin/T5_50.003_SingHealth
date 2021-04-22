@@ -15,7 +15,7 @@ const functions = firebase.functions();
 
 db.settings({ timestampsInSnapshots: true });
 
-db.collection("tenants").get().then((querySnapshot) => {
+db.collection("tenants").orderBy("branch").get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
         console.log(doc.id);
 

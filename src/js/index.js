@@ -231,21 +231,29 @@ if (login){
             snapshot.docs.forEach(doc => {
                 if (doc.data().email === email){
                     console.log("Has an account!");
-                    auth.signInWithEmailAndPassword(email, password).then(cred =>{
-                        // console.log(cred.user);
-                        
-                        sessionStorage.setItem("role", actualRole);
-            
-                        if(sessionStorage.getItem("role")==="tenants"){
-                            window.location.href = "src/html/tenant_home.html";}
-                        else {window.location.href ="src/html/home.html";}
-                        login.reset();
-                        error.innerHTML= "";
-                    }).catch(err =>{
-                        console.log(err);
-                        login.reset();
-                        error.innerHTML= err.message;
+                    auth.setPersistence(firebase.auth.Auth.Persistence.SESSION)
+                    .then(() => {
+                        return auth.signInWithEmailAndPassword(email, password).then(cred =>{
+                            // console.log(cred.user);         
+                            sessionStorage.setItem("role", actualRole);
+                
+                            if(sessionStorage.getItem("role")==="tenants"){
+                                window.location.href = "src/html/tenant_home.html";}
+                            else {window.location.href ="src/html/home.html";}
+                            login.reset();
+                            error.innerHTML= "";
+                            }).catch(err =>{
+                                console.log(err);
+                                login.reset();
+                                error.innerHTML= err.message;
+                            });
+                        })
+                    .catch((error) => {
+                        // Handle Errors here.
+                        var errorCode = error.code;
+                        var errorMessage = error.message;
                     });
+
                 }else{
                     console.log("Don't Have an account!");
                 }

@@ -100,8 +100,8 @@ var customIconMulti = new SelectPure(".allmulti-select-custom", {
       value: "KKH branch- Mothercare"
     },
     {
-      label: "KKH branch- The Choice Gigft House",
-      value: "KKH branch- The Choice Gigft House"
+      label: "KKH branch- The Choice Gift House",
+      value: "KKH branch- The Choice Gift House"
     },
     {
       label: "KKH branch- B&G LifeCasting",

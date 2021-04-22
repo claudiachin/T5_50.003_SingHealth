@@ -12,10 +12,12 @@ newtenantform.addEventListener("input", ()=>{
     var nname = document.getElementById("name").value;
     var email = document.getElementById("email").value;
     var newtype = document.getElementById("newtype").value;
+    var location = document.getElementById("location").value;
+    var expiry = document.getElementById("expiry").value;
     //document.getElementById("nexxt").style.display = 'none';
     // Add a new document with a generated id.
 
-    if (email == "" || nname == "" || hospital == "" || branch == "" || newtype == "") {
+    if (email == "" || nname == "" || hospital == "" || branch == "" || newtype == "" || expiry == "" || location == "") {
         addtenant.setAttribute("disabled", "disabled");
     }else{
         addtenant.removeAttribute("disabled");
@@ -43,6 +45,8 @@ function newtenant(){
     var nname = document.getElementById("name").value;
     var email = document.getElementById("email").value;
     var newtype = document.getElementById("newtype").value;
+    var location = document.getElementById("location").value;
+    var expiry = document.getElementById("expiry").value;
     var password = passwordGen();
     console.log(hospital);
     var branch = hospital.slice(hospital.indexOf("(")+1,hospital.indexOf(")")) + " - " + brnh;
@@ -56,7 +60,9 @@ function newtenant(){
             name: nname,
             email: email,
             type: newtype,
-            password : password
+            password : password,
+            location : location,
+            tenancyExpiry : expiry,
         });
 
     }).then(()=>{
@@ -86,3 +92,4 @@ var firebaseConfig = {
   
   db.settings({ timestampsInSnapshots: true });
   
+//firebase.firestore.FieldValue.serverTimestamp(),

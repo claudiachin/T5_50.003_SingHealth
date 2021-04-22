@@ -36,6 +36,10 @@
           </select>
         </div><br>
 
+        <div class="form-question">
+          <label for="location">Location:</label>
+          <input type="text" id="location" name="location" />
+        </div><br>
 
         <div class="form-question">
           <label for="branch">Branch:</label>
@@ -60,7 +64,11 @@
           <label for="email">Email:</label><br>
           <input type="email" id="email" name="email" required />
         </div>
-        <!--<input type="submit" value="Submit" >-->
+
+        <div class="form-question">
+          <label for="expiry">Tenancy Expiry:</label><br>
+          <input type="date" id="expiry" name="expiry" required />
+        </div>
       </form>
       <div class="buttons-area">
         <button id="cancel" onclick="window.location.href='../html/directory.html';">Cancel</button>

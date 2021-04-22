@@ -24,22 +24,40 @@ const functions = firebase.functions();
 
 db.settings({ timestampsInSnapshots: true });
 
+db.collection("tenants").get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+        if (doc.data().tenancyExpiry == undefined) {
+            db.collection("tenants").doc(doc.id).set({
+                tenancyExpiry: firebase.firestore.FieldValue.serverTimestamp(),
+            }, {
+                merge: true,
+            }).catch((error) => {
+                console.error("Error writing document: ", error);
+            });
+        }
+
+        if (doc.data().location == undefined) {
+            db.collection("tenants").doc(doc.id).set({
+                location: "01-05",
+            }, {
+                merge: true,
+            }).catch((error) => {
+                console.error("Error writing document: ", error);
+            });
+        }
+    })
+})
+
 var tenantID = sessionStorage.getItem("tenantID");
 
 db.collection("tenants").doc(tenantID).get().then((doc) => {
     document.getElementById("location").innerHTML = doc.data().hospital + ", " + doc.data().location;
     document.getElementById("type").innerHTML = doc.data().type;
     document.getElementById("store").innerHTML = doc.data().branch;
-
-    var owners = doc.data().owners;
-    var ownersString = '';
-    for (i = 0; i < owners.length; i++) {
-        ownersString += owners[i];
-        ownersString += (i == owners.length - 1) ? " " : ", ";
-    }
-    document.getElementById("owners").innerHTML = ownersString;
-    var expiry = new Date(doc.data().expiry.seconds * 1000);
+    document.getElementById("owners").innerHTML = doc.data().name;
+    var expiry = new Date(doc.data().tenancyExpiry.seconds * 1000);
     document.getElementById("expiry").innerHTML = expiry.toDateString();
+
 }).catch((error) => {
     console.log("Error getting document:", error);
 });

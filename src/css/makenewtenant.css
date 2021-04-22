@@ -2,7 +2,7 @@
     display: flex;
 }
 .form-question > :first-child {
-    width: 120px;
+    min-width: 120px;
     padding: 8px 0;
     font-weight: bold;
     margin-right: 8px;

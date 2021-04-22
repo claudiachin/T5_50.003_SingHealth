@@ -225,6 +225,7 @@ if (login){
         const email = login[`email`].value;
         const password = login[`pword`].value;
         console.log(email);
+        let count = 0;
 
         db.collection(actualRole).get()
         .then(snapshot => {
@@ -234,14 +235,14 @@ if (login){
                     auth.setPersistence(firebase.auth.Auth.Persistence.SESSION)
                     .then(() => {
                         return auth.signInWithEmailAndPassword(email, password).then(cred =>{
-                            // console.log(cred.user);         
+                            // console.log(cred.user);        
+                            error.innerHTML= ""; 
                             sessionStorage.setItem("role", actualRole);
                 
                             if(sessionStorage.getItem("role")==="tenants"){
                                 window.location.href = "src/html/tenant_home.html";}
                             else {window.location.href ="src/html/home.html";}
                             login.reset();
-                            error.innerHTML= "";
                             }).catch(err =>{
                                 console.log(err);
                                 login.reset();
@@ -255,8 +256,14 @@ if (login){
                     });
 
                 }else{
-                    console.log("The account does not exist! Please try again.");
-                    error.innerHTML = "The account does not exist! Please try again.";
+                    count++;
+                    // console.log(count);
+                    // console.log("The account does not exist! Please try again.");
+                    if (count == snapshot.size){
+                        count = 0;
+                        error.innerHTML = "The account does not exist! Please try again.";
+                    }
+                    
                 }
             });
         }), err => {

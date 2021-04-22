@@ -35,7 +35,7 @@ db.collection("tenants").doc(tenantID).get().then((doc) => {
     var ownersString = '';
     for (i = 0; i < owners.length; i++) {
         ownersString += owners[i];
-        ownersString += (i == owners.length-1) ? " " : ", ";
+        ownersString += (i == owners.length - 1) ? " " : ", ";
     }
     document.getElementById("owners").innerHTML = ownersString;
     var expiry = new Date(doc.data().expiry.seconds * 1000);
@@ -52,6 +52,19 @@ db.collection("reports").orderBy("dateCreated").get().then((querySnapshot) => {
             var reportText = document.createTextNode("Report #" + count);
             report.appendChild(reportText);
 
+            var toRectify = document.createElement("p");
+            var toRectifyCount = 0;
+            toRectifyCount += doc.data().professionalism_staff_hygiene_resolved.filter((v) => (v === false)).length;
+            toRectifyCount += doc.data().housekeeping_general_cleanliness_resolved.filter((v) => (v === false)).length;
+            toRectifyCount += doc.data().workplace_safety_health_resolved.filter((v) => (v === false)).length;
+            if (doc.data().type == "F&B") {
+                toRectifyCount += doc.data().food_hygiene_resolved.filter((v) => (v === false)).length;
+                toRectifyCount += doc.data().healthier_choice_resolved.filter((v) => (v === false)).length;
+            }
+            toRectifyCount += doc.data().covid_resolved.filter((v) => (v === false)).length;
+            var toRectifyText = document.createTextNode("No. of items left to rectify: " + toRectifyCount);
+            toRectify.appendChild(toRectifyText);
+
             var date = document.createElement("h6");
             var dateData = new Date(doc.data().dateCreated.seconds * 1000);
             var dateText = document.createTextNode(dateData.toDateString());
@@ -59,6 +72,7 @@ db.collection("reports").orderBy("dateCreated").get().then((querySnapshot) => {
 
             var sect = document.createElement("div");
             sect.appendChild(report);
+            sect.appendChild(toRectify);
             sect.appendChild(date);
 
             var icon = document.createElement("div");
@@ -69,13 +83,13 @@ db.collection("reports").orderBy("dateCreated").get().then((querySnapshot) => {
             card.appendChild(icon);
             card.classList.add("card");
             card.id = doc.id;
-            card.onclick = function () { selectReport(this)};
-            if (sessionStorage.getItem("role") == "tenants"){
+            card.onclick = function () { selectReport(this) };
+            if (sessionStorage.getItem("role") == "tenants") {
                 sessionStorage.setItem("auditorID", doc.data().associatedAuditor);
-            }else{
+            } else {
                 sessionStorage.setItem("tenantID", doc.data().associatedTenant);
             }
-            
+
             var split = document.createElement("hr");
 
             var list = document.getElementById("list");

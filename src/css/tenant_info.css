@@ -31,6 +31,6 @@
     margin-bottom: 8px;
 }
 
-.card > div > p {
+.card > div > p:first-child {
     font-weight: bold;
 }

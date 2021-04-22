@@ -46,7 +46,7 @@ db.collection("reports").doc(reportID).get().then((doc) => {
     document.getElementById("out-of").innerHTML = outOf;
 
     // rectified button
-    if (role == "auditor") {
+    if (role == "auditors") {
         var resolved = doc.data()[category + "_resolved"];
         for (i = 0; i < resolved.length; i++) {
             if (resolved[i] == false) { //add rectified button after the question

@@ -47,6 +47,19 @@ db.collection("reports").orderBy("dateCreated").get().then((querySnapshot) => {
             var reportText = document.createTextNode("Report #" + count);
             report.appendChild(reportText);
 
+            var toRectify = document.createElement("p");
+            var toRectifyCount = 0;
+            toRectifyCount += doc.data().professionalism_staff_hygiene_resolved.filter((v) => (v === false)).length;
+            toRectifyCount += doc.data().housekeeping_general_cleanliness_resolved.filter((v) => (v === false)).length;
+            toRectifyCount += doc.data().workplace_safety_health_resolved.filter((v) => (v === false)).length;
+            if (doc.data().type == "F&B") {
+                toRectifyCount += doc.data().food_hygiene_resolved.filter((v) => (v === false)).length;
+                toRectifyCount += doc.data().healthier_choice_resolved.filter((v) => (v === false)).length;
+            }
+            toRectifyCount += doc.data().covid_resolved.filter((v) => (v === false)).length;
+            var toRectifyText = document.createTextNode("No. of items left to rectify: " + toRectifyCount);
+            toRectify.appendChild(toRectifyText);
+
             var date = document.createElement("h6");
             var dateData = new Date(doc.data().dateCreated.seconds * 1000);
             var dateText = document.createTextNode(dateData.toDateString());
@@ -54,6 +67,7 @@ db.collection("reports").orderBy("dateCreated").get().then((querySnapshot) => {
 
             var sect = document.createElement("div");
             sect.appendChild(report);
+            sect.appendChild(toRectify);
             sect.appendChild(date);
 
             var icon = document.createElement("div");

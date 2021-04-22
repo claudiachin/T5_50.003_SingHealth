@@ -4,7 +4,8 @@
 <head>
   <!-- do not remove anything in head, can add stuff if needed though -->
   <link rel="stylesheet" type="text/css" href="../css/style.css">
-  
+  <link rel="stylesheet" type="text/css" href="../css/makenewtenant.css">
+
   <meta charset="UTF-8">
   <meta name="viewport"
     content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -13,51 +14,64 @@
 </head>
 
 <body>
-    <div class="top-flap">
-        <p>Add New Tenant</p>
-    </div>
+  <div class="top-flap">
+    <p>Add New Tenant</p>
+  </div>
   <div class="main-content">
-<div>
-  <form id="newformtenant" method="post">
-    <label for="hospital">Hospital:</label><br>
-    <select id="hospital" name="hospital">
-      <option></option>
-      <option value="Changi General Hospital (CGH)">Changi General Hospital</option>
-      <option value="Singapore General Hospital (SGH)">Singapore General Hospital</option>
-      <option value="KK Women's and Children's Hospital (KKH)">KK Women's and Children's Hospital</option>
-      <option value="Sengkang General Hospital (SKH)">SengKang General Hospital</option>
-      <option value="National Cancer Centre Singapore (NCCS)">National Cancer Centre Singapore</option>
-      <option value="National Heart Centre Singapore (NHCS)">National Heart Centre Singapore</option>
-      <option value="Bright Vision Hospital (BVH)">Bright Vision Hospital</option>
-      <option value="Outram Community Hospital (OCH)">Outram Community Hospital</option>
-      <option value="Academia     ">Academia</option>
-    </select><br>
-
-    <label for="branch">Branch:</label><br>
-    <input type="text" id="branch" name="branch"/><br>
-
-    <label for="newtype">Type:</label><br>
-    <select id="newtype" name="newtype">
-      <option></option>
-      <option value="F&B">F&B</option>
-      <option value="Non-F&B">Non-F&B</option>
-    </select><br>
-
-    <label for="name">Name:</label><br>
-    <input type="text" id="name" name="name"/><br>
-
-    <label for="email">Email:</label><br>
-    <input type="email" id="email" name="email" required/>
-    <!--<input type="submit" value="Submit" >-->
-  </form> 
-  <button id = "addtenant" onclick=newtenant() disabled="disabled">Add Tenant</button>
-  <button id="aha" style="float:right"  onclick="window.location.href='../html/directory.html';">Go back to directory</button>
-  <p class="newtenanterror" style="color: crimson;"></p>
-
-  </div>  </div>
+    <div>
+      <form id="newformtenant" method="post">
+        <div class="form-question">
+          <label for="hospital">Hospital:</label>
+          <select id="hospital" name="hospital">
+            <option></option>
+            <option value="Changi General Hospital (CGH)">Changi General Hospital</option>
+            <option value="Singapore General Hospital (SGH)">Singapore General Hospital</option>
+            <option value="KK Women's and Children's Hospital (KKH)">KK Women's and Children's Hospital</option>
+            <option value="Sengkang General Hospital (SKH)">SengKang General Hospital</option>
+            <option value="National Cancer Centre Singapore (NCCS)">National Cancer Centre Singapore</option>
+            <option value="National Heart Centre Singapore (NHCS)">National Heart Centre Singapore</option>
+            <option value="Bright Vision Hospital (BVH)">Bright Vision Hospital</option>
+            <option value="Outram Community Hospital (OCH)">Outram Community Hospital</option>
+            <option value="Academia     ">Academia</option>
+          </select>
+        </div><br>
 
 
-  
+        <div class="form-question">
+          <label for="branch">Branch:</label>
+          <input type="text" id="branch" name="branch" />
+        </div><br>
+
+        <div class="form-question">
+          <label for="newtype">Type:</label>
+          <select id="newtype" name="newtype">
+            <option></option>
+            <option value="F&B">F&B</option>
+            <option value="Non-F&B">Non-F&B</option>
+          </select>
+        </div><br>
+
+        <div class="form-question">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" />
+        </div><br>
+
+        <div class="form-question">
+          <label for="email">Email:</label><br>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <!--<input type="submit" value="Submit" >-->
+      </form>
+      <div class="buttons-area">
+        <button id="cancel" onclick="window.location.href='../html/directory.html';">Cancel</button>
+        <button id="addtenant" onclick=newtenant() disabled="disabled">Add Tenant</button>  
+      </div>
+      <p class="newtenanterror"></p>
+    </div>
+  </div>
+
+
+
 
   <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>

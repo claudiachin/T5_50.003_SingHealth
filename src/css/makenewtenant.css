@@ -1,0 +1,50 @@
+.form-question {
+    display: flex;
+}
+.form-question > :first-child {
+    width: 120px;
+    padding: 8px 0;
+    font-weight: bold;
+    margin-right: 8px;
+}
+.form-question > :last-child {
+    width: 100%;
+}
+.form-question > input, .form-question > select {
+    border: none;
+    border-bottom: solid 1px black;
+    padding: 8px 4px;
+    font-size: 16px;
+}
+
+.buttons-area {
+    display: flex;
+    justify-content: space-between;
+    padding: 32px 0;
+}
+
+#addtenant {
+    background: #F15A22;
+    border: none;
+    padding: 8px;
+    color: #FFF;
+}
+
+#addtenant:disabled {
+    background: #e2e2e2;
+    border: none;
+    padding: 8px;
+    color: #FFF;
+}
+
+#cancel {
+    background: #112444;
+    border: none;
+    padding: 8px;
+    color: #FFF;
+}
+
+.newtenanterror {
+    text-align: center;
+    color: crimson !important;
+}

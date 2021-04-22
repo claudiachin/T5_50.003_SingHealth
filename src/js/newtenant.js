@@ -47,6 +47,7 @@ function newtenant(){
     var newtype = document.getElementById("newtype").value;
     var location = document.getElementById("location").value;
     var expiry = document.getElementById("expiry").value;
+    var parsedExpiry = new Date(expiry).getTime();
     var password = passwordGen();
     console.log(hospital);
     var branch = hospital.slice(hospital.indexOf("(")+1,hospital.indexOf(")")) + " - " + brnh;
@@ -62,7 +63,7 @@ function newtenant(){
             type: newtype,
             password : password,
             location : location,
-            tenancyExpiry : expiry,
+            tenancyExpiry : parsedExpiry,
         });
 
     }).then(()=>{

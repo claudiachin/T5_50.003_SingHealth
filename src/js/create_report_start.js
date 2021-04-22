@@ -15,7 +15,7 @@ const functions = firebase.functions();
 
 db.settings({ timestampsInSnapshots: true });
 
-db.collection("tenants").get().then((querySnapshot) => {
+db.collection("tenants").orderBy("branch").get().then((querySnapshot) => {
   querySnapshot.forEach((doc) => {
     var tenant = document.createElement("p");
     var tenantText = document.createTextNode(doc.data().branch);

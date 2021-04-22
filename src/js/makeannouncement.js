@@ -151,3 +151,43 @@ function imageType(){
     console.log(imageExtension);
     return imageExtension;
 }
+
+function limitBoundaryTitle (stringTest){
+    inputnum = stringTest.length;
+    if (inputnum >= 120){
+        inputnum = 120;}
+    else if(inputnum <= 0){
+        inputnum = 0;
+    }
+    return inputnum;
+}
+
+function limitBoundaryDescription(stringDesc){
+    inputnum = len(stringDesc);
+    if (inputnum >= 2000){
+        inputnum = 2000;}
+    else if(inputnum <= 0){
+        inputnum = 0;
+    }
+    return inputnum;
+}
+
+function percentage(data, weight) {
+    var score = 0;
+    var outOf = data.length;
+
+    for (i = 0; i < data.length; i++) {
+        if (data[i] == -1) { //invalid
+            outOf -= 1;
+        } else if (data[i] == 1) { //yes
+            score += 1;
+        }
+    }
+
+    if (score == 0 && outOf == 0) {
+        result = weight;
+    } else { 
+        result = Number.parseFloat((score / outOf * weight).toFixed(1));
+    }
+    return [score, outOf, result];
+}

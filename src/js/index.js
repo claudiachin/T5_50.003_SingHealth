@@ -209,34 +209,51 @@ function displayDetails(fetchedEmail, fetchedHospital, fetchedName){
 if (login){
     login.addEventListener('submit', (e) =>{
         e.preventDefault();
-    
+        
+        let tempRole = tabBar.firstElementChild.getAttribute("class");
+        console.log(tempRole);
+        let actualRole = "";
+        if (tempRole === "tab-active"){
+            actualRole = "auditors";
+        }
+        else{
+            actualRole = "tenants";
+        }
+        console.log(actualRole);
+
         // get user info
         const email = login[`email`].value;
         const password = login[`pword`].value;
-    
-        auth.signInWithEmailAndPassword(email, password).then(cred =>{
-            // console.log(cred.user);
-            let tempRole = tabBar.firstElementChild.getAttribute("class");
-            console.log(tempRole);
-            let actualRole = "";
-            if (tempRole === "tab-active"){
-                actualRole = "auditors";
-            }
-            else{
-                actualRole = "tenants";
-            }
-            sessionStorage.setItem("role", actualRole);
+        console.log(email);
 
-            if(sessionStorage.getItem("role")==="tenants"){
-                window.location.href = "src/html/tenant_home.html";}
-            else {window.location.href ="src/html/home.html";}
-            login.reset();
-            error.innerHTML= "";
-        }).catch(err =>{
-            console.log(err);
-            login.reset();
-            error.innerHTML= err.message;
-        });
+        db.collection(actualRole).get()
+        .then(snapshot => {
+            snapshot.docs.forEach(doc => {
+                if (doc.data().email === email){
+                    console.log("Has an account!");
+                    auth.signInWithEmailAndPassword(email, password).then(cred =>{
+                        // console.log(cred.user);
+                        
+                        sessionStorage.setItem("role", actualRole);
+            
+                        if(sessionStorage.getItem("role")==="tenants"){
+                            window.location.href = "src/html/tenant_home.html";}
+                        else {window.location.href ="src/html/home.html";}
+                        login.reset();
+                        error.innerHTML= "";
+                    }).catch(err =>{
+                        console.log(err);
+                        login.reset();
+                        error.innerHTML= err.message;
+                    });
+                }else{
+                    console.log("Don't Have an account!");
+                }
+            });
+        }), err => {
+        console.log(err.message);
+        }
+    
     });
 }
 

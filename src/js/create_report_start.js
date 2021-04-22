@@ -27,8 +27,21 @@ db.collection("tenants").orderBy("branch").get().then((querySnapshot) => {
     inst.appendChild(instText);
 
     var date = document.createElement("h6");
-    var dateText = document.createTextNode("Latest report made on 14/2/2020");
-    date.appendChild(dateText);
+    if (doc.data().reports != undefined && doc.data().reports != null) {
+      var latestReportRef = doc.data().reports[doc.data().reports.length - 1];
+      if (latestReportRef != undefined && latestReportRef != null) {
+        latestReportRef.get().then((doc) => {
+          dateText = document.createTextNode("Last report made on " + new Date(doc.data().dateCreated.seconds * 1000).toDateString());
+          date.appendChild(dateText);
+        })
+      } else {
+        var dateText = document.createTextNode("Tenant has no reports");
+        date.appendChild(dateText);
+      }
+    } else {
+      var dateText = document.createTextNode("Tenant has no reports");
+      date.appendChild(dateText);
+    }
 
     var sect = document.createElement("div");
     sect.appendChild(tenant);

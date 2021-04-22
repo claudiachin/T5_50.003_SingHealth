@@ -17,8 +17,6 @@ db.settings({ timestampsInSnapshots: true });
 
 db.collection("tenants").orderBy("branch").get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
-        console.log(doc.id);
-
         var tenant = document.createElement("p");
         var tenantText = document.createTextNode(doc.data().branch);
         tenant.appendChild(tenantText);
@@ -30,11 +28,16 @@ db.collection("tenants").orderBy("branch").get().then((querySnapshot) => {
 
         var date = document.createElement("h6");
         if (doc.data().reports != undefined && doc.data().reports != null) {
-            var latestReportRef = doc.data().reports[doc.data().reports.length-1];
-            latestReportRef.get().then((doc) => {
-                var dateText = document.createTextNode("Last report made on " + new Date(doc.data().dateCreated.seconds * 1000).toDateString());
+            var latestReportRef = doc.data().reports[doc.data().reports.length - 1];
+            if (latestReportRef != undefined && latestReportRef != null) {
+                latestReportRef.get().then((doc) => {
+                    dateText = document.createTextNode("Last report made on " + new Date(doc.data().dateCreated.seconds * 1000).toDateString());
+                    date.appendChild(dateText);
+                })
+            } else {
+                var dateText = document.createTextNode("Tenant has no reports");
                 date.appendChild(dateText);
-            })
+            }
         } else {
             var dateText = document.createTextNode("Tenant has no reports");
             date.appendChild(dateText);
@@ -89,9 +92,9 @@ function selectTenant(ele) {
     sessionStorage.setItem("tenantID", ele.id);
     console.log(`>>> ` + ele.firstChild.childNodes[1].innerText);
     if (ele.firstChild.childNodes[1].innerText.includes("Non-F&B")) {
-        sessionStorage.setItem("type", "Non-F&B"); 
+        sessionStorage.setItem("type", "Non-F&B");
     } else {
-        sessionStorage.setItem("type", "F&B"); 
+        sessionStorage.setItem("type", "F&B");
     }
     window.location.href = url;
 }

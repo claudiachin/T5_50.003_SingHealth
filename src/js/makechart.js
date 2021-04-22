@@ -118,6 +118,8 @@ function instGenerate(selector) {
     myChart.parentNode.style.display = "";
     document.querySelector(".download-csv-jpeg").style.display = "";
 
+    console.log("hello?");
+
     var count = 0;
     selected.forEach(item => {
       var itemName;
@@ -140,6 +142,8 @@ function instGenerate(selector) {
       } else {
         itemName = "Academia";
       }
+
+      console.log(itemName);
 
       var newDataset = {
         label: item,
@@ -164,9 +168,12 @@ function instGenerate(selector) {
 function getInstScore(itemName, count) {
   db.collection("tenants").get().then(snapshot => {
     snapshot.docs.forEach(doc => {
-      if (itemName == doc.data().hospital) {
+      if (itemName.localeCompare(doc.data().hospital) && doc.data().reports != undefined) {
+        console.log("in getINstScore " + doc.data().hospital);
+        console.log(doc.id);
         let refs = doc.data().reports;
         for (i = 0; i < refs.length; i++) {
+          console.log(refs[i]);
           refs[i].get().then(ref => {
             dateData = new Date(ref.data().dateCreated.seconds * 1000);
             lineChart.data.datasets[count].data[dateData.getMonth()] = average(ref.data().overallScore, count, dateData.getMonth())
@@ -184,6 +191,8 @@ function getTenantScore(itemName, count) {
   db.collection("tenants").get().then(snapshot => {
     snapshot.docs.forEach(doc => {
       if (itemName == doc.data().branch) {
+        console.log(itemName + " " + doc.data().branch);
+        console.log(doc.id);
         let refs = doc.data().reports;
         for (i = 0; i < refs.length; i++) {
           refs[i].get().then(ref => {

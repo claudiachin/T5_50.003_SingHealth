@@ -46,26 +46,26 @@ db.collection("reports").doc(reportID).get().then((doc) => {
     document.getElementById("out-of").innerHTML = outOf;
 
     // rectified button
-    var resolved = doc.data()[category + "_resolved"];
-    for (i = 0; i < resolved.length; i++) {
-        if (resolved[i] == false) { //add rectified button after the question
-            rectBtnLocation = checkboxes[i].parentNode.parentNode.nextSibling;
+    if (role == "auditor") {
+        var resolved = doc.data()[category + "_resolved"];
+        for (i = 0; i < resolved.length; i++) {
+            if (resolved[i] == false) { //add rectified button after the question
+                rectBtnLocation = checkboxes[i].parentNode.parentNode.nextSibling;
 
-            rectBtn = document.createElement("button");
-            rectBtn.classList.add("rect-btn");
-            rectBtn.innerHTML = "Rectified?";
-            rectBtn.onclick = function () { rectified(this) };
-            console.log(rectBtn.classList);
+                rectBtn = document.createElement("button");
+                rectBtn.classList.add("rect-btn");
+                rectBtn.innerHTML = "Rectified?";
+                rectBtn.onclick = function () { rectified(this) };
+                console.log(rectBtn.classList);
 
-            rectBtnDiv = document.createElement("div");
-            rectBtnDiv.classList.add("rect-btn-div");
-            rectBtnDiv.appendChild(rectBtn);
+                rectBtnDiv = document.createElement("div");
+                rectBtnDiv.classList.add("rect-btn-div");
+                rectBtnDiv.appendChild(rectBtn);
 
-            rectBtnLocation.parentNode.insertBefore(rectBtnDiv, rectBtnLocation)
+                rectBtnLocation.parentNode.insertBefore(rectBtnDiv, rectBtnLocation)
+            }
         }
     }
-    document.getElementById("score").innerHTML = score;
-    document.getElementById("out-of").innerHTML = outOf;
 
     // photos
     var photoURLs = doc.data()[category + "_photoURLs"];
@@ -148,20 +148,20 @@ function toggleChat(icon) {
         sendMsgArea.style.display = "";
         var role = sessionStorage.getItem("role");
         console.log(role);
-        hygieneChat.get().then(snapshot =>{
-            snapshot.forEach(doc =>{
-                if (role == "tenants"){
+        hygieneChat.get().then(snapshot => {
+            snapshot.forEach(doc => {
+                if (role == "tenants") {
                     doc.ref.update({
                         readByTenant: 1
                     })
-                }else{
+                } else {
                     doc.ref.update({
                         readByAuditor: 1
                     })
-                } 
+                }
             })
         })
-        
+
     } else {
         chatArea.style.display = "none";
         sendMsgArea.style.display = "none";
@@ -171,25 +171,25 @@ function toggleChat(icon) {
 
 }
 
-hygieneChat.onSnapshot(snapshot =>{
+hygieneChat.onSnapshot(snapshot => {
     var role = sessionStorage.getItem("role");
     console.log(role);
     console.log(`Chat Area opened: ${chatArea.style.display}`);
     if (chatArea.style.display == "") {
-        snapshot.forEach(doc =>{
-            if (role == "tenants"){
+        snapshot.forEach(doc => {
+            if (role == "tenants") {
                 doc.ref.update({
                     readByTenant: 1
                 })
-            }else{
+            } else {
                 doc.ref.update({
                     readByAuditor: 1
                 })
             }
-            
+
         })
     }
-    
+
 })
 
 function toggleArrow(icon) {
@@ -358,7 +358,7 @@ function rectified(rectBtn) {
     for (i = 0; i < questions.length; i++) {
         if (questions[i] == rectBtn.parentNode.previousSibling) {
             changeResolvedDB(i);
-            
+
             rectBtn.innerHTML = "Rectified";
             rectBtn.classList.remove("rect-btn");
             rectBtn.classList.add("rect-btn-resolved");
@@ -372,7 +372,7 @@ function changeResolvedDB(index) {
         var resolved = doc.data()[category + "_resolved"];
         resolved[index] = true;
         db.collection("reports").doc(reportID).update({
-            [category + "_resolved"] : resolved,
+            [category + "_resolved"]: resolved,
         })
     })
 }

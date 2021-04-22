@@ -20,19 +20,39 @@
 <div>
   <form id="newformtenant" method="post">
     <label for="hospital">Hospital:</label><br>
-    <input type="text" id="hospital" name="hospital"><br>
+    <select id="hospital" name="hospital">
+      <option></option>
+      <option value="Changi General Hospital (CGH)">Changi General Hospital</option>
+      <option value="Singapore General Hospital (SGH)">Singapore General Hospital</option>
+      <option value="KK Women's and Children's Hospital (KKH)">KK Women's and Children's Hospital</option>
+      <option value="Sengkang General Hospital (SKH)">SengKang General Hospital</option>
+      <option value="National Cancer Centre Singapore (NCCS)">National Cancer Centre Singapore</option>
+      <option value="National Heart Centre Singapore (NHCS)">National Heart Centre Singapore</option>
+      <option value="Bright Vision Hospital (BVH)">Bright Vision Hospital</option>
+      <option value="Outram Community Hospital (OCH)">Outram Community Hospital</option>
+      <option value="Academia     ">Academia</option>
+    </select><br>
+
     <label for="branch">Branch:</label><br>
-    <input type="text" id="branch" name="branch"><br>
+    <input type="text" id="branch" name="branch"/><br>
+
     <label for="newtype">Type:</label><br>
-    <input type="text" id="newtype" name="newtype"><br>
+    <select id="newtype" name="newtype">
+      <option></option>
+      <option value="F&B">F&B</option>
+      <option value="Non-F&B">Non-F&B</option>
+    </select><br>
+
     <label for="name">Name:</label><br>
-    <input type="text" id="name" name="name"><br>
+    <input type="text" id="name" name="name"/><br>
+
     <label for="email">Email:</label><br>
-    <input type="email" id="email" name="email">
+    <input type="email" id="email" name="email" required/>
     <!--<input type="submit" value="Submit" >-->
   </form> 
-  <button onclick="newtenant();">Add Tenant</button>
-  <button id="aha" style="display:none; float:right"  onclick="window.location.href='../html/directory.html';">Go back to directory</button>
+  <button id = "addtenant" onclick=newtenant() disabled="disabled">Add Tenant</button>
+  <button id="aha" style="float:right"  onclick="window.location.href='../html/directory.html';">Go back to directory</button>
+  <p class="newtenanterror" style="color: crimson;"></p>
 
   </div>  </div>
 

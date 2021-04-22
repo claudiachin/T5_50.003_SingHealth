@@ -1,15 +1,15 @@
 const login = document.querySelector("#login");
-const signupForm = document.querySelector("#signUpForm");
+const resetForm = document.querySelector("#resetForm");
 const accountDetails = document.querySelector(".accountDetails");
 const auditorName = document.querySelector(".auditorName");
 const adminForm = document.querySelector(".admin-actions");
 const adminItems = document.querySelectorAll(".admin");
 const error = document.querySelector(".error");
-const signUpError = document.querySelector(".signUpError");
-const submitSignUp = document.querySelector("#submitSignUp");
+const resetError = document.querySelector(".resetError");
+const submitReset = document.querySelector("#submitReset");
 const tenantSelect = document.querySelector(".tab");
 const auditorSelect = document.querySelector(".tab-active");
-const signupF = document.querySelector(".bg-modal");
+const resetF = document.querySelector(".bg-modal");
 const loading = document.querySelector("#wrapper");
 const tabBar = document.querySelector(".tab-bar");
 const role = document.querySelector(".tab-active");
@@ -297,58 +297,44 @@ function auditorTab(){
 //     }
 // }
 
-// function signUpLink(){
-//     signupF.style.display = "flex";
-// }
+function resetLink(){
+    resetF.style.display = "flex";
+}
 
-// function closeSignUpForm(){
-//     console.log("Closed signup form");
-//     signupF.style.display = "none";
-// }
+function closeResetForm(){
+    console.log("Closed reset password form");
+    resetF.style.display = "none";
+    submitReset.style.backgroundColor = "rgb(146, 146, 146)";
+    resetForm.reset();
+}
 
-// // signup
-// signUpForm.addEventListener("input", ()=>{
-//     const email = signupForm[`email`].value;
-//     const password = signupForm[`pword`].value;
-//     const name = signUpForm['name'].value;
-//     const hospital = signUpForm['hospital'].value;
-//     signUpError.innerHTML="";
-//     if (email == "" || password == "" || name == "" || hospital == "") {
-//         submitSignUp.setAttribute("disabled", "disabled");
-//         submitSignUp.style.backgroundColor = "rgb(146, 146, 146)";
-//     }
-//     else{
-//         console.log("here");
-//         submitSignUp.removeAttribute("disabled");
-//         submitSignUp.style.backgroundColor = "#F15A22";
-//     }
-// });
+// reset password
+resetForm.addEventListener("input", ()=>{
+    const emailAddress = resetForm[`email`].value;
+    resetError.innerHTML="";
+    if (emailAddress == "") {
+        submitReset.setAttribute("disabled", "disabled");
+        submitReset.style.backgroundColor = "rgb(146, 146, 146)";
+    }
+    else{
+        console.log("here");
+        submitReset.removeAttribute("disabled");
+        submitReset.style.backgroundColor = "#F15A22";
+        submitReset.onclick = function() {
+            console.log("clicked");
+            auth.sendPasswordResetEmail(emailAddress).then(function() {
+                // Email sent.
+                console.log("Email sent");
+                closeResetForm();
+            }).catch(function(error) {
+                // An error happened.
+                console.log(error.message);
+                resetError.innerHTML = error.message;
+            });
+        };
+    }
+});
 
-
-// function signup(){
-//     const email = signupForm[`email`].value;
-//     const password = signupForm[`pword`].value;
-//     const name = signUpForm['name'].value;
-//     const hospital = signUpForm['hospital'].value;
-
-//     console.log(email, name, hospital);
-//     auth.createUserWithEmailAndPassword(email,password).then(cred => {
-//         return db.collection("auditors").doc(cred.user.uid).set({
-//             email: email,
-//             name: name,
-//             hospital: hospital
-//         });
-//     }).then(()=>{
-//         signupForm.reset();
-//         window.location.href = "src/html/home.html";
-//         signUpError.innerHTML="";
-//     }).catch(err =>{
-//         console.log(err);
-//         signupForm.reset();
-//         signUpError.innerHTML= err.message;
-//         submitSignUp.style.backgroundColor = "rgb(146, 146, 146)";
-//     });
-// };
 
 // // Add admin cloud function
 // if (adminForm){

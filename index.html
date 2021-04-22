@@ -44,37 +44,25 @@
         </form>
         <button class="primary-button" id="bypass" onclick=bypass() hidden>Bypass</button>
         <p class="error" style="color: crimson;"></p>
-        <p class="signup-link" hidden> Don't have an account?
-          <button id="signUp-button" onclick=signUpLink()>Sign Up</button>
+        <p class="reset-link"> 
+          <button id="reset-button" onclick=resetLink()>Forgot password?</button>
         </p>
         
     </div> 
   
-    <!-- SIGNUP MODAL -->
+    <!-- PASSWORD RESET MODAL -->
     <div class="bg-modal">
       <div class="modal-content">
-        <div class="close" onclick=closeSignUpForm()>+</div>
-        <h2>Sign Up</h2>
-        <form id="signUpForm">
-            <div class="signUpForm-input">
-              <i class="fa fa-user icon"></i>
-              <input type="text" name="name" placeholder="Name"/>
-            </div>
-            <div class="signUpForm-input">
-              <i class="fa fa-key icon"></i>
-              <input type="password" name="pword" placeholder="Password"/>
-            </div>
-            <div class="signUpForm-input">
+        <div class="close" onclick=closeResetForm()>+</div>
+        <h2>Reset Password</h2>
+        <form id="resetForm">
+            <div class="resetForm-input">
               <i class="fa fa-envelope icon"></i>
               <input type="email" name="email" placeholder="Email"/>
             </div>
-            <div class="signUpForm-input">
-              <i class="fa fa-hospital icon"></i>
-              <input type="text" name="hospital" placeholder="Hospital"/>
-            </div>
-            <button id="submitSignUp" type="button" onclick=signup() disabled="disabled">Submit</button>
+            <button id="submitReset" type="button" disabled="disabled">Reset Password</button>
             <br>
-            <p class="signUpError" style="color: crimson;"></p>
+            <p class="resetError" style="color: crimson;"></p>
         </form>
         
       </div>

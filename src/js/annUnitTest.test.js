@@ -22,11 +22,11 @@ test('Testing the Min No of Chars for the Description Field', ()=>{
 });
 
 //testImageExtension
-test('Testing the Image Extension uploaded via Upload Image Function',()=>{
+test('Testing the Valid Image Extension uploaded via Upload Image Function',()=>{
     expect(limitImageType("gif")).toBe("valid");
 });
 
-test('Testing the Image Extension uploaded via Upload Image Function',()=>{
+test('Testing the Invalid Image Extension uploaded via Upload Image Function',()=>{
     expect(limitImageType("tga")).toBe("invalid");
 });
 

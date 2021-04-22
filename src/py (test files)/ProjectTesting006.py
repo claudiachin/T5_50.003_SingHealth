@@ -20,6 +20,10 @@ if __name__ == "__main__":
     time.sleep(2)
     driver.find_element_by_id("count_value_title").send_keys('Selenium Testing - Automated Report')
     time.sleep(1)
+    s = driver.find_element_by_xpath("//input[@type='file']")
+    #file path specified with send_keys
+    s.send_keys("D:\\protocol.png")
+    time.sleep(2)
     driver.find_element_by_id("count_value").send_keys('The idea behind this test concerns the announcement_editor.html, where the test automatically fills all the relevant fields (announcement_title, and announcement_description), and automatically clicks the Post button to upload the announcement as a document to the firebase database')
     time.sleep(2)
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")

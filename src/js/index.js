@@ -255,7 +255,8 @@ if (login){
                     });
 
                 }else{
-                    console.log("Don't Have an account!");
+                    console.log("The account does not exist! Please try again.");
+                    error.innerHTML = "The account does not exist! Please try again.";
                 }
             });
         }), err => {

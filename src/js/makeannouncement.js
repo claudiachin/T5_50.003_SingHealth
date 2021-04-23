@@ -1,12 +1,25 @@
 var imageURL = "https://firebasestorage.googleapis.com/v0/b/singhealth-221e6.appspot.com/o/transparent_ver2.fw.png?alt=media&token=454dbf3e-c994-45ad-b543-a6855cf59ae7";
 
+function sanitize(string) {
+    const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#x27;',
+        "/": '&#x2F;',
+    };
+    const reg = /[&<>"'/]/ig;
+    return string.replace(reg, (match)=>(map[match]));
+}
+
 //function to upload announcement to the Firebase
 function postannouncement() {
 
     if (checkFieldsFilled()==true){
         db.collection("announcements").add({
             title: document.getElementById("count_value_title").value,
-            content: document.getElementById("count_value").value,
+            content: sanitize(document.getElementById("count_value").value),
             datePosted: perfectDate(),
             timePosted: perfectTime(), 
             image: imageURL,

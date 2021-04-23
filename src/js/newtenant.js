@@ -4,6 +4,19 @@ var newtenantform = document.querySelector("#newformtenant");
 var newtenanterror = document.querySelector(".newtenanterror");
 const addtenant = document.querySelector("#addtenant");
 
+function sanitize(string) {
+    const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#x27;',
+        "/": '&#x2F;',
+    };
+    const reg = /[&<>"'/]/ig;
+    return string.replace(reg, (match)=>(map[match]));
+}
+
 newtenantform.addEventListener("input", ()=>{
     //document.getElementById("newformtenant").submit();
     
@@ -41,11 +54,11 @@ function passwordGen(){
 
 function newtenant(){
     var hospital = document.getElementById("hospital").value;
-    var brnh = document.getElementById("branch").value;
-    var nname = document.getElementById("name").value;
+    var brnh = sanitize(document.getElementById("branch").value);
+    var nname = sanitize(document.getElementById("name").value);
     var email = document.getElementById("email").value;
     var newtype = document.getElementById("newtype").value;
-    var location = document.getElementById("location").value;
+    var location = sanitize(document.getElementById("location").value);
     var expiry = document.getElementById("expiry").value;
     var parsedExpiry = new Date(expiry).getTime();
     var password = passwordGen();
